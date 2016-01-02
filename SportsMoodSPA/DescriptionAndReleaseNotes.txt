@@ -1,0 +1,86 @@
+MLB Sports MoodSPA notes.
+Donald Cameron
+v. 0.4 2015-12-27
+
+Files included:
+SportsMood.html (stand alone single-page application).
+Description/Release Notes (this file).
+
+Specifics for release 0.4: Overhaul for mobile width.  The app looks
+fine in a Chrome window narrowed as far as it will go, but still looks
+terrible once uploaded and viewed on an iPhone or Android phone.  This
+release is thus just a checkpoint before a second responsive overhaul,
+this time basically a mobile-first rewrite/rearrangement of the CSS.
+
+Description:
+
+SportsMood.html is a one-file demo based on a rather silly idea: if you
+could rate the MLB teams as to how much you like or dislike them, then
+could you automatically discover, for any given day on the MLB schedule,
+how happy or sad you should be based on the day's results and your
+ratings?  This little app does just that.
+
+SportsMood.html is a self-contained 1-file web application, client-side only.
+
+Please note:
+
+0. An HTML5-compliant browser is required.
+
+1. An active Internet connection is required, trivially to get images
+from Imgur, and more importantly to get jQuery from GoogleAPIs.
+
+1a. The app will not function using Internet Explorer because, for that
+browser, sessionStorage is not available if the app is accessed by
+simply opening its file.  My understanding is that if the file is
+accessed using HTTP over a network, then sessionStorage is available.
+
+2. Persistence of Settings is on a window/tab basis via the HTML4
+sessionStorage facility.  Once a view of the app (i.e., a tab or browser
+window) is closed, there should be no related storage items remaining in
+the browser application's persistent data area(s). 
+
+3. This very limited demo only has data for two days of the 2015 MLB
+schedule, a Sunday (when all teams were active), and a Monday.  For a
+"real" app, one would likely acquire game results data by subscribing to
+a sports data service.  ESPN has one, for example.  These days I would
+expect most of them to provide RESTful services.
+
+4. Images are used without permission, thus no commercial use of this
+application is allowed.
+
+Bugs, in order (roughly) of most serious to least ...
+
+- in Settings, entering a leading plus sign for any numeric input
+  results in a zero value being received by JavaScript/jQuery.
+
+- the browser's back button doesn't navigate back to previous views in
+  the site.  This is a known issue for Single Page Applications.  There
+  is a JavaScript pushstate()/popstate() mechanism which can be used to
+  simulate the familiar accessing of immediate history in standard
+  multi-page websites.
+
+- If the user (a) enters team ratings on the Settings view and submits
+  them, and (b) then goes  back to Settings and updates and/or enters
+  new ones, then (c) if they immediately click Get My Mood without first
+  submitting the new settings, those updates to settings are lost.
+  Fixing this is going to require a more sophisticated event handler for
+  clicking Get My Mood.  I think the <nav> has the only pseudo-link to
+  mood() that is relevant to this bug.
+
+To Do list:
+
+a. Settings inputs, and the Settings screen in general, could use more
+styling.  Also true for the date input on the Mood screen.
+
+b. The Help screen should use custom numeric list-style rather than
+having the list numbers be part of the item string.  That way the item
+content can be more nicely aligned. 
+
+c. Investigate whether session storage and the 30 numeric inputs in
+settings can be accessed as an array with iteration, instead of needing
+a separate line or lines of code for each element.  Is it possible to
+get all the numeric inputs from the Settings screen in one call to
+val(?), returning an array?  Is it possible to iterate over the items in
+local storage rather than accessing each item by property name?
+
+----

@@ -1,0 +1,1356 @@
+<!DOCTYPE html>
+
+<html>
+<head>
+  <meta charset="UTF-8" />
+  <title>Sports Mood</title>
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="description" content="SportsMoodSPA, client-side-only app" />
+  
+  <style>
+    /*
+     *  Internal CSS file for "SportsMoodSPA"
+     *  Created on : Nov 17-21, 2015
+     * Author     : dcc1079
+     */
+
+    * { margin: 0; padding: 0;} /* plain-vanilla reset for this project */
+
+    body {
+      padding: 15px 100px 100px 100px;
+
+      /* body gradients */
+      /* IE10+ */
+      /* background: -ms-linear-gradient(top, #0000FF 0%, #009933 100%); */
+
+      /* Opera */
+      /* background: -o-linear-gradient(top, #0000FF 0%, #009933 100%); */
+
+      /* Webkit (Safari/Chrome 10) */
+      /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0000FF), color-stop(100, #009933)); */
+
+      /* Webkit (Chrome 11+) */
+      /* background-image: -webkit-linear-gradient(top, #0000FF 0%, #009933 100%); */
+
+      /* Mozilla Firefox */
+      background: -moz-linear-gradient(top, #0000FF 0%, #009933 100%);
+
+      /* W3C Markup */
+      background-image: linear-gradient(to bottom, #0000FF 0%, #009933 100%);
+
+      color: #404040; /* off-black default for text */
+      font-family: Century Gothic, sans-serif;
+    }
+    /**************************  THE "FRAME" FOR ALL CONTENT  **************************/
+    #outer-container {
+      background-color: green;
+      margin: 0 auto;
+      border: 5px solid darkred;
+      border-radius: 15px;
+    }
+    /**************************  HEADER  **************************/
+    header {
+      height: 90px;
+      text-align: center;
+      border-radius: 10px;
+      background-color: darkred; /* fallback to background image */
+      background: url(http://i.imgur.com/AqfvNPU.jpg);
+      background-repeat: no-repeat;
+      background-size: 100% 100%;
+      border: 1px solid #404040;
+      border-radius: 10px 10px 0 0;
+    }
+    h1 {
+      font-family: "Comic Sans MS", "Comic Sans", "Papyrus", cursive;
+      font-size: 2em;
+      /* text-align: center; /* inherited from header */
+      background-color: #E5DCCE;
+      color: #7b0000; /* darker than darkred which is #8b0000 */
+      display: inline-block;
+      padding-left: 10px;
+      padding-right: 10px;
+      margin-top: 20px;
+      margin-left: 70px;
+      border: 1px solid darkred;
+    }
+     h3 { /* moved up from detail settings */
+      font-family: arial, helvetica, sans-serif;
+      font-size: 1.1em;
+    }
+    /**************************  NAV - LEFT COLUMN  **************************/
+    nav {
+      background-color: #F5EBDC;
+      float: left;
+      height: 565px; /* total must agree with main height */
+      padding-top: 30px;
+      width: 15%;    /* total width (including child padding and margin) must be 10% */
+    }
+    nav ul {
+      padding-left: 30px;
+    }
+    nav li {
+      color: #7b0000; /* darker than darkred which is #8b0000 */
+      list-style-type: none;
+      font-size: 1.1em;
+      padding-bottom: 5px;
+    }
+    .inline-link {
+      color: #7b0000; /* same as nav li "links" */
+    }
+    .prettylink:hover {
+      color: #27408B;
+      text-decoration: underline;
+    }
+    /**************************  MAIN CONTENT PANE  **************************/
+    main {
+      background-color: white;
+      float: left;
+      width: 85%;  /* compensate for removing aside and its 15% of main width */
+      height: 565px; /* must agree with sidebar (i.e., nav) height */
+      padding: 10px 0 20px 0;
+      overflow-y: scroll;
+    }
+    article { /* for main section - override elsewhere if needed */
+      padding: 10px 40px 0 40px;
+    }
+    article h3 {
+      padding-bottom: 7px;
+    }
+    /**************************  FOOTER  **************************/
+    footer {
+      background-color: #1c1ca9;
+      color: white;
+      text-align: center;
+      padding-top: 20px;
+      padding-bottom: 5px;
+      clear: both;
+      height: 30px;
+      border-radius: 0 0 10px 10px;
+    }
+    /**************************  DETAIL SETTINGS  **************************/
+    h3 {
+      font-family: arial, helvetica, sans-serif;
+    }
+    .clear {
+      clear: both;
+    }
+    .bigger-font { /* improve readability in certain situations */
+      font-size: 1.2em;
+    }
+    .slightly-bigger-font { /* improve readability in certain situations */
+      font-size: 1.15em;
+    }
+    .smaller-font { /* improve readability in certain situations */
+      font-size: .9em;
+    }
+    .pad-bottom {
+      padding-bottom: 8px;
+    }
+    .styled-button-3 {
+      -webkit-box-shadow: rgba(0,0,0,0.0.1) 0 1px 0 0;
+      /*-moz-box-shadow: rgba(0,0,0,0.0.1) 0 1px 0 0;*/
+      /*box-shadow: rgba(0,0,0,0.0.1) 0 1px 0 0;*/
+      box-shadow: 0 1px 0 0;
+      background-color: #E5DCCE; /* same as the nav and h1 backgrounds */
+      color: #7b0000; /* darker than darkred which is #8b0000 */
+      border:1px solid #404040; /* same as text color */
+      font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+      font-size:12px;
+      font-weight:700;
+      padding:2px 6px;
+      border-radius:5px;
+      /*-moz-border-radius:5px;*/
+      -webkit-border-radius:5px;
+    }
+    /**************************  SPECIFICS FOR HOME/LANDING SCREEN  **************************/
+    #home-h3 {
+      padding-left: 28%;
+      padding-bottom: 15px;
+      font-size: 1.5em;
+    }
+    #disclaimer-div {
+      padding-left: 30px;
+    }
+    #disclaimer-list {
+      padding: 5px 0 0 15px;
+    }
+    /**************************  SPECIFICS FOR HELP SCREEN  **************************/
+    #help-h2 {
+      padding-left: 32%;
+      padding-bottom: 15px;
+    }
+    #help-ol {
+      padding-left: 60px;
+      padding-top: 12px;
+    }
+    #help-li {
+      padding-bottom: 5px;
+      width: 90%;
+      line-height: 25px;
+    }
+    /**************************  SPECIFICS FOR SETTINGS SCREEN  **************************/
+    #settings-h3 {
+      padding-left: 5%;
+      padding-bottom: 15px;
+      padding-top: 6px;
+      font-size: 1.15em; /* can we use .slightly-bigger-font?  That's not for headings */
+    }
+    #settings-form {
+      padding-left: 50px;
+    }
+    .settings-fieldset {
+      display: inline-block;
+      width: 30%;
+      margin: 0 3% 0 3%;
+      padding-left: 30px;
+      padding-bottom: 10px; /* needed to get last input off the bottom fieldset line on Opera */
+    }
+    #settings-legend {
+      margin-left: 20px;
+    }
+    .settings-div {
+      padding: 6px 0 0 5px;
+    }
+    .settings-label {
+      font-size: 0.85em;
+      display: inline-block;
+      width: 180px;
+    }
+    .settings-number {
+      width: 40px;
+    }
+    #settings-submit {
+      margin-top: 10px;
+      margin-left: 36%;
+    }
+    #settings-reset {
+      margin-left: 40.5%;
+      padding-left: 10px; /* attempt to match size of accompanying submit */
+      padding-right: 10px;
+      background-color: #e00; /* red = warning or caution */
+      color: white;
+      font-weight: bold;
+    }
+    /**************************  DATE-PICKER AREA LAYOUT  **************************/
+    /***********************  USED BY MOOD AND SCORES SCREENS  **********************/
+    #date-container {
+      padding: 0 27% 0 21%;
+    }
+    .date-h3 {
+      padding-bottom: 15px;
+      font-size: 1.5em;
+    }
+    #date-container p {
+      font-size: 1.1em;
+    }
+    #mood-h3 { padding-left: 17%; }  /* pseudo-centering */
+    #scores-h3 { padding-left: 11%; } /* pseudo-centering */
+    .date-form-class {
+      padding-top: 10px;
+      padding-bottom: 10px;
+    }
+    #date-select {
+      margin: 0 0 15px 27%;
+    }
+    .date-submit {
+      margin-left: 36%;
+      margin-bottom: 10px;
+    }
+    /**************************  SPECIFICS FOR MOOD SCREEN  ************************/
+    #mood-figure {
+      padding: 50px 0 0 150px;
+      display: inline-block;
+    }
+    /*************************  SPECIFICS FOR SCORES SCREEN  *************************/
+    #date-container p {
+      padding-left: 15px;
+    }
+    #about-h2 { /* almost the same as help-h2 2015-12-15 */
+      padding-left: 35%;
+      padding-bottom: 15px;
+    }
+    table {
+      width: 50%;
+      margin-left: 18.5%;
+      border-collapse: collapse;
+    }
+    table caption {
+      text-align: left;
+      padding-left: 31%;
+      padding-bottom: 5px;
+      font-size: 1.1em;
+    }
+    table, th, td {
+      border: 1px solid black;
+    }
+    th {
+      padding-left: 5px;
+      padding-right: 5px;
+    }
+    tbody tr:nth-child(odd) { /* zebra striping (credit: css-tricks) */
+      background-color: #eee;
+    }
+    /*******************************  mood speech bubble   ******************************/
+    /* adapted from: Nicolas Gallagher -- nicolasgallagher.com/pure-css-speech-bubbles/ */
+    /************************************************************************************/
+
+    #bubble-container {
+      width:250px;
+      display: inline-block;
+      vertical-align: top;
+    }
+
+    /*
+     Should you want to set a background colour on a containing element
+     certain types of bubble effect may require you to include these
+     style declarations.
+     */
+    .bubble-content {
+      position:relative;
+      z-index:1;
+    }
+
+    blockquote {
+      margin:1em 0;
+      /* font:1em/1.4 Cambria, Georgia, sans-serif; */  /* Nick had this on <body> for his demo page */
+                                                        /* 1st value is font-size/line-height */
+      font:.8em/1.0 "Comic Sans MS", "Comic Sans", "Papyrus", cursive;
+    }
+
+    blockquote p {
+      font-size:1.4em; /* a reasonable one-size-fits-all for varying amounts of text */
+    }
+
+    /* OVAL THOUGHT BUBBLE (more CSS3) ==================================== */
+
+    .oval-thought {
+      position:relative;
+      width:135px;
+      padding:25px 20px;
+      margin:1em auto 40px;
+      text-align:center;
+      color:#fff;
+      background:#075698;
+      /* css3 */
+      /*background:-webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));*/
+      background:-moz-linear-gradient(#2e88c4, #075698);
+      /*background:-o-linear-gradient(#2e88c4, #075698);*/
+      background:linear-gradient(#2e88c4, #075698);
+      /*
+      NOTES:
+      -webkit-border-radius:220px 120px; // produces oval in safari 4 and chrome 4
+      -webkit-border-radius:220px / 120px; // produces oval in chrome 4 (again!) but not supported in safari 4
+      Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+      */
+      -webkit-border-top-left-radius:110px 60px;
+      -webkit-border-top-right-radius:110px 60px;
+      -webkit-border-bottom-right-radius:110px 60px;
+      -webkit-border-bottom-left-radius:110px 60px;
+      /*-moz-border-radius:110px / 60px;*/
+      border-radius:110px / 60px;
+    }
+
+    .oval-thought p {font-size:1.25em;}
+
+    /* creates the larger circle */
+    .oval-thought:before {
+      content:"";
+      position:absolute;
+      bottom:-10px;
+      left:25px;
+      width:15px;
+      height:15px;
+      background:#075698;
+      /* css3 */
+      -webkit-border-radius:15px;
+      /*-moz-border-radius:15px;*/
+      border-radius:15px;
+    }
+
+    /* creates the smaller circle */
+    .oval-thought:after {
+      content:"";
+      position:absolute;
+      bottom:-15px;
+      left:15px;
+      width:7px;
+      height:7px;
+      background:#075698;
+      /* css3 */
+      -webkit-border-radius:7px;
+      /*-moz-border-radius:7px;*/
+      border-radius:7px;
+    }
+
+    /* ============================================================================================================================
+    == OVAL THOUGHT BUBBLE, EMPTY, WITH BORDER (more CSS3)
+    ** ============================================================================================================================ */
+
+    .oval-thought-border {
+      height: 65px;     /* ensure it holds its shape despite "smaller" content (wrt width 250 above) - dcc 2015-11 */
+      min-height: 65px; /* ensure it holds its shape despite "smaller" content (wrt width 250 above) - dcc 2015-11 */
+      position:relative;
+      padding:35px 15px;
+      margin:1em auto 40px;
+      border:5px solid #c81e2b;
+      text-align:center;
+      color:#333;
+      background:#fff;
+      /* css3 */
+      /*
+      NOTES:
+      -webkit-border-radius:240px 140px; // produces oval in safari 4 and chrome 4
+      -webkit-border-radius:240px / 140px; // produces oval in chrome 4 (again!) but not supported in safari 4
+      Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+      */
+      -webkit-border-top-left-radius:120px 70px;
+      -webkit-border-top-right-radius:120px 70px;
+      -webkit-border-bottom-right-radius:120px 70px;
+      -webkit-border-bottom-left-radius:120px 70px;
+      /*-moz-border-radius:120px / 70px;*/
+      border-radius:120px / 70px;
+    }
+
+    /* creates the larger circle */
+    .oval-thought-border:before {
+      content:"";
+      position:absolute;
+      z-index:10;
+      bottom:-20px;
+      /*right:100px;*/
+      left:50px;
+      width:25px;
+      height:25px;
+      border:5px solid #c81e2b;
+      background:#fff;
+      /* css3 */
+      -webkit-border-radius:25px;
+      /*-moz-border-radius:25px;*/
+      border-radius:25px;
+      /* reduce the damage in FF3.0 */
+      /* display:block; */
+    }
+
+    /* creates the smaller circle */
+    .oval-thought-border:after {
+      content:"";
+      position:absolute;
+      z-index:10;
+      bottom:-30px;
+      /*right:50px;*/
+      left:25px;
+      width:12px;
+      height:12px;
+      border:5px solid #c81e2b;
+      background:#fff;
+      /* css3 */
+      -webkit-border-radius:12px;
+      /*-moz-border-radius:12px;*/
+      border-radius:12px;
+      /* reduce the damage in FF3.0 */
+      /* display:block; */
+    }
+
+    /**************************  end of moodstyles.css  **************************/
+  </style>
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  
+  <script>
+    /*
+     *  Internal JavaScript for SportsMoodSPA"
+     *  Created on : Nov 17-21, 2015
+     *  Author     : dcc1079
+    */
+
+    /*
+     * JavaScript functions:
+     *
+     *   Pseudo-linked functions which replace main content, SPA-style:
+     *
+     *     help() - replaces innerHTML of <article> #main-content with
+     *     help text
+     *
+     *     settings() - replaces innerHTML of <article> #main-content
+     *     with settings screen. Inputs initially have the default value
+     *     of zero, but if there are associated values in Session
+     *     Storage,
+     *     the inputs are updated with those values.
+     *
+     *     mood() - invoked when Get My Mood is clicked, or when
+     *     settings
+     *     are submitted from the settings view.  replaces main content
+     *     with
+     *     the upper half of the mood view, which includes input of date
+     *     for which the mood is desired.
+     *
+     *     resetSettings() - return all settings back to zero.
+     *     Currently unimplemented.
+     *
+     *     scores() - display a table with scores for the day selected.
+     *
+     *   Utilities: 
+     *
+     *     processSettings() - invoked when user submits settings.
+     *     Writes the settings to Session Storage, and then
+     *     redirects to the GetMyMood view.
+     *
+     *     doMood() - invoked when the Get My Mood button is clicked on
+     *     the mood view, after the user has entered the desired date.
+     *     Computes the mood based on the date's game data and
+     *     the user's settings (from Session Storage).
+     *     Calls displayMood() to update the mood view's graphics.
+     *
+     *     getTeamSettingsFromStorage - returns array of team settings
+     *
+     *     displayMood() - select emoticon and caption based on mood
+     *     score,
+     *     and write them to the DOM (lower half of the mood view).
+     *
+     *     storageAvailable() - checks if browser enables Session
+     *     Storage.
+     *
+     *     doNormalize() - normalize mood score for the selected date
+     *     based on total settings points the user has assigned.
+     *
+     *     doScores() - output the scores table to the DOM for the
+     *     selected date
+     *
+     *     Note: functions which manipulate the DOM structure.  Check this
+     *     list or just look for the jQuery 'html' method invocation
+     *      - help()
+     *      - settings()
+     *      - mood()
+     *      - displayMood()
+     *      - getScores()
+     *      - doScores()
+     */
+
+    /* Repaint the content area when user clicks any of the Help pseudo-links.*/
+    function help(event) {
+      $("#main-content") // updates innerHTML of <article> within <main>
+        .html('<h2 id="help-h2">How to use this app</h2>' +
+              '<p class="bigger-font">To begin, click ' +
+                  '<span class="inline-link prettylink" onclick="settings(event)" >Settings</span>, ' +
+                  'and you will see a list of teams with spaces to enter ratings for each one. ' +
+                  'The ratings can range from 3 down to -3.  If you don\'t care about a team and enter nothing, ' +
+                  'it receives the default rating of 0 (zero). The ratings have the following meanings:' +
+              '</p>' +
+              '<ol id="help-ol" class="slightly-bigger-font">' +
+                '<li id="help-li" value="3">You adore the team and hope to be buried in their stadium. ' +
+                  'When they\'re defeated, your primal scream shatters wine glasses ' +
+                  'and awakens every dog in the neighborhood.</li>' +
+                '<li id="help-li" value="2">A warm glow of satisfaction fills your soul when they win.</li>' +
+                '<li id="help-li" value="1">You feel justice is served when they triumph.</li>' +
+                '<li id="help-li" value="0">You could care less (or should we say ' +
+                                     '\'you couldn\'t care fewer\').</li>' +
+                '<li id="help-li" value="-1">You feel mild annoyance that the team is still in business.</li>' +
+                '<li id="help-li" value="-2">You exult when the team loses, and sulk when they win.</li>' +
+                '<li id="help-li" value="-3">' +
+                    'The mere mention of the team\'s name, or the sight of a fan wearing ' +
+                    'the team\'s gear sends you into a blind rage. ' +
+                    'Hearing their home TV announcers\' biased commentary causes your head to host World War III ' +
+                    'as smoke billows forth from your ears. ' +
+                    'When the team comes to town and their local followers outnumber the home fans in the crowd, ' +
+                    'the stadium beer and hot dogs are as a sulfurous emanation in your solar plexus. ' +
+                    'If you discover a friend or relative is a fan of the team, that person is ' +
+                    'henceforth dead to you, and you <em>swiftly unfriend them on Facebook</em>.' +
+                '</li>' +
+              '</ol>'
+            );
+    }
+    
+    /* utlity function. cf. https://developer.mozilla.org/en-US/docs/Web/API/Web_Storage_API/Using_the_Web_Storage_API */
+    function storageAvailable(type) {
+      try {
+        var storage = window[type],
+          x = '__storage_test__';
+        storage.setItem(x, x);
+        storage.removeItem(x);
+        return true;
+      }
+      catch(e) {
+        return false;
+      }
+    }
+    
+    /* Repaint the content area when user clicks any of the Settings pseudo-links.
+     * Uses default affinity number of zero, or the values in Storage if available. */
+    function settings(event)
+    {
+      /* debug *//* alert("Settings 'link' was clicked"); */
+      
+      if (! storageAvailable('sessionStorage')) {
+        alert("These pages need session storage, but it's not available - sorry!");
+        return false;
+      }
+      
+      /* update #main-content html */
+      $("#main-content") // always update innerHTML of <article> within <main>
+        .html('<h3 id="settings-h3">Enter your affinity for each team and press Submit - see ' +
+                '<span class="inline-link prettylink" onclick="help(event)" >Help</span> for instructions</h3>' +
+              '<!-- client-side only so form has no method or action, button/submit has no formAction -->' +
+              '<!--<form method="post" id="settings-form">-->' +
+              '<form id="settings-form">' +
+                '<fieldset class="settings-fieldset" id="american-league-settings">' +
+                  '<legend id="settings-legend">American League</legend>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Anaheim Angels</label>' +
+                    '<input type="number" class="settings-number" id="angels" name="angels" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Baltimore Orioles</label>' +
+                    '<input type="number" class="settings-number" id="orioles" name="orioles" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Boston Red Sox</label>' +
+                    '<input type="number" class="settings-number" id="redsox" name="redsox" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Chicago White Sox</label>' +
+                    '<input type="number" class="settings-number" id="whitesox" name="whitesox" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Cleveland Indians</label>' +
+                    '<input type="number" class="settings-number" id="indians" name="indians" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Detroit Tigers</label>' +
+                    '<input type="number" class="settings-number" id="tigers" name="tigers" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Houston Astros</label>' +
+                    '<input type="number" class="settings-number" id="astros" name="astros" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">KansasCity Royals</label>' +
+                    '<input type="number" class="settings-number" id="royals" name="royals" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Minnesota Twins</label>' +
+                    '<input type="number" class="settings-number" id="twins" name="twins" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">New York Yankees</label>' +
+                    '<input type="number" class="settings-number" id="yankees" name="yankees" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Oakland Athletics</label>' +
+                    '<input type="number" class="settings-number" id="athletics" name="athletics" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Seattle Mariners</label>' +
+                    '<input type="number" class="settings-number" id="mariners" name="mariners" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Tampa Bay Rays</label>' +
+                    '<input type="number" class="settings-number" id="rays" name="rays" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Texas Rangers</label>' +
+                    '<input type="number" class="settings-number" id="rangers" name="rangers" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Toronto Bluejays</label>' +
+                    '<input type="number" class="settings-number" id="bluejays" name="bluejays" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                '</fieldset>' +
+                '<fieldset class="settings-fieldset" id="national-league-settings"><legend>National League</legend>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Arizona Diamondbacks</label>' +
+                    '<input type="number" class="settings-number" id="diamondbacks" name="diamondbacks" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Atlanta Braves</label>' +
+                    '<input type="number" class="settings-number" id="braves" name="braves" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Chicago Cubs</label>' +
+                    '<input type="number" class="settings-number" id="cubs" name="cubs" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Cincinnati Reds</label>' +
+                    '<input type="number" class="settings-number" id="reds" name="reds" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Colorado Rockies</label>' +
+                    '<input type="number" class="settings-number" id="rockies" name="rockies" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Los Angeles Dodgers</label>' +
+                    '<input type="number" class="settings-number" id="dodgers" name="dodgers" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Miami Marlins</label>' +
+                    '<input type="number" class="settings-number" id="marlins" name="marlins" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Milwaukee Brewers</label>' +
+                    '<input type="number" class="settings-number" id="brewers" name="brewers" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">New York Mets</label>' +
+                    '<input type="number" class="settings-number" id="mets" name="mets" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Philadelphia Phillies</label>' +
+                    '<input type="number" class="settings-number" id="phillies" name="phillies" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Pittsburgh Pirates</label>' +
+                    '<input type="number" class="settings-number" id="pirates" name="pirates" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">San Diego Padres</label>' +
+                    '<input type="number" class="settings-number" id="padres" name="padres" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">San Francisco Giants</label>' +
+                    '<input type="number" class="settings-number" id="giants" name="giants" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">St Louis Cardinals</label>' +
+                    '<input type="number" class="settings-number" id="cardinals" name="cardinals" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                  '<div class="settings-div">' +
+                    '<label class="settings-label">Washington Nationals</label>' +
+                    '<input type="number" class="settings-number" id="nationals" name="nationals" min="-3" max="3" value="0" >' +
+                  '</div>' +
+                '</fieldset>' +
+                '<br /><br />' +
+                '<button class="styled-button-3" id="settings-submit"' +
+                        'formaction="" onclick="processSettings(event)">Submit</button>' +
+              '</form>'
+              //+
+              //'<br /><br />' +
+              //'<button class="styled-button-3" id="settings-reset"' +
+              //        'formaction="" onclick="resetSettings(event)">Reset</button>'
+            );
+      
+      // Check if Storage has been set and if so, overwrite the
+      // defaults (zeroes) with the stored values
+      if (sessionStorage.getItem("nationals")) { // check last item that would have been stored
+
+        var teamSettings = getTeamSettingsFromStorage();
+        
+        // American League
+        $('#angels').val(teamSettings['angels']);
+        $('#orioles').val(teamSettings['orioles']);
+        $('#redsox').val(teamSettings['redsox']);
+        $('#whitesox').val(teamSettings['whitesox']);
+        $('#indians').val(teamSettings['indians']);
+        $('#tigers').val(teamSettings['tigers']);
+        $('#astros').val(teamSettings['astros']);
+        $('#royals').val(teamSettings['royals']);
+        $('#twins').val(teamSettings['twins']);
+        $('#yankees').val(teamSettings['yankees']);
+        $('#athletics').val(teamSettings['athletics']);
+        $('#mariners').val(teamSettings['mariners']);
+        $('#rays').val(teamSettings['rays']);
+        $('#rangers').val(teamSettings['rangers']);
+        $('#bluejays').val(teamSettings['bluejays']);
+        // National League
+        $('#diamondbacks').val(teamSettings['diamondbacks']);
+        $('#braves').val(teamSettings['braves']);
+        $('#cubs').val(teamSettings['cubs']);
+        $('#reds').val(teamSettings['reds']);
+        $('#rockies').val(teamSettings['rockies']);
+        $('#dodgers').val(teamSettings['dodgers']);
+        $('#marlins').val(teamSettings['marlins']);
+        $('#brewers').val(teamSettings['brewers']);
+        $('#mets').val(teamSettings['mets']);
+        $('#phillies').val(teamSettings['phillies']);
+        $('#pirates').val(teamSettings['pirates']);
+        $('#padres').val(teamSettings['padres']);
+        $('#giants').val(teamSettings['giants']);
+        $('#cardinals').val(teamSettings['cardinals']);
+        $('#nationals').val(teamSettings['nationals']);
+      }
+    }
+    
+    function getTeamSettingsFromStorage()
+    {
+      var teamSettings = [];
+ 
+      /* get american league values */
+      teamSettings['angels'] = sessionStorage.getItem('angels');
+      teamSettings['orioles'] = sessionStorage.getItem('orioles');
+      teamSettings['redsox'] = sessionStorage.getItem('redsox');
+      teamSettings['whitesox'] = sessionStorage.getItem('whitesox');
+      teamSettings['indians'] = sessionStorage.getItem('indians');
+      teamSettings['tigers'] = sessionStorage.getItem('tigers');
+      teamSettings['astros'] = sessionStorage.getItem('astros');
+      teamSettings['royals'] = sessionStorage.getItem('royals');
+      teamSettings['twins'] = sessionStorage.getItem('twins');
+      teamSettings['yankees'] = sessionStorage.getItem('yankees');
+      teamSettings['athletics'] = sessionStorage.getItem('athletics');
+      teamSettings['mariners'] = sessionStorage.getItem('mariners');
+      teamSettings['rays'] = sessionStorage.getItem('rays');
+      teamSettings['rangers'] = sessionStorage.getItem('rangers');
+      teamSettings['bluejays'] = sessionStorage.getItem('bluejays');
+
+      /* get national league values */
+      teamSettings['diamondbacks'] = sessionStorage.getItem('diamondbacks');
+      teamSettings['braves'] = sessionStorage.getItem('braves');
+      teamSettings['cubs'] = sessionStorage.getItem('cubs');
+      teamSettings['reds'] = sessionStorage.getItem('reds');
+      teamSettings['rockies'] = sessionStorage.getItem('rockies');
+      teamSettings['dodgers'] = sessionStorage.getItem('dodgers');
+      teamSettings['marlins'] = sessionStorage.getItem('marlins');
+      teamSettings['brewers'] = sessionStorage.getItem('brewers');
+      teamSettings['mets'] = sessionStorage.getItem('mets');
+      teamSettings['phillies'] = sessionStorage.getItem('phillies');
+      teamSettings['pirates'] = sessionStorage.getItem('pirates');
+      teamSettings['padres'] = sessionStorage.getItem('padres');
+      teamSettings['giants'] = sessionStorage.getItem('giants');
+      teamSettings['cardinals'] = sessionStorage.getItem('cardinals');
+      teamSettings['nationals'] = sessionStorage.getItem('nationals');
+      
+      return teamSettings;
+    }
+    
+    /* Invoked when Submit is clicked on the Settings screen */    
+    function processSettings(event)
+    {
+      /* debug */ /* alert("Settings were submitted"); */
+      // console.log("Values written to storage:");
+      
+      var angels = $("#angels").val();
+      sessionStorage.setItem('angels', angels);
+
+      var orioles = $("#orioles").val();
+      sessionStorage.setItem('orioles', orioles);
+
+      var redsox = $("#redsox").val();
+      sessionStorage.setItem('redsox', redsox);
+
+      var whitesox = $("#whitesox").val();
+      sessionStorage.setItem('whitesox', whitesox);
+
+      var indians = $("#indians").val();
+      sessionStorage.setItem('indians', indians);
+
+      var tigers = $("#tigers").val();
+      sessionStorage.setItem('tigers', tigers);
+
+      var astros = $("#astros").val();
+      sessionStorage.setItem('astros', astros);
+
+      var royals = $("#royals").val();
+      sessionStorage.setItem('royals', royals);
+
+      var twins = $("#twins").val();
+      sessionStorage.setItem('twins', twins);
+
+      var yankees = $("#yankees").val();
+      sessionStorage.setItem('yankees', yankees);
+
+      var athletics = $("#athletics").val();
+      sessionStorage.setItem('athletics', athletics);
+
+      var mariners = $("#mariners").val();
+      sessionStorage.setItem('mariners', mariners);
+
+      var rays = $("#rays").val();
+      sessionStorage.setItem('rays', rays);
+
+      var rangers = $("#rangers").val();
+      sessionStorage.setItem('rangers', rangers);
+
+      var bluejays = $("#bluejays").val();
+      sessionStorage.setItem('bluejays', bluejays);
+
+      /* get & store national league values */
+      var diamondbacks = $("#diamondbacks").val();
+      sessionStorage.setItem('diamondbacks', diamondbacks);
+
+      var braves = $("#braves").val();
+      sessionStorage.setItem('braves', braves);
+
+      var cubs = $("#cubs").val();
+      sessionStorage.setItem('cubs', cubs);
+
+      var reds = $("#reds").val();
+      sessionStorage.setItem('reds', reds);
+
+      var rockies = $("#rockies").val();
+      sessionStorage.setItem('rockies', rockies);
+
+      var dodgers = $("#dodgers").val();
+      sessionStorage.setItem('dodgers', dodgers);
+
+      var marlins = $("#marlins").val();
+      sessionStorage.setItem('marlins', marlins);
+
+      var brewers = $("#brewers").val();
+      sessionStorage.setItem('brewers', brewers);
+
+      var mets = $("#mets").val();
+      sessionStorage.setItem('mets', mets);
+
+      var phillies = $("#phillies").val();
+      sessionStorage.setItem('phillies', phillies);
+
+      var pirates = $("#pirates").val();
+      sessionStorage.setItem('pirates', pirates);
+
+      var padres = $("#padres").val();
+      sessionStorage.setItem('padres', padres);
+
+      var giants = $("#giants").val();
+      sessionStorage.setItem('giants', giants);
+
+      var cardinals = $("#cardinals").val();
+      sessionStorage.setItem('cardinals', cardinals);
+
+      var nationals = $("#nationals").val();
+      sessionStorage.setItem('nationals', nationals);
+      
+      // user clicked Submit on settings, so go directly to mood() view.
+      event.preventDefault(event); /* prevent page reload */
+      mood(event);
+    }
+    
+    /* Invoked when Reset is clicked on the Settings screen.
+     * Implementation deferred to a future update.
+     * The code to include a Reset button on the settings screen
+     * is commented out. See function Settings()
+     */
+    function resetSettings(event) { alert("Sorry - reset is not yet implemented"); }
+    
+    // Game Data. TODO: To evolve this prototype, acquire JSON game data from
+    // a sports data subscription service.
+    var gameData = [];
+
+    gameData['2015-08-30'] =
+        { 'tigers': 'lose',     'bluejays': 'win',
+          'angels': 'lose',     'indians': 'win',
+          'royals': 'lose',     'rays': 'win',
+          'mariners': 'lose',   'whitesox': 'win',
+          'astros': 'lose',     'twins': 'win',
+          'orioles': 'lose',    'rangers': 'win',
+          'marlins': 'lose',    'nationals': 'win',
+          'padres': 'win',      'phillies': 'lose',
+          'rockies': 'win',     'pirates': 'lose',
+          'reds': 'lose',       'brewers': 'win',
+          'cardinals': 'win',   'giants': 'lose',
+          'cubs': 'win',        'dodgers': 'lose',
+          'redsox': 'lose',     'mets': 'win',
+          'yankees': 'win',     'braves': 'lose',
+          'athletics': 'win',   'diamondbacks': 'lose'
+        };
+    
+    gameData['2015-08-31'] =
+        { 'yankees': 'lose',    'redsox': 'win',
+          'rays': 'win',        'orioles': 'lose',
+          'indians': 'win',	    'bluejays': 'lose',
+          'mariners': 'lose',	  'astros': 'win',
+          'yankees': 'lose',	  'redsox': 'win',
+          'angels': 'lose',	    'athletics': 'win',
+          'marlins': 'win',	    'braves': 'lose',
+          'phillies': 'lose',	  'mets': 'win',
+          'reds': 'win',        'cubs': 'lose',
+          'nationals': 'lose',	'cardinals': 'win',
+          'diamondbacks': 'lose', 'rockies': 'win',
+          'giants': 'lose',	    'dodgers': 'win',
+          'rangers': 'lose',    'padres': 'win'
+        };
+    
+    /* Function invoked when the Get My Mood pseudo-link is clicked (NOT the
+     * Get My Mood submit button). Replaces the current main content  with the Mood page.
+     * Alerts if no team ratings/affinities have been set.
+     */
+    function mood(event) {
+      /* debug */ /* alert("entering function mood()"); */
+      
+      if (!sessionStorage.getItem("nationals")) {
+        alert("You have not set any team affinities. Please return to Settings.");
+      }
+      else {
+        /* update #main-content html */
+        $("#main-content") // always update innerHTML of <article> within <main>
+          .html('<div id="date-container" >' +
+                  '<h3 class="date-h3" id="mood-h3">Time to Get Your Mood!</h3>' +
+                  '<p>Will it be bliss ... or madness? Gloating or loathing? ' +
+                  'Pick your date, and press the button ... if you dare!</p>' +
+                  '<!-- client-side only so form has no method or action, button/submit has no formAction -->' +
+                  '<form id="date-form" class="date-form-class" name="date-form">' +
+                    '<select id="date-select" form="date-form" required>' +
+                      '<option value="2015-08-30">Sunday, August 30th</option>' +
+                      '<option value="2015-08-31">Monday, August 31st</option>' +
+                    '</select>' +
+                    '<br />' +
+                    '<button type="submit" class="styled-button-3 date-submit" onclick="doMood(event)" >Submit</button>' +
+                  '</form>' +
+                '</div>' +
+                '<figure id="mood-figure"> <!-- placeholder for img to be set in doMood() -->' +
+                '</figure>' +
+                '<div id="bubble-container"> <!--placeholder for speech bubble)-->' + 
+                  '<div class="bubble-content">' +
+                  '</div>' +
+                '</div>'
+              );
+      }
+    }
+    
+    /* utility function to update lower part of mood screen with emoticon and caption */
+    function displayMood(score)
+    {
+      var happiestSmiley = "http://i.imgur.com/IRPKEIc.png";
+      var happierSmiley = "http://i.imgur.com/5xxHsXm.png";
+      var happySmiley = "http://i.imgur.com/Jlz1Xra.png";
+      var neutralSmiley = "http://i.imgur.com/13tZm9X.png";
+      var unhappySmiley = "http://i.imgur.com/s4XZLcs.png";
+      var unhappierSmiley = "http://i.imgur.com/pARw7fz.png";
+      var unhappiestSmiley = "http://i.imgur.com/HFW5s6T.png";
+      
+      var happiestAlt = "Picture of incredible happiness";
+      var happierAlt = "Picture of happiness";
+      var happyAlt = "Picture of mild positivity";
+      var neutralAlt = "Picture of neutral emotion";
+      var unhappyAlt = "Picture of annoyance";
+      var unhappierAlt = "Picture of unhappiness";
+      var unhappiestAlt = "Picture of extreme unhappiness";
+      
+      // TODO: write extra captions and randomize them
+      var happiestCaption = "My enemies are vanquished and my name is Victory!!!";
+      var happierCaption = "This is a true red letter day ... whatever that means!";
+      var happyCaption = "This is good ... not 'bank error in my favor' good ... but good!";
+      var neutralCaption = "I feel nothing";
+      var unhappyCaption = "I'm peeved ... irked ... vexed ... alas and alack!";
+      var unhappierCaption = "Where the #@$%^ did I put the Tylenol?";
+      var unhappiestCaption = "I want my mommy!";
+      
+      var smileyToShow,
+          altToShow,
+          captionToShow;
+      
+      switch (score) {
+        case 3:
+          smileyToShow = happiestSmiley;
+          altToShow = happiestAlt;
+          captionToShow = happiestCaption;
+          break;
+        case 2:
+          smileyToShow = happierSmiley;
+          altToShow = happierAlt;
+          captionToShow = happierCaption;
+          break;
+        case 1:
+          smileyToShow = happySmiley;
+          altToShow = happyAlt;
+          captionToShow = happyCaption;
+          break;
+        case 0:
+          smileyToShow = neutralSmiley;
+          altToShow = neutralAlt;
+          captionToShow = neutralCaption;
+          break;
+        case -1:
+          smileyToShow = unhappySmiley;
+          altToShow = unhappyAlt;
+          captionToShow = unhappyCaption;
+          break;
+        case -2:
+          smileyToShow = unhappierSmiley;
+          altToShow = unhappierAlt;
+          captionToShow = unhappierCaption;
+          break;
+        case -3:
+          smileyToShow = unhappiestSmiley;
+          altToShow = unhappiestAlt;
+          captionToShow = unhappiestCaption;
+          break;
+      }
+      
+      $(document).ready(function() {
+    $('#main-content').fadeIn();
+    });
+      
+      
+      /* debug *//* alert("about to display mood"); */
+      $("#mood-figure").css("display", "none");
+      $(".bubble-content").css("display", "none");
+      
+      $("#mood-figure").html(
+                '<img id="mood-image" src="' + smileyToShow + '" alt="' + altToShow + '" width="250">'
+             );
+      $(".bubble-content").html(
+                '<blockquote class="oval-thought-border">' +
+                  '<p>' + captionToShow + '</p>' +
+                '</blockquote>'
+             );
+      
+      $(document).ready(function() {
+        $("#mood-figure").fadeIn(1000);
+        $(".bubble-content").fadeIn(1000);
+      });
+    }
+    
+    /* handler for submit event on Get My Mood screen.  TODO: alert if no date selected. */
+    function doMood(event) {
+      /* debug *//* alert("Submit for doMood was clicked");
+      
+      /* user clicked button to get mood, so clear out the old one if any */
+      $("#mood-figure").empty();
+      $(".bubble-content").empty();
+      
+      var gameDate = $('#date-select').val();
+      /* debug *//* alert("from new file: selected date was " + gameDate); */
+      /* debug *//* alert("selected date was " + gameDate); */
+      if (gameDate === "" || gameDate === null) {
+        alert("Please enter one of the valid dates");
+        event.preventDefault(event); /* prevent unwanted home page reload */
+        return;
+      }
+      
+      var moodScore = 0;
+      var teamSettings = getTeamSettingsFromStorage(); // array with one integer -3..+3 (as string) per team
+      
+      /* to normalize result based on users total ratings in play on selected day */
+      var normalizer = 0; /* normalizer is sum of absolute value of all ratings in play */
+      /* debug *//* alert("about to get mood score for date" + gameDate); */
+      for(var team in gameData[gameDate]) {
+        /* debug *//* console.log("team is ",  team,  "result is ", gameData[gameDate][team]); */
+        
+        // add team rating to mood if team wins ... otherwise, subtract it.
+        var scoreIncrement = teamSettings[team] * (gameData[gameDate][team] == 'win' ? 1 : -1);
+        moodScore += scoreIncrement;
+        normalizer += Math.abs(teamSettings[team]);
+      }
+      /* debug *//* alert("Calling doNormalize ... moodScore = " + moodScore + ", normalizer = " + normalizer); */
+      var normalizedScore = doNormalize(moodScore, normalizer, event);
+
+      displayMood(normalizedScore);
+      
+      event.preventDefault(); /* prevent unwanted home page reload */
+    }
+    
+    /* Normalize raw mood score, which is a signed integer.
+     * Return -3 .. +3 to correspond with result to be displayed. 
+     * Normalizer is the sum of the absolute values of the user's team affinity ratings.
+     * If moodScore were equal to normalizer, it means all the teams the user likes won,
+     * and all the ones he/she dislikes lost.
+     * Try splitting moodScore/normalizer into 3 equal buckets.
+     */
+    function doNormalize(rawScore, normalizer, event)
+    {
+      /* debug *//* alert("Entering doNormalize ... moodScore = " + rawScore + ", normalizer = " + normalizer); */
+      
+      // should not be needed as this is not invoked via a click event (!?)
+      event.preventDefault(); /* prevent unwanted home page reload */
+      
+      if (rawScore == 0 || normalizer == 0) {
+        return 0;
+      }
+      if (normalizer < 3) {
+        return rawScore; // first cut at clamping result if user rated only 1 or 2 teams with non-max ratings
+      }
+
+      var normalizedScore = rawScore / normalizer;
+      
+      if (Math.abs(normalizedScore) < 0.333) {
+        return normalizedScore > 0 ? 1 : -1;
+      }
+      if (Math.abs(normalizedScore) < 0.667) {
+        return normalizedScore > 0 ? 2 : -2;
+      }
+      return normalizedScore > 0 ? 3 : -3;
+    }
+    
+    /* Output the day's scores to a table */
+    function scores(event) {
+      /*debug*//* alert("entering function scores()"); */
+      /* update #main-content html */
+      $("#main-content") // always update innerHTML of <article> within <main>
+        .html(
+              '<div id="date-container">' +
+                '<h3 class="date-h3" id="scores-h3" scores-h3">MLB Scores for Selected Day</h3>' +
+                '<p>Pick your date and click Submit to see the day\'s scores.</p>' +
+                '<form id="date-form" class="date-form-class" name="scores-form" >' +
+                  '<select id="date-select" form="date-form" required>' +
+                    '<option value="2015-08-30">Sunday, August 30th</option>' +
+                    '<option value="2015-08-31">Monday, August 31st</option>' +
+                  '</select>' +
+                  '<br />' +
+                  '<button type="submit" class="styled-button-3 date-submit" onclick="doScores(event)" >Submit</button>' +
+                '</form>' +
+              '</div>' +
+              '<div id="scores-tbl-container"> <!-- placeholder for table to be inserted -->' +
+              '</div>'
+            );
+    }
+    
+    var scoreData = []; // a const, actually
+    // This data is poorly structured, as you have to know that each pair of key/value pairs represents a game.
+    
+    scoreData['2015-08-30'] =
+        { 'Tigers': 2,     'Blue Jays': 9,
+          'Angels': 2,     'Indians': 9,
+          'Royals': 2,     'Rays': 3,
+          'Mariners': 5,   'White Sox': 6,
+          'Astros': 5,     'Twins': 7,
+          'Orioles': 0,    'Rangers': 6,
+          'Marlins': 4,    'Nationals': 7,
+          'Padres': 9,      'Phillies': 4,
+          'Rockies': 5,     'Pirates': 0,
+          'Reds': 1,       'Brewers': 4,
+          'Cardinals': 7,   'Giants': 5,
+          'Cubs': 2,        'Dodgers': 0,
+          'Red Sox': 4,     'Mets': 5,
+          'Yankees': 20,     'Braves': 6,
+          'Athletics': 7,   'Diamondbacks': 4
+        };
+    
+    scoreData['2015-08-31'] =
+        { 'Yankees': 3,    'Red Sox': 4,
+          'Rays': 6,        'Orioles': 3,
+          'Indians': 4,	    'Blue Jays': 2,
+          'Mariners': 3,   'Astros': 8,
+          'Angels': 5,	    'Athletics': 11,
+          'Marlins': 4,	    'Braves': 0,
+          'Phillies': 1,   'Mets': 3,
+          'Reds': 13,        'Cubs': 6,
+          'Nationals': 5,   'Cardinals': 8,
+          'Diamondbacks': 4, 'Rockies': 5,
+          'Giants': 4,	    'Dodgers': 5,
+          'Rangers': 0,    'Padres': 7
+        };
+
+    function doScores(event) {
+      event.preventDefault(); /* prevent unwanted home page reload */
+      /* user clicked button to get scores, so clear out the old DOM elements if any */
+      $("#scores-tbl-container").empty();
+      /* debug *//* alert("doScores: I gotcher scores right heah!"); */
+      
+      $("#scores-tbl-container") // emit table structure and header - tbody is placeholder for table rows
+        .html(
+              '<table>' +
+                '<caption></caption>' +
+                '<thead>' +
+                  '<tr>' +
+                    '<th><strong>Away Team</strong></th>' +
+                    '<th><strong>Score</strong></th>' +
+                    '<th><strong>Home Team</strong></th>' +
+                    '<th><strong>Score</strong></th>' +
+                  '</tr>' +
+                '</thead>' +
+                '<tbody>' +
+                '</tbody>' +
+              '</table>'
+            );
+        
+        // now emit the rows, one per game
+        var scoresDate = $('#date-select').val();
+        /* debug *//* alert("selected date is " + scoresDate); */
+        $("#scores-tbl-container caption").html('Scores for ' + scoresDate);
+        
+        var keyArr = Object.keys(scoreData[scoresDate]);
+
+        for (var i = 0; i < keyArr.length - 1; i += 2) {
+          var awayTeam = keyArr[i];
+          var awayScore = scoreData[scoresDate][keyArr[i]];
+          var homeTeam = keyArr[i+1];
+          var homeScore = scoreData[scoresDate][keyArr[i+1]];
+          if (awayScore > homeScore) {
+              awayScore = makeBoldString(awayScore.toString());
+              awayTeam  = makeBoldString(awayTeam);
+          }
+          else {
+              homeScore = makeBoldString(homeScore.toString());
+              homeTeam  = makeBoldString(homeTeam);
+          }
+          var nextRow =
+              '<tr><td>' + awayTeam + '</td><td>' + awayScore +
+                  '<td>' + homeTeam + '</td><td>' + homeScore + '</td></tr>';
+          $("#scores-tbl-container tbody:last").append(nextRow);
+        }
+
+      function makeBoldString(str) {
+        return '<strong>' + str + '</strong>';
+      }  
+    }
+    
+    function about(event) {
+      $("#main-content") // updates innerHTML of <article> within <main>
+        .html('<h2 id="about-h2">About This App</h2>' +
+              '<p class="bigger-font">' +
+                'This little app had an odd genesis.  A prospective employer sent out a test ' +
+                'asking for something with only a single file, and with user interaction and ' +
+                'a data set ... either a shell script or html.  At the time, I had been planning to do a ' +
+                'silly sports mood demo ' +
+                'as a C# ASP.NET MVC web app with all the bells and whistles. It would have a database ' +
+                'of user login info, another DB (or at least a separate table) to save user settings, ' +
+                'and an accompanying web service, a RESTful API, to provide enough sports data for the demo. ' +
+                'Since I didn\'t have any great ideas about what to do for the test, I did a minimalist version ' +
+                'of the sports mood idea. ' +
+                'I quickly realized I was building a Single Page App, something I\'d never done.  It was pretty ' +
+                'simple though, especially as it\'s client side only and I could use jQuery.' +
+              '</p><br />' +
+              '<p class="bigger-font">' +
+                'It turned out the test was just supposed to be a few lines (OOPS) using ' +
+                'the HTML5 \'dataset\' ' +
+                'facility, which I\'d never seen before. They said, "We love your app.  But all the candidates ' +
+                'are supposed to submit just a tiny file." So that\'s what they ultimately got ... and meanwhile here\'s ' +
+                'this wacky app which taught me a lot.' +
+              '</p><br />' +
+              '<p class="bigger-font">' +
+                'If you\'re ' +
+                'visiting from Free Code Camp, Hi! ... and <em>relax</em>: this is NOT one of the FCC front end ' +
+                ' Ziplines (but <rubs chin thoughtfully> ... maybe it <em>should</em> be!).' +
+              '</p>'
+              );
+    }
+    
+  </script> <!-- *************************** End of JavaScript ***************************** -->
+  
+</head> 
+<body>
+  <div id="outer-container">
+    <header>
+      <h1>MLB Sports Mood</h1>
+    </header>
+    <nav>
+      <ul id="navlist">
+        <li class="prettylink" onclick="help(event)"     >Help</li>
+        <li class="prettylink" onclick="settings(event)" >Settings </li>
+        <li class="prettylink" onclick="mood(event)"     >Get My Mood!</li>
+        <li class="prettylink" onclick="scores(event)"   >Get Scores</li>
+        <li class="prettylink" onclick="about(event)"    >About</li>
+      </ul>
+    </nav>
+    <main>          
+      <article id="main-content">
+        <h3 id="home-h3">The Adventure Begins!!!!!!!!</h3>
+        <p class="bigger-font pad-bottom">Welcome! Perhaps you're like many sports fans who over the years
+            have come to care about certain baseball teams, and to despise those teams that beat
+            their favorites.
+        </p>
+        <p class="bigger-font pad-bottom">
+            Now you can see, for any given day on the MLB schedule, how you
+            should feel based on how those teams you love - <em>and hate</em> - did that day.
+        </p>
+        <p  class="bigger-font">
+            Click <span class="inline-link prettylink" onclick="help(event)"     >Help</span> to get started,
+              or <span class="inline-link prettylink" onclick="settings(event)" >Settings</span>
+              if you are already among the cognoscenti of the diamond!
+        </p>
+        <div id="disclaimer-div" class="smaller-font">
+          <br />
+          <p>Please note:</p>
+          <ul id="disclaimer-list">
+            <li>An active Internet connection is required.</li>
+            <li>Game results are limited to two days, August 29th and 30th, 2015.</li>
+            <li>Session Storage is used to retain settings. It will disappear when your tab is closed.</li>
+          </ul>
+        </div>
+      </article>
+    </main>
+    <footer>
+        <p><em>Copyright &copy; 2015 Donald Cameron - all rights reserved</em></p>
+    </footer>
+     
+  </div>
+</body>
+</html>
