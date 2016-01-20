@@ -1,140 +1,137 @@
 <!DOCTYPE html>
 
-<html>
+<html lang="en">
 <head>
-  <meta charset="UTF-8" />
+  <meta charset="UTF-8">
   <title>Sports Mood</title>
+  
+  <!-- TELLS PHONES NOT TO LIE ABOUT THEIR WIDTH -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=0" />
   <meta name="description" content="SportsMoodSPA, client-side-only app" />
+  
+  <!--***** SCRIPT TO HELP OLD IE UNDERSTAND HTML5 AND MEDIA QUERIES *****-->
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
   
   <style>
     /*
      *  Internal CSS file for "SportsMoodSPA"
      *  Created on : Nov 17-21, 2015
-     * Author     : dcc1079
+     *  Mobile retrofit (following Pluralsight:Cheney) 2016-01
+     *  Author     : dcc1079
      */
 
+    /***********************************************************************************/
+    /*************************** PHONE-DEFAULT SCREEN WIDTH ****************************/
+    /***********************************************************************************/
+    
+    /**************** CSS FOR PHONE (DEFAULT) SCREEN WIDTH  ****************/
+    
     * { margin: 0; padding: 0;} /* plain-vanilla reset for this project */
-
+    
+    /* begin responsive retrofit 2016-01-01 as per Paul Cheney - Pluralsight - Hands On Responsive Web Design */
+    
+    /*-----Prevents iPhone from resizing in landscape mode -----*/
+    html {-webkit-text-size-adjust: none; }
+    
+    /* prevent inability to scroll after touching input field (on settings screen) */
+    /* html {-webkit-overflow-scrolling: auto; } */ /* this is not the problem ... thus commented out */
+        
     body {
-      padding: 15px 100px 100px 100px;
-
-      /* body gradients */
-      /* IE10+ */
-      /* background: -ms-linear-gradient(top, #0000FF 0%, #009933 100%); */
-
-      /* Opera */
-      /* background: -o-linear-gradient(top, #0000FF 0%, #009933 100%); */
-
-      /* Webkit (Safari/Chrome 10) */
-      /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0000FF), color-stop(100, #009933)); */
-
-      /* Webkit (Chrome 11+) */
-      /* background-image: -webkit-linear-gradient(top, #0000FF 0%, #009933 100%); */
-
-      /* Mozilla Firefox */
-      background: -moz-linear-gradient(top, #0000FF 0%, #009933 100%);
-
-      /* W3C Markup */
-      background-image: linear-gradient(to bottom, #0000FF 0%, #009933 100%);
-
-      color: #404040; /* off-black default for text */
       font-family: Century Gothic, sans-serif;
+      color: #404040; /* off-black default for text */
+      font-size: 16px ; /* default */
     }
-    /**************************  THE "FRAME" FOR ALL CONTENT  **************************/
-    #outer-container {
-      background-color: green;
-      margin: 0 auto;
-      border: 5px solid darkred;
-      border-radius: 15px;
-    }
-    /**************************  HEADER  **************************/
-    header {
-      height: 90px;
-      text-align: center;
-      border-radius: 10px;
-      background-color: darkred; /* fallback to background image */
-      background: url(http://i.imgur.com/AqfvNPU.jpg);
-      background-repeat: no-repeat;
-      background-size: 100% 100%;
-      border: 1px solid #404040;
-      border-radius: 10px 10px 0 0;
-    }
-    h1 {
-      font-family: "Comic Sans MS", "Comic Sans", "Papyrus", cursive;
-      font-size: 2em;
-      /* text-align: center; /* inherited from header */
-      background-color: #E5DCCE;
-      color: #7b0000; /* darker than darkred which is #8b0000 */
-      display: inline-block;
-      padding-left: 10px;
-      padding-right: 10px;
-      margin-top: 20px;
-      margin-left: 70px;
-      border: 1px solid darkred;
-    }
-     h3 { /* moved up from detail settings */
-      font-family: arial, helvetica, sans-serif;
-      font-size: 1.1em;
-    }
-    /**************************  NAV - LEFT COLUMN  **************************/
-    nav {
+    /* the various wrappers are used by Cheney, but we are not putting those ids in the html for now dcc 20160113 */
+    header, #headerWrapper {
       background-color: #F5EBDC;
-      float: left;
-      height: 565px; /* total must agree with main height */
-      padding-top: 30px;
-      width: 15%;    /* total width (including child padding and margin) must be 10% */
     }
+    header {
+      padding: 1em 2% .5em 2%;
+    }
+    header h1 {
+      font-size: 2.1em;
+      font-weight: 200;
+      color: #790000;
+    }
+    
+    /*----- PHONE-DEFAULT NAVIGATION STUFF HERE -----*/
+    
+    nav, #navWrapper { /* wrappers may not be needed, so we are not putting those ids in the html for now dcc 20160113 */
+      background-color: #790000; /* this is the header text color */
+      padding: .75em 2%;
+    }
+    
+    ul#navlist { /* re Cheney/Pluralsight, apparently not just the equivalent nav ul b/c it is the #navlist that the jQuery show/hide is touching */
+      display: none;
+    }
+    
+    button#showPhoneNav { /* show hide the nav links (phone only) */
+      color: #7b0000; /* the thematic dark red */
+      font-weight: bold;
+      display: block;
+      border: 1px solid #222;
+      border-radius: .5em;
+      /*background-color: rgba(0,0,0,0.6); *//* darkens default bg - instead use default */
+      background-color: #F5EBDC; /* thematic tan */
+      width: 30%;
+      padding: .75em 0;
+      margin: 0 auto;
+    }
+    
     nav ul {
-      padding-left: 30px;
+      border: 1px solid #ccc;
+      border-radius: 0.5em;
+      margin: .5em 2%;
+      background-color: #F5EBDC; /* thematic tan */
     }
-    nav li {
-      color: #7b0000; /* darker than darkred which is #8b0000 */
-      list-style-type: none;
-      font-size: 1.1em;
-      padding-bottom: 5px;
+    nav ul li {
+      display: block;
+      text-align: center;
+      padding: .6em;
+      border-top: 1px solid #ccc;
+      color: #7b0000;
+      /*text-decoration: none;*/
+      font-weight: bold;
     }
-    .inline-link {
-      color: #7b0000; /* same as nav li "links" */
+    nav ul li:first-child {
+      border-top: none; /* cancel since box around ul had rounded corners and top border on top li would stick out  */
     }
-    .prettylink:hover {
-      color: #27408B;
-      text-decoration: underline;
+    nav ul li.active { /* so how do we use this, and if we do, fix the color! */
+      color: #ff4000;
     }
-    /**************************  MAIN CONTENT PANE  **************************/
+    
+    /*----- PHONE-DEFAULT MAIN CONTENT -----*/
+    
     main {
-      background-color: white;
-      float: left;
-      width: 85%;  /* compensate for removing aside and its 15% of main width */
-      height: 565px; /* must agree with sidebar (i.e., nav) height */
-      padding: 10px 0 20px 0;
       overflow-y: scroll;
     }
-    article { /* for main section - override elsewhere if needed */
-      padding: 10px 40px 0 40px;
+    article {
+      padding: 10px 3% 10px 3%;
+      min-height: 700px;
     }
-    article h3 {
-      padding-bottom: 7px;
-    }
-    /**************************  FOOTER  **************************/
-    footer {
-      background-color: #1c1ca9;
-      color: white;
+      
+    article h2, article h3 {
       text-align: center;
-      padding-top: 20px;
-      padding-bottom: 5px;
-      clear: both;
-      height: 30px;
-      border-radius: 0 0 10px 10px;
+      padding-bottom: 5px; 
     }
-    /**************************  DETAIL SETTINGS  **************************/
-    h3 {
-      font-family: arial, helvetica, sans-serif;
+    
+    /* links in main content */
+    .prettylink {
+        color: #7b0000;
+        font-weight: bold;
     }
-    .clear {
-      clear: both;
+    .inline-link {
+      text-decoration: underline;
     }
+    
+    /* phone-default miscellaneous content styling hoisted from desktop */
+    
     .bigger-font { /* improve readability in certain situations */
       font-size: 1.2em;
     }
@@ -147,6 +144,7 @@
     .pad-bottom {
       padding-bottom: 8px;
     }
+    
     .styled-button-3 {
       -webkit-box-shadow: rgba(0,0,0,0.0.1) 0 1px 0 0;
       /*-moz-box-shadow: rgba(0,0,0,0.0.1) 0 1px 0 0;*/
@@ -163,54 +161,49 @@
       /*-moz-border-radius:5px;*/
       -webkit-border-radius:5px;
     }
-    /**************************  SPECIFICS FOR HOME/LANDING SCREEN  **************************/
-    #home-h3 {
-      padding-left: 28%;
-      padding-bottom: 15px;
-      font-size: 1.5em;
-    }
+    
+    /* phone-default home (landing) screen only */
+    
     #disclaimer-div {
       padding-left: 30px;
     }
     #disclaimer-list {
       padding: 5px 0 0 15px;
     }
-    /**************************  SPECIFICS FOR HELP SCREEN  **************************/
-    #help-h2 {
-      padding-left: 32%;
-      padding-bottom: 15px;
-    }
+    
+    /* phone-default help screen */
+    
     #help-ol {
-      padding-left: 60px;
-      padding-top: 12px;
+      padding-left: 40px; /* too much? Also should be %? */
+      padding-top: 10px;
     }
     #help-li {
       padding-bottom: 5px;
       width: 90%;
       line-height: 25px;
     }
-    /**************************  SPECIFICS FOR SETTINGS SCREEN  **************************/
-    #settings-h3 {
-      padding-left: 5%;
-      padding-bottom: 15px;
-      padding-top: 6px;
-      font-size: 1.15em; /* can we use .slightly-bigger-font?  That's not for headings */
+    
+    /* phone-default settings screen */
+    
+    /*
+     #settings-form {
+      margin: 0 auto;
     }
-    #settings-form {
-      padding-left: 50px;
-    }
+    */
     .settings-fieldset {
-      display: inline-block;
-      width: 30%;
-      margin: 0 3% 0 3%;
-      padding-left: 30px;
-      padding-bottom: 10px; /* needed to get last input off the bottom fieldset line on Opera */
+      /*display: inline-block;*/
+      width: 80%;
+      margin: 0 10% 10px 10%;
+      /*padding-left: 30px;*/
+      padding-bottom: 10px;
     }
+
     #settings-legend {
       margin-left: 20px;
     }
+
     .settings-div {
-      padding: 6px 0 0 5px;
+      padding: 6px 0 0 20px;
     }
     .settings-label {
       font-size: 0.85em;
@@ -219,65 +212,71 @@
     }
     .settings-number {
       width: 40px;
+      font-size: 16px; /* not aesthetic, but prevents iPhone from zooming in (and not back out) when input is touched */
     }
+
     #settings-submit {
-      margin-top: 10px;
-      margin-left: 36%;
+      /*margin-top: 15px;*/
+      margin-left: 40%;
+      margin-bottom: 10px;
+      margin-top: 5px;
     }
-    #settings-reset {
-      margin-left: 40.5%;
-      padding-left: 10px; /* attempt to match size of accompanying submit */
-      padding-right: 10px;
-      background-color: #e00; /* red = warning or caution */
-      color: white;
-      font-weight: bold;
-    }
-    /**************************  DATE-PICKER AREA LAYOUT  **************************/
-    /***********************  USED BY MOOD AND SCORES SCREENS  **********************/
-    #date-container {
+    
+    /****** phone-default date-picker stuff for mood and scores screens ********/
+
+    /*#date-container {
       padding: 0 27% 0 21%;
-    }
-    .date-h3 {
-      padding-bottom: 15px;
-      font-size: 1.5em;
     }
     #date-container p {
       font-size: 1.1em;
     }
-    #mood-h3 { padding-left: 17%; }  /* pseudo-centering */
-    #scores-h3 { padding-left: 11%; } /* pseudo-centering */
+    */
+    /*#mood-h2 { padding-left: 17%; }  /* pseudo-centering */ /*
+    #scores-h2 { padding-left: 11%; } /* pseudo-centering */
+    
     .date-form-class {
       padding-top: 10px;
       padding-bottom: 10px;
     }
     #date-select {
-      margin: 0 0 15px 27%;
+      margin: 0 0 15px 29%;
     }
     .date-submit {
-      margin-left: 36%;
+      margin-left: 39%;
       margin-bottom: 10px;
     }
-    /**************************  SPECIFICS FOR MOOD SCREEN  ************************/
+    
+    /*----- PHONE-DEFAULT MOOD SCREEN (see above for date picker -----*/
     #mood-figure {
-      padding: 50px 0 0 150px;
-      display: inline-block;
+      width: 275px;
+      margin: 0 auto;
     }
-    /*************************  SPECIFICS FOR SCORES SCREEN  *************************/
+    blockquote {
+      text-align: center;
+      /* font:1em/1.4 Cambria, Georgia, sans-serif; */  /* Nick had this on <body> for his demo page */
+                                                        /* 1st value is font-size/line-height */
+      font:.8em/1.0 "Comic Sans MS", "Comic Sans", "Papyrus", cursive;
+    }
+
+    blockquote p {
+      font-size:1.4em; /* a reasonable one-size-fits-all for varying amounts of text */
+    }
+    
+    /****** PHONE-DEFAULT SCORES SCREEN ******/
     #date-container p {
-      padding-left: 15px;
+      /*padding-left: 10px;*/
+      text-align: center;
     }
-    #about-h2 { /* almost the same as help-h2 2015-12-15 */
+    /* #about-h2 { /* almost the same as help-h2 2015-12-15 *//*
       padding-left: 35%;
-      padding-bottom: 15px;
-    }
+    }*/
     table {
       width: 50%;
-      margin-left: 18.5%;
+      margin: 0 auto;
       border-collapse: collapse;
     }
     table caption {
-      text-align: left;
-      padding-left: 31%;
+      text-align: center;
       padding-bottom: 5px;
       font-size: 1.1em;
     }
@@ -291,171 +290,578 @@
     tbody tr:nth-child(odd) { /* zebra striping (credit: css-tricks) */
       background-color: #eee;
     }
-    /*******************************  mood speech bubble   ******************************/
-    /* adapted from: Nicolas Gallagher -- nicolasgallagher.com/pure-css-speech-bubbles/ */
-    /************************************************************************************/
 
-    #bubble-container {
-      width:250px;
-      display: inline-block;
-      vertical-align: top;
+    /*----- PHONE-DEFAULT FOOTER -----*/
+    
+    /*#footerWrapper {background-color: #979791;}*/
+    footer {
+      background-color: #979791; /* hmmm doesn't affect desktop?? */
+      clear: both;
+      font-size: .7em;
+      color: #fff;
+      text-align: center;
+      padding: .6em;
     }
-
-    /*
-     Should you want to set a background colour on a containing element
-     certain types of bubble effect may require you to include these
-     style declarations.
-     */
-    .bubble-content {
-      position:relative;
-      z-index:1;
+    
+    /* -----  PHONE-DEFAULT OTHER STUFF ----*/
+    .clearfix:after {
+      content: "";
+      display: table;
+      clear: both;
     }
+    
+    /***********************************************************************************/
+    /******************************* TABLET SCREEN WIDTH *******************************/
+    /***********************************************************************************/
+    
+    @media only screen and (min-width: 641px) {
+      
+      /* TABLET NAVIGATION */
+      
+      nav, #navWrapper {
+        padding: 0 0 0 2%;
+      }
+      button#showPhoneNav {
+        display: none;
+      }
+      
+      nav ul {
+        display: block!important; /* need important to override JS */
+        /* remove phone effects */
+        padding: 0;
+        margin: 0 0 0 2%;
+        border: none;
+        border-radius: 0;
+        background-color: transparent;
+        border-left: solid 1px rgba(255,255,255,0.4);
+      }
+ 
+      nav ul li { /* unlike Cheney, we don't have anchors so some rules are hoisted into here */
+        float: left;
+        border: none;
+        padding: 1em 1.5em;
+        font-weight: normal;
+        font-size: .95em;
+        color: #fff;
+        border-right: solid 1px rgba(255,255,255,0.4);
+      }
+      
+      /* tablet main content */
+      
+      article {
+        min-height: 800px;
+      }
+      
+      /* settings screen (tablet) */
+ 
+      #settings-h3 {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
 
-    blockquote {
-      margin:1em 0;
-      /* font:1em/1.4 Cambria, Georgia, sans-serif; */  /* Nick had this on <body> for his demo page */
-                                                        /* 1st value is font-size/line-height */
-      font:.8em/1.0 "Comic Sans MS", "Comic Sans", "Papyrus", cursive;
-    }
-
-    blockquote p {
-      font-size:1.4em; /* a reasonable one-size-fits-all for varying amounts of text */
-    }
-
-    /* OVAL THOUGHT BUBBLE (more CSS3) ==================================== */
-
-    .oval-thought {
-      position:relative;
-      width:135px;
-      padding:25px 20px;
-      margin:1em auto 40px;
-      text-align:center;
-      color:#fff;
-      background:#075698;
-      /* css3 */
-      /*background:-webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));*/
-      background:-moz-linear-gradient(#2e88c4, #075698);
-      /*background:-o-linear-gradient(#2e88c4, #075698);*/
-      background:linear-gradient(#2e88c4, #075698);
-      /*
-      NOTES:
-      -webkit-border-radius:220px 120px; // produces oval in safari 4 and chrome 4
-      -webkit-border-radius:220px / 120px; // produces oval in chrome 4 (again!) but not supported in safari 4
-      Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+      /* #settings-form {
+        padding-left: 50px;
+      }
       */
-      -webkit-border-top-left-radius:110px 60px;
-      -webkit-border-top-right-radius:110px 60px;
-      -webkit-border-bottom-right-radius:110px 60px;
-      -webkit-border-bottom-left-radius:110px 60px;
-      /*-moz-border-radius:110px / 60px;*/
-      border-radius:110px / 60px;
-    }
-
-    .oval-thought p {font-size:1.25em;}
-
-    /* creates the larger circle */
-    .oval-thought:before {
-      content:"";
-      position:absolute;
-      bottom:-10px;
-      left:25px;
-      width:15px;
-      height:15px;
-      background:#075698;
-      /* css3 */
-      -webkit-border-radius:15px;
-      /*-moz-border-radius:15px;*/
-      border-radius:15px;
-    }
-
-    /* creates the smaller circle */
-    .oval-thought:after {
-      content:"";
-      position:absolute;
-      bottom:-15px;
-      left:15px;
-      width:7px;
-      height:7px;
-      background:#075698;
-      /* css3 */
-      -webkit-border-radius:7px;
-      /*-moz-border-radius:7px;*/
-      border-radius:7px;
-    }
-
-    /* ============================================================================================================================
-    == OVAL THOUGHT BUBBLE, EMPTY, WITH BORDER (more CSS3)
-    ** ============================================================================================================================ */
-
-    .oval-thought-border {
-      height: 65px;     /* ensure it holds its shape despite "smaller" content (wrt width 250 above) - dcc 2015-11 */
-      min-height: 65px; /* ensure it holds its shape despite "smaller" content (wrt width 250 above) - dcc 2015-11 */
-      position:relative;
-      padding:35px 15px;
-      margin:1em auto 40px;
-      border:5px solid #c81e2b;
-      text-align:center;
-      color:#333;
-      background:#fff;
-      /* css3 */
+      .settings-fieldset {
+        display: inline-block;
+        width: 35%;
+        margin: 0 5%;
+        /* padding-left: 30px; */
+        padding-bottom: 10px;
+      }
       /*
-      NOTES:
-      -webkit-border-radius:240px 140px; // produces oval in safari 4 and chrome 4
-      -webkit-border-radius:240px / 140px; // produces oval in chrome 4 (again!) but not supported in safari 4
-      Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+      #settings-legend {
+        margin-left: 20px;
+      }
+      .settings-div {
+        padding: 6px 0 0 5px;
+      } */
+      .settings-label {
+        width: 160px; /* narrow a bit as the lines were shoved too far right with the phone's 180 px */
+      }
+      .settings-number {
+        font-size: 11px; /* back to what it was before iPhone override */
+      } 
+      #settings-submit {
+        margin-top: 25px;
+        margin-left: 41.5%;
+      }
+      
+      /****** tablet date-picker stuff for mood and scores screens ********/
+      #date-select {
+        margin-left: 40%; /* overrride phone-default setting */
+      }
+      .date-submit {
+        margin-left: 46%; /* overrride phone-default setting */
+      }
+      
+      /******* tablet mood screen stuff *******/
+      #bubble-container {
+        padding-left: 10px;
+      }
+
+    }
+
+    /***********************************************************************************/
+    /****************************** DESKTOP SCREEN WIDTH *******************************/
+    /***********************************************************************************/
+    
+    @media only screen and (min-width: 1140px) {
+      
+      header, nav, .row, footer { /* do we want this and is it targetting the right things?
+        /* max-width: 1140px; /* control width of (readable) content */
+        /* margin: 0 auto;    /* center content on page */
+      } 
+
+      body {
+        padding: 15px 100px 100px 100px;
+  
+        /* body gradients */
+        /* IE10+ */
+        /* background: -ms-linear-gradient(top, #0000FF 0%, #009933 100%); */
+  
+        /* Opera */
+        /* background: -o-linear-gradient(top, #0000FF 0%, #009933 100%); */
+  
+        /* Webkit (Safari/Chrome 10) */
+        /* background-image: -webkit-gradient(linear, left top, left bottom, color-stop(0, #0000FF), color-stop(100, #009933)); */
+  
+        /* Webkit (Chrome 11+) */
+        /* background-image: -webkit-linear-gradient(top, #0000FF 0%, #009933 100%); */
+  
+        /* Mozilla Firefox */
+        background: -moz-linear-gradient(top, #0000FF 0%, #009933 100%);
+  
+        /* W3C Markup */
+        background-image: linear-gradient(to bottom, #0000FF 0%, #009933 100%);
+  
+        color: #404040; /* off-black default for text */
+        /*font-family: Century Gothic, sans-serif;*/
+      }
+      /******************  desktop "FRAME" FOR ALL CONTENT  ******************/
+      #outer-container {
+        background-color: green;
+        margin: 0 auto;
+        border: 5px solid darkred;
+        border-radius: 15px;
+      }
+      /**************************  desktop HEADER  **************************/
+      header {
+        height: 90px;
+        text-align: center;
+        background-color: darkred; /* fallback to background image */
+        background: url(http://i.imgur.com/AqfvNPU.jpg);
+        background-repeat: no-repeat;
+        background-size: 100% 100%;
+        border: 1px solid #404040;
+        border-radius: 10px 10px 0 0;
+        padding: 0; /* cancel phone/tablet padding */
+      }
+      h1 {
+        font-family: "Comic Sans MS", "Comic Sans", "Papyrus", cursive;
+        font-size: 2em;
+        /* text-align: center; /* inherited from header */
+        background-color: #E5DCCE;
+        color: #7b0000; /* darker than darkred which is #8b0000 */
+        display: inline-block;
+        padding-left: 10px;
+        padding-right: 10px;
+        margin-top: 20px;
+        margin-left: 70px;
+        border: 1px solid darkred;
+      }
+       h3 { /* moved up from misc styles */
+        font-family: arial, helvetica, sans-serif;
+        font-size: 1.1em;
+      }
+      /******************  desktop NAVIGATION - jQuery show/hide ******************/
+      nav {
+        background-color: #F5EBDC;
+        float: left;
+        height: 530px; /* total must agree with main height */
+        padding: 0; /* undo phone padding */
+        padding-top: 65px;
+        width: 15%;    /* total width (including child padding and margin) must be 10% */
+      }
+      nav ul {
+        padding-left: 20px;
+        border: 0; /* remove separator introduced on left for tablet */
+      }
+      nav li {
+        color: #7b0000; /* darker than darkred which is #8b0000 */
+        list-style-type: none;
+        padding-bottom: 5px;
+      }
+      .inline-link {
+        color: #7b0000; /* same as nav li "links" */
+        /*text-decoration: none;*/
+      }
+      .navlink, .prettylink {  /* needed here to override mobile b/c no effect on nav li */
+        text-align: left;
+        color: #7b0000;
+        font-weight: normal;
+        width: 100%;
+        margin: 0;
+        padding: 0 0 5px 0;
+        cursor: pointer; /* needed b/c these "links" have no anchor - only onclick() */
+      }
+      .navlink {
+        background-color: #F5EBDC; /* cancel mobile dark button effect */
+        font-size: 1.1em; /* cancel phone/tablet sizing */
+      }
+      .navlink:hover, .prettylink:hover {
+        color: #27408B;
+        text-decoration: underline;
+      }
+      /********************  desktop MAIN CONTENT PANE  ********************/
+      main {
+        background-color: white;
+        float: left;
+        width: 85%;  /* compensate for removing aside and its 15% of main width */
+        height: 565px; /* must agree with sidebar (i.e., nav) height */
+        padding: 10px 0 20px 0;
+        overflow-y: scroll; /* hoisted to phone */
+      }
+      article { /* for main section - override elsewhere if needed */
+        padding: 10px 40px 0 40px;
+      }
+      /**************************  desktop FOOTER  **************************/
+      footer {
+        background-color: #1c1ca9;
+        color: white;
+        font-size: .9em;
+        text-align: center;
+        padding-top: 20px;
+        padding-bottom: 5px;
+        clear: both;
+        height: 30px;
+        border-radius: 0 0 10px 10px;
+      }
+      /**************************  MISCELLANEOUS STYLES  **************************/
+      h3 {
+        font-family: arial, helvetica, sans-serif;
+      }
+      .clear {
+        clear: both;
+      }
+      /*.styled-button-3 {
+        -webkit-box-shadow: rgba(0,0,0,0.0.1) 0 1px 0 0;
+        /*-moz-box-shadow: rgba(0,0,0,0.0.1) 0 1px 0 0;*//*
+        /*box-shadow: rgba(0,0,0,0.0.1) 0 1px 0 0;*//*
+        box-shadow: 0 1px 0 0;
+        background-color: #E5DCCE; /* same as the nav and h1 backgrounds *//*
+        color: #7b0000;
+        border:1px solid #404040;
+        font-family:'Lucida Grande',Tahoma,Verdana,Arial,sans-serif;
+        font-size:12px;
+        font-weight:700;
+        padding:2px 6px;
+        border-radius:5px;
+        /*-moz-border-radius:5px;*//*
+        -webkit-border-radius:5px;
+      }*/
+      /****************************  GENERIC MAIN CONTENT STYLES  ****************************/
+       article h2, article h3 { /* reverse center align for mobile since desktop has left col nav */
+        text-align: left;
+        padding-bottom: 15px; /* need more than the default 10px for desktop */
+      } 
+      /**************************  SPECIFICS FOR HOME/LANDING SCREEN  **************************/
+      #home-h2 {
+        padding-left: 28%;
+      }
+      /**************************  SPECIFICS FOR HELP SCREEN  **************************/
+      #help-h2 {
+        padding-left: 32%;
+      }
+      #help-ol {
+        padding-left: 60px; /* override the reduced padding for mobile */
+      }
+      /**************************  desktop SPECIFICS FOR SETTINGS SCREEN  **************************/
+      #settings-h3 {
+        padding-left: 6%;
+        padding-top: 6px;
+        font-size: 1.15em;
+      }
+      #settings-form {
+        padding-left: 50px;
+      }
+      .settings-fieldset {
+        display: inline-block;
+        width: 35%;
+        margin: 0 3% 0 3%;
+        padding-left: 30px;
+        padding-bottom: 10px; /* needed to get last input off the bottom fieldset line on Opera */
+      }
+      #settings-legend {
+        margin-left: 20px;
+      }
+      .settings-div {
+        padding: 6px 0 0 5px;
+      }
+      .settings-label {
+        font-size: 0.85em;
+        display: inline-block;
+        width: 180px;
+      }
+      .settings-number {
+        width: 40px;
+      }
+      /*#settings-submit {
+        margin-top: 10px;
+        margin-left: 36%;
+      }*/
+      /*
+        #settings-reset { /* reset currently unimplemented */ /*
+          margin-left: 40.5%;
+          padding-left: 10px; /* attempt to match size of accompanying submit */ /*
+          padding-right: 10px;
+          background-color: #e00; /* red = warning or caution */ /*
+          color: white;
+          font-weight: bold;
+        }
       */
-      -webkit-border-top-left-radius:120px 70px;
-      -webkit-border-top-right-radius:120px 70px;
-      -webkit-border-bottom-right-radius:120px 70px;
-      -webkit-border-bottom-left-radius:120px 70px;
-      /*-moz-border-radius:120px / 70px;*/
-      border-radius:120px / 70px;
-    }
-
-    /* creates the larger circle */
-    .oval-thought-border:before {
-      content:"";
-      position:absolute;
-      z-index:10;
-      bottom:-20px;
-      /*right:100px;*/
-      left:50px;
-      width:25px;
-      height:25px;
-      border:5px solid #c81e2b;
-      background:#fff;
-      /* css3 */
-      -webkit-border-radius:25px;
-      /*-moz-border-radius:25px;*/
-      border-radius:25px;
-      /* reduce the damage in FF3.0 */
-      /* display:block; */
-    }
-
-    /* creates the smaller circle */
-    .oval-thought-border:after {
-      content:"";
-      position:absolute;
-      z-index:10;
-      bottom:-30px;
-      /*right:50px;*/
-      left:25px;
-      width:12px;
-      height:12px;
-      border:5px solid #c81e2b;
-      background:#fff;
-      /* css3 */
-      -webkit-border-radius:12px;
-      /*-moz-border-radius:12px;*/
-      border-radius:12px;
-      /* reduce the damage in FF3.0 */
-      /* display:block; */
-    }
-
-    /**************************  end of moodstyles.css  **************************/
+      /**************************  DATE-PICKER AREA LAYOUT  **************************/
+      /***********************  USED BY MOOD AND SCORES SCREENS  **********************/
+      #date-container {
+        padding: 0 27% 0 21%;
+      }
+      #date-container p {
+        font-size: 1.1em;
+      }
+      #mood-h2 { padding-left: 17%; }  /* pseudo-centering */
+      #scores-h2 { padding-left: 11%; } /* pseudo-centering */
+      .date-form-class {
+        padding-top: 10px;
+        padding-bottom: 10px;
+      }
+      #date-select {
+        margin: 0 0 15px 27%;
+      }
+      .date-submit {
+        margin-left: 36%;
+        margin-bottom: 10px;
+      }
+      /**************************  SPECIFICS FOR MOOD SCREEN  ************************/
+      #mood-figure {
+        padding: 50px 0 0 150px;
+        display: inline-block;
+      }
+      /*************************  SPECIFICS FOR SCORES SCREEN  *************************/
+      #date-container p {
+        padding-left: 15px;
+        text-align: left; /* cancel phone setting */
+      }
+      #about-h2 { /* almost the same as help-h2 2015-12-15 */
+        padding-left: 35%;
+      }
+      table {
+        width: 50%;
+        margin-left: 18.5%;
+        border-collapse: collapse;
+      }
+      table caption {
+        text-align: left;
+        padding-left: 31%;
+        padding-bottom: 5px;
+        font-size: 1.1em;
+      }
+      table, th, td {
+        border: 1px solid black;
+      }
+      th {
+        padding-left: 5px;
+        padding-right: 5px;
+      }
+      tbody tr:nth-child(odd) { /* zebra striping (credit: css-tricks) */
+        background-color: #eee;
+      }
+      /*******************************  mood speech bubble   ******************************/
+      /* adapted from: Nicolas Gallagher -- nicolasgallagher.com/pure-css-speech-bubbles/ */
+      /************************************************************************************/
+  
+      #bubble-container {
+        width:250px;
+        display: inline-block;
+        vertical-align: top;
+      }
+  
+      /*
+       Should you want to set a background colour on a containing element
+       certain types of bubble effect may require you to include these
+       style declarations.
+       */
+      .bubble-content {
+        position:relative;
+        z-index:1;
+      }
+  
+      blockquote {
+        margin:1em 0;
+        /* font:1em/1.4 Cambria, Georgia, sans-serif; */  /* Nick had this on <body> for his demo page */
+                                                          /* 1st value is font-size/line-height */
+        font:.8em/1.0 "Comic Sans MS", "Comic Sans", "Papyrus", cursive;
+      }
+  
+      blockquote p {
+        font-size:1.4em; /* a reasonable one-size-fits-all for varying amounts of text */
+      }
+  
+      /* OVAL THOUGHT BUBBLE (more CSS3) ==================================== */
+  
+      .oval-thought {
+        position:relative;
+        width:135px;
+        padding:25px 20px;
+        margin:1em auto 40px;
+        text-align:center;
+        color:#fff;
+        background:#075698;
+        /* css3 */
+        /*background:-webkit-gradient(linear, 0 0, 0 100%, from(#2e88c4), to(#075698));*/
+        background:-moz-linear-gradient(#2e88c4, #075698);
+        /*background:-o-linear-gradient(#2e88c4, #075698);*/
+        background:linear-gradient(#2e88c4, #075698);
+        /*
+        NOTES:
+        -webkit-border-radius:220px 120px; // produces oval in safari 4 and chrome 4
+        -webkit-border-radius:220px / 120px; // produces oval in chrome 4 (again!) but not supported in safari 4
+        Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+        */
+        -webkit-border-top-left-radius:110px 60px;
+        -webkit-border-top-right-radius:110px 60px;
+        -webkit-border-bottom-right-radius:110px 60px;
+        -webkit-border-bottom-left-radius:110px 60px;
+        /*-moz-border-radius:110px / 60px;*/
+        border-radius:110px / 60px;
+      }
+  
+      .oval-thought p {font-size:1.25em;}
+  
+      /* creates the larger circle */
+      .oval-thought:before {
+        content:"";
+        position:absolute;
+        bottom:-10px;
+        left:25px;
+        width:15px;
+        height:15px;
+        background:#075698;
+        /* css3 */
+        -webkit-border-radius:15px;
+        /*-moz-border-radius:15px;*/
+        border-radius:15px;
+      }
+  
+      /* creates the smaller circle */
+      .oval-thought:after {
+        content:"";
+        position:absolute;
+        bottom:-15px;
+        left:15px;
+        width:7px;
+        height:7px;
+        background:#075698;
+        /* css3 */
+        -webkit-border-radius:7px;
+        /*-moz-border-radius:7px;*/
+        border-radius:7px;
+      }
+  
+      /* ============================================================================================================================
+      == OVAL THOUGHT BUBBLE, EMPTY, WITH BORDER (more CSS3)
+      ** ============================================================================================================================ */
+  
+      .oval-thought-border {
+        height: 65px;     /* ensure it holds its shape despite "smaller" content (wrt width 250 above) - dcc 2015-11 */
+        min-height: 65px; /* ensure it holds its shape despite "smaller" content (wrt width 250 above) - dcc 2015-11 */
+        position:relative;
+        padding:35px 15px;
+        margin:1em auto 40px;
+        border:5px solid #c81e2b;
+        text-align:center;
+        color:#333;
+        background:#fff;
+        /* css3 */
+        /*
+        NOTES:
+        -webkit-border-radius:240px 140px; // produces oval in safari 4 and chrome 4
+        -webkit-border-radius:240px / 140px; // produces oval in chrome 4 (again!) but not supported in safari 4
+        Not correct application of the current spec, therefore, using longhand to avoid future problems with webkit corrects this
+        */
+        -webkit-border-top-left-radius:120px 70px;
+        -webkit-border-top-right-radius:120px 70px;
+        -webkit-border-bottom-right-radius:120px 70px;
+        -webkit-border-bottom-left-radius:120px 70px;
+        /*-moz-border-radius:120px / 70px;*/
+        border-radius:120px / 70px;
+      }
+  
+      /* creates the larger circle */
+      .oval-thought-border:before {
+        content:"";
+        position:absolute;
+        z-index:10;
+        bottom:-20px;
+        /*right:100px;*/
+        left:50px;
+        width:25px;
+        height:25px;
+        border:5px solid #c81e2b;
+        background:#fff;
+        /* css3 */
+        -webkit-border-radius:25px;
+        /*-moz-border-radius:25px;*/
+        border-radius:25px;
+        /* reduce the damage in FF3.0 */
+        /* display:block; */
+      }
+  
+      /* creates the smaller circle */
+      .oval-thought-border:after {
+        content:"";
+        position:absolute;
+        z-index:10;
+        bottom:-30px;
+        /*right:50px;*/
+        left:25px;
+        width:12px;
+        height:12px;
+        border:5px solid #c81e2b;
+        background:#fff;
+        /* css3 */
+        -webkit-border-radius:12px;
+        /*-moz-border-radius:12px;*/
+        border-radius:12px;
+        /* reduce the damage in FF3.0 */
+        /* display:block; */
+      }
+  
+      /**************************  end of moodstyles.css  **************************/
+    
+    } /* end of media query for desktop width */
+    
   </style>
   
   <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  
+  <script>
+    /* SHOW AND HIDE PHONE NAVIGATION BUTTONS */
+    /* cf. Paul Cheney - Pluralsight - Hands On Responsive Web Design */
+    $(document).ready(function() {
+      $(function(){
+        $('#showPhoneNav').click(function() {
+          $("#navlist").slideToggle('normal',function(){ //Shows Nav area
+        if ($('#navlist').is(':visible')) {
+          $('#showPhoneNav').text('Hide Navigation');
+        } else {
+          $('#showPhoneNav').text('Show Navigation');
+        } //end of if
+        }); //end of slidetoggle
+        }); //end of navlist
+      }); //end showPhoneNav
+    }); //end of ready
+  </script>
   
   <script>
     /*
@@ -593,11 +999,11 @@
               '<!-- client-side only so form has no method or action, button/submit has no formAction -->' +
               '<!--<form method="post" id="settings-form">-->' +
               '<form id="settings-form">' +
-                '<fieldset class="settings-fieldset" id="american-league-settings">' +
+                '<fieldset class="settings-fieldset">' +
                   '<legend id="settings-legend">American League</legend>' +
                   '<div class="settings-div">' +
                     '<label class="settings-label">Anaheim Angels</label>' +
-                    '<input type="number" class="settings-number" id="angels" name="angels" min="-3" max="3" value="0" >' +
+                    '<input type="number" class="settings-number scrollfix" id="angels" name="angels" min="-3" max="3" value="0" >' +
                   '</div>' +
                   '<div class="settings-div">' +
                     '<label class="settings-label">Baltimore Orioles</label>' +
@@ -656,7 +1062,8 @@
                     '<input type="number" class="settings-number" id="bluejays" name="bluejays" min="-3" max="3" value="0" >' +
                   '</div>' +
                 '</fieldset>' +
-                '<fieldset class="settings-fieldset" id="national-league-settings"><legend>National League</legend>' +
+                '<fieldset class="settings-fieldset">' +
+                  '<legend id="settings-legend">National League</legend>' +
                   '<div class="settings-div">' +
                     '<label class="settings-label">Arizona Diamondbacks</label>' +
                     '<input type="number" class="settings-number" id="diamondbacks" name="diamondbacks" min="-3" max="3" value="0" >' +
@@ -718,7 +1125,6 @@
                     '<input type="number" class="settings-number" id="nationals" name="nationals" min="-3" max="3" value="0" >' +
                   '</div>' +
                 '</fieldset>' +
-                '<br /><br />' +
                 '<button class="styled-button-3" id="settings-submit"' +
                         'formaction="" onclick="processSettings(event)">Submit</button>' +
               '</form>'
@@ -964,6 +1370,10 @@
     function mood(event) {
       /* debug */ /* alert("entering function mood()"); */
       
+      /* when submitting settings we come directly here.  At phone width, the window is scrolled down and
+       * should be at the top ... so let's make it so */
+      window.scrollTo(0, 0);
+      
       if (!sessionStorage.getItem("nationals")) {
         alert("You have not set any team affinities. Please return to Settings.");
       }
@@ -971,7 +1381,7 @@
         /* update #main-content html */
         $("#main-content") // always update innerHTML of <article> within <main>
           .html('<div id="date-container" >' +
-                  '<h3 class="date-h3" id="mood-h3">Time to Get Your Mood!</h3>' +
+                  '<h2 id="mood-h2">Time to Get Your Mood!</h2>' +
                   '<p>Will it be bliss ... or madness? Gloating or loathing? ' +
                   'Pick your date, and press the button ... if you dare!</p>' +
                   '<!-- client-side only so form has no method or action, button/submit has no formAction -->' +
@@ -1015,7 +1425,7 @@
       
       // TODO: write extra captions and randomize them
       var happiestCaption = "My enemies are vanquished and my name is Victory!!!";
-      var happierCaption = "This is a true red letter day ... whatever that means!";
+      var happierCaption = "This is a true red letter day ... whatever that means!?!";
       var happyCaption = "This is good ... not 'bank error in my favor' good ... but good!";
       var neutralCaption = "I feel nothing";
       var unhappyCaption = "I'm peeved ... irked ... vexed ... alas and alack!";
@@ -1166,7 +1576,7 @@
       $("#main-content") // always update innerHTML of <article> within <main>
         .html(
               '<div id="date-container">' +
-                '<h3 class="date-h3" id="scores-h3" scores-h3">MLB Scores for Selected Day</h3>' +
+                '<h2 id="scores-h2">MLB Scores for Selected Day</h2>' +
                 '<p>Pick your date and click Submit to see the day\'s scores.</p>' +
                 '<form id="date-form" class="date-form-class" name="scores-form" >' +
                   '<select id="date-select" form="date-form" required>' +
@@ -1276,23 +1686,22 @@
       $("#main-content") // updates innerHTML of <article> within <main>
         .html('<h2 id="about-h2">About This App</h2>' +
               '<p class="bigger-font">' +
-                'This little app had an odd genesis.  A prospective employer sent out a test ' +
-                'asking for something with only a single file, and with user interaction and ' +
-                'a data set ... either a shell script or html.  At the time, I had been planning to do a ' +
+                'This little app had an interesting genesis.  A prospective employer sent me a test ' +
+                'asking for a single file with user interaction and ' +
+                'a data set ... either a shell script or html.  I\'d been planning to do a ' +
                 'silly sports mood demo ' +
                 'as a C# ASP.NET MVC web app with all the bells and whistles. It would have a database ' +
-                'of user login info, another DB (or at least a separate table) to save user settings, ' +
+                'with user login info and saved user settings, ' +
                 'and an accompanying web service, a RESTful API, to provide enough sports data for the demo. ' +
-                'Since I didn\'t have any great ideas about what to do for the test, I did a minimalist version ' +
-                'of the sports mood idea. ' +
-                'I quickly realized I was building a Single Page App, something I\'d never done.  It was pretty ' +
-                'simple though, especially as it\'s client side only and I could use jQuery.' +
+                'Lacking inspiration for the test, I did a minimalist version ' +
+                'of the sports mood concept. ' +
+                'I quickly realized I was building a Single Page App, something I\'d never done.' +
               '</p><br />' +
               '<p class="bigger-font">' +
-                'It turned out the test was just supposed to be a few lines (OOPS) using ' +
+                'It turned out the test submittal was just supposed to be a few lines (oops) using ' +
                 'the HTML5 \'dataset\' ' +
                 'facility, which I\'d never seen before. They said, "We love your app.  But all the candidates ' +
-                'are supposed to submit just a tiny file." So that\'s what they ultimately got ... and meanwhile here\'s ' +
+                'are supposed to submit just a tiny file." And that\'s what I ultimately gave them. Meanwhile here\'s ' +
                 'this wacky app which taught me a lot.' +
               '</p><br />' +
               '<p class="bigger-font">' +
@@ -1303,6 +1712,28 @@
               );
     }
     
+    /* thomas bachem fix for funky scrolling behavior after touching an input element on iPhone.
+     * See http://stackoverflow.com/questions/25596960/issues-with-touch-scroll-on-ios-when-focusing-inputs,
+     * and scroll down for 'dotgreg'.  The scrollfix class is applied to the offending inputs - on the
+     * settings screen, in our case here.
+     */
+    /* doesn't fix it */
+    /*
+    $('.scrollFix').css("pointer-events","none");
+
+    $('body').on('touchstart', function(e) {
+        $('.scrollFix').css("pointer-events","auto");
+    });
+    $('body').on('touchmove', function(e) {
+        $('.scrollFix').css("pointer-events","none");
+    });
+    $('body').on('touchend', function(e) {
+        setTimeout(function() {
+            $('.scrollFix').css("pointer-events", "none");
+        },0);
+    });
+    */
+        
   </script> <!-- *************************** End of JavaScript ***************************** -->
   
 </head> 
@@ -1312,22 +1743,22 @@
       <h1>MLB Sports Mood</h1>
     </header>
     <nav>
-      <ul id="navlist">
-        <li class="prettylink" onclick="help(event)"     >Help</li>
-        <li class="prettylink" onclick="settings(event)" >Settings </li>
-        <li class="prettylink" onclick="mood(event)"     >Get My Mood!</li>
-        <li class="prettylink" onclick="scores(event)"   >Get Scores</li>
-        <li class="prettylink" onclick="about(event)"    >About</li>
+      <button id="showPhoneNav">Show Navigation</button>
+      <ul id="navlist" class="clearfix">
+        <li class="navlink" onclick="help(event)"     >Help</li>
+        <li class="navlink" onclick="settings(event)" >Settings </li>
+        <!--<li class="navlink active" onclick="mood(event)"     >Get My Mood!</li> this is here just to see what active state looked like -->
+        <li class="navlink" onclick="mood(event)"     >Get My Mood!</li>
+        <li class="navlink" onclick="scores(event)"   >Get Scores</li>
+        <li class="navlink" onclick="about(event)"    >About</li>
       </ul>
     </nav>
     <main>          
       <article id="main-content">
-        <h3 id="home-h3">The Adventure Begins!!!!!!!!</h3>
+        <h2 id="home-h2">The Adventure Begins!!!!!!!!</h2>
         <p class="bigger-font pad-bottom">Welcome! Perhaps you're like many sports fans who over the years
             have come to care about certain baseball teams, and to despise those teams that beat
             their favorites.
-        </p>
-        <p class="bigger-font pad-bottom">
             Now you can see, for any given day on the MLB schedule, how you
             should feel based on how those teams you love - <em>and hate</em> - did that day.
         </p>
@@ -1341,16 +1772,16 @@
           <p>Please note:</p>
           <ul id="disclaimer-list">
             <li>An active Internet connection is required.</li>
-            <li>Game results are limited to two days, August 29th and 30th, 2015.</li>
-            <li>Session Storage is used to retain settings. It will disappear when your tab is closed.</li>
+            <li>For this demo, game results are limited to two days, August 29th and 30th, 2015.</li>
+            <li>Session Storage is used to retain settings. It will disappear when the host tab/window is closed.</li>
           </ul>
         </div>
       </article>
     </main>
     <footer>
-        <p><em>Copyright &copy; 2015 Donald Cameron - all rights reserved</em></p>
+      <p><em>Copyright &copy; 2015-16 Donald Cameron - all rights reserved</em></p>
     </footer>
-     
-  </div>
+  </div> <!-- outer-container -->
+  
 </body>
 </html>
