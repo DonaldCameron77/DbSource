@@ -1,0 +1,68 @@
+/*
+ * External CSS for 'The 21st Century Guitar.'
+ * Free Code Camp "tribute challenge' submittal.
+ * 
+ * 		Donald Cameron
+ * 		2016-02
+ */
+
+body {
+    font-family: 'Open Sans', sans-serif;
+		background-color: #333; /* fallback */
+		background-image: linear-gradient(to bottom right, #A98C95, #595455);
+		color: #ddd;
+}
+
+header, footer {
+	  background-color: white;
+		color: #333;
+    padding: 20px;
+}
+
+header, footer, h1, h2, h3 {
+		text-align: center;
+}
+
+header {
+		margin-bottom: 30px;
+		padding-top: 0; /* override bootstrap's "high forehead" 8-) */
+}
+footer { margin-top: 10px; }
+
+h1 { padding-top: 10px; } /* bootstrap's "forehead" is too high 8-) */
+
+main p {
+		font-size: 1.1em;
+		font-weight: 400;
+}
+
+.myRow {   /* separate each row */
+		margin-top: 10px;
+		margin-bottom: 20px;
+}
+
+a, a:hover {
+	  /*color: #0ae;*/
+		color: #0ce;
+		font-weight: 600;
+}
+
+.brighterLink {
+	color: #0df;
+}
+
+#about {
+		padding-left: 5%;
+		padding-right: 5%;
+}
+/* Heart of the matter - embedded video */
+/* We will need some compensation for Bootstrap removing the border.  See inline styles on iframe */
+
+iframe {
+		border: 1px solid black; /* has no effect with bootstrap - using inline style instead */
+}
+
+.vidCaption{ padding-top: 5px; }
+
+/* end of CSS for 'The 21st Century Guitar' */
+
