@@ -36,6 +36,10 @@ main p {
 		font-weight: 400;
 }
 
+ul {
+    font-size: 1.1em;
+}
+
 .myRow {   /* separate each row */
 		margin-top: 10px;
 		margin-bottom: 20px;
@@ -48,7 +52,7 @@ a, a:hover {
 }
 
 .brighterLink {
-	color: #0df;
+		color: #0df;
 }
 
 #about {
