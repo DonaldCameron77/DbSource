@@ -6,3 +6,4 @@
 # Ignore all logfiles and tempfiles.
 /log/*.log
 /tmp
+UnderConstruction
