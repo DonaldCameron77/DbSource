@@ -1,13 +1,22 @@
-./
 ../
+./
 .DS_Store
+.gitignore
 18.bk/
 BACKUPS/
+Bugs.txt
+DescriptionAndReleaseNotes.txt
+Extra and Old/
 ExtraFiles/
 Forms.html
 ImageAssets/
 SportsMood.01.asReleased/
 SportsMoodAssets/
+SportsMoodSPA/Bugs.txt
+SportsMoodSPA/Extra and Old/
+SportsMoodSPA/sportsmood.jQueryShowHide.html
+SportsMoodSPA/sportsmood.jQueryShowHide2.html
+SportsMoodSPA/sportsmood.mobilePureCSS.html
 app.3.1.js
 cur.css
 doMood.new.js
@@ -17,6 +26,10 @@ mood.css
 moodstyles.css
 sportsmood.BK01.html
 sportsmood.BK02.html
+sportsmood.html
+sportsmood.jQueryShowHide.html
+sportsmood.jQueryShowHide2.html
+sportsmood.mobilePureCSS.html
 sportsmood.newhelptmp.html
 sportsmood.newmoodtmp.html
 sportsmoodhelptmp.html

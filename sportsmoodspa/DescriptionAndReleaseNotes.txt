@@ -6,6 +6,10 @@ Files included:
 SportsMood.html (stand alone single-page application).
 Description/Release Notes (this file).
 
+Release 0.6 3/13/2016 - Minor streamlining of the mobile menu operation.  Still needs a better method for settings input on phone (and maybe tablet) - see Bugs.
+
+Release 0.5 - Full overhaul for mobile.
+
 Specifics for release 0.4: Overhaul for mobile width.  The app looks
 fine in a Chrome window narrowed as far as it will go, but still looks
 terrible once uploaded and viewed on an iPhone or Android phone.  This
