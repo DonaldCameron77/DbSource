@@ -1,0 +1,117 @@
+<!doctype html>
+<html>
+  
+<head>
+  
+<meta charset="UTF-8">
+<title>Snark-O-Matic</title>
+
+<!-- *************** LOAD GOOGLE FONT ****************** -->
+<!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>-->
+
+<!-- LOAD LATEST JQUERY-->
+<!-- https://developers.google.com/speed/libraries/devguide#jquery -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+
+<!-- Font Awesome --> 
+<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+
+<!-- ***** FORCES PHONES NOT TO LIE ABOUT THEIR WIDTH -->
+<!-- n.b. 'maximum-scale=1' prevents user zoom-in -->
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+
+<link href="stylesheets/styles.css" rel="stylesheet"> <!-- includes Meyer reset @ phone/default -->
+
+<!--***** SCRIPT TO HELP OLD IE UNDERSTAND HTML5 AND MEDIA QUERIES *****-->
+<!--[if lt IE 9]>
+  <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+  <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
+
+</head>
+
+<body>
+  <div id="headerWrapper">
+    <header>
+      <h1>Snark-O-Matic Quote Machine</h1>
+      
+    </header>
+  </div> <!-- end of header wrapper -->
+
+  <div id="contentWrapper">
+    <main>
+      <div id="blink"></div>
+      <div id="beep"></div>
+      <div id="top-cap" class="brushedSilverGradient">
+        <h2>SnarkBot 2000</h2>
+      </div>
+      
+      <div id="snarkLevelContainer" class="brushedSilverGradient">
+        <!--<h3>Snark Bot 2000 Control Panel</h3>-->
+        <form id="snarkLevelForm">
+          <div id="right-eye-container">
+            <div class="eye">
+              <input type="radio" id="famous-radio" name="snarkLevel" value="famous" onclick="changeSnarkType(value)" checked >
+              <!--<label for="snarkLevel">Snarky</label><br>-->
+            </div>
+            <label id="famous-label" for="snarkLevel">Famous</label><br>
+          </div>
+          <div id="left-eye-container">
+            <div class="eye">
+              <input type="radio" id="unknown-radio" name="snarkLevel" value="unknown" onclick="changeSnarkType(value)" >
+            </div>
+            <label id="unknown-label" for="unknownLevel">Unknown</label>
+          </div>
+        </form>
+        <div id="mouth"></div>
+      </div>
+      
+      <div id="quote-container" class="brushedSilverGradient">
+        <div id="quote-frame">
+          <p id="quote-text"></p>
+          <p id="quote-source"></p>
+        </div>
+      </div>
+      <div id="legs-container">
+        <div id="right-leg-container">
+          <div id="right-leg" class="leg brushedSilverGradient"></div>
+        </div>
+        <div id="left-leg-container">
+          <div id="left-leg" class="leg brushedSilverGradient"></div>
+        </div>
+      </div>
+      
+      <div id="feet-container">
+        <div id="right-foot-container">
+          <div id="right-foot">
+            <button class="my-button brushedSilverGradient" type="submit" onclick="getQuote()">
+              <i class="fa fa-play"></i> Get Quote
+            </button>
+          </div>
+        </div>
+        <div id="left-foot-container">
+          <div id="left-foot">
+            <a id="twitter-share-button" href="https://twitter.com/intent/tweet" data-size="large" target="_blank">
+              <button id="tweet-button" class="my-button brushedSilverGradient" type="submit">
+                <i class="fa fa-twitter"></i> Tweet it!
+              </button>
+            </a>
+          </div><!--left-foot-->
+        </div><!--left-foot-container-->
+      </div><!--feet-container-->
+    </main>
+  </div> <!-- end of content wrapper -->
+
+  <div id="footerWrapper">
+    <footer>
+      <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+         Donald Cameron - all rights reserved</p>
+      <p>A big thanks to <a href="http://www.freecodecamp.com/map">Free Code Camp</a></p>
+    </footer>
+  </div> <!-- end of footer wrapper -->
+  
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
+  <script src="js/script.js"></script>
+      
+</body>
+</html>

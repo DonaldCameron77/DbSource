@@ -20,3 +20,17 @@ stageIfNewer $PREFIX/Source/altguitar/css/styles.css $PREFIX/Source.Deploy/Root.
 # sportsmoodspa.  Single file app
 stageIfNewer $PREFIX/Source/sportsmoodspa/sportsmood.html $PREFIX/Source.Deploy/Root.deploy/sportsmoodspa/sportsmood.html
 
+# quote app.  Has styles, js, font, and images directories.
+stageIfNewer $PREFIX/Source/quoteapp/index.html $PREFIX/Source.Deploy/Root.deploy/quoteapp/index.html
+DIR=stylesheets
+FILENAME=styles.css
+stageIfNewer $PREFIX/Source/quoteapp/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/quoteapp/$DIR/$FILENAME
+DIR=js
+FILENAME=script.js
+stageIfNewer $PREFIX/Source/quoteapp/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/quoteapp/$DIR/$FILENAME
+DIR=images
+FILENAME=clouds01.jpg
+stageIfNewer $PREFIX/Source/quoteapp/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/quoteapp/$DIR/$FILENAME
+DIR=fonts
+FILENAME=bitwise.ttf
+stageIfNewer $PREFIX/Source/quoteapp/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/quoteapp/$DIR/$FILENAME
