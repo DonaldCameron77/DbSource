@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  
+<head>
+  
+  <title>Stock Quotes</title>
+  <meta name="description" content="Stock quotes on request" />
+  <meta charset="utf-8">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+
+  <link href="css/styles.css" rel="stylesheet" type="text/css" >
+   
+</head>
+
+<body>
+  
+  <div id="quote-module">
+    
+    <div id="innerContainer">
+      <div id="titleDiv">
+        <h1 id="bizName">Get Current Stock Quote</h1> <!--JS simulates <br> if ending is CO CORP INC LLC GMBH etc-->
+      </div>
+      
+      <div id="quoteRow">
+        <div class="halfRow leftDiv">
+          <p id="curQuote"></p>
+        </div>
+        <div class="halfRow rightDiv">
+          <p id="curChange"></p>
+        </div>
+      </div><!--#quoteRow-->
+      
+      <div class="detailRow">
+        <div class="detailLegend halfRow leftDiv">
+          <p>Range</p>
+        </div>
+        <div class="detailData halfRow rightDiv">
+          <p id="curRange"></p>
+        </div>
+      </div><!--.detailRow-->
+      
+      <div class="detailRow">
+        <div class="detailLegend halfRow leftDiv">
+          <p>Open</p>
+        </div>
+        <div class="detailData halfRow rightDiv">
+          <p id="curOpen"></p>
+        </div>
+      </div><!--.detailRow-->
+      
+      <div class="detailRow">
+        <div class="detailLegend halfRow leftDiv">
+          <p>Volume</p>
+        </div>
+        <div class="detailData halfRow rightDiv">
+          <p id="curVolume"></p>
+        </div>
+      </div><!--.detailRow-->
+      
+      <div class="detailRow">
+        <div class="detailLegend halfRow leftDiv">
+          <p>Market Cap</p>
+        </div>
+        <div class="detailData halfRow rightDiv">
+          <p id="curMarketCap"></p>
+        </div>
+      </div><!--.detailRow-->
+      
+      <div class="detailRow" id="dateRow">
+        <div class="detailLegend halfRow leftDiv">
+          <!--no content in this column-->
+        </div>
+        <div class="detailLegend halfRow rightDiv"><!--placeholder for time of day - repurposing detailLegend to get small faint text-->
+          <p id="curDateTime"></p>
+        </div>
+      </div><!--.detailRow/#dateRow-->
+      
+      <div id="inputRow">
+        <div id="symbolDiv" class="halfRow">
+          <input type="text" id="symbolInput" size=42 placeholder="Enter ticker symbol">
+        </div>
+        <div id="getQuoteDiv" class="halfRow">
+          <button id="getQuoteButton" type="button" onclick="quoteAjax('#symbolInput')">Get New Quote</button>
+        </div>
+      </div>
+          
+    </div> <!--#innerContainer-->
+    
+  </div>  <!--#quote-module-->
+  
+  <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <script type="text/javascript" src="js/scripts.js"></script>
+    
+</body>
+
+</html>
+  

@@ -1,0 +1,140 @@
+/*----------- apply a natural box layout model to all elements --------------*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/*--------- stop Chrome from putting blue outline around selected clicked items --------*/
+button:focus { outline: 0; }
+
+body {
+  /*background: #ddd;*/
+}
+
+#quote-module {
+  border:1px dotted #888;
+  margin: 5px 0 0 5px;
+  background: #EEE;
+  min-height: 200px;
+  width: 375px;
+  color: #747474;
+  font-weight: 300;
+  padding-top: 12px;
+}
+
+#innerContainer {
+  margin: 0 5px;
+  border-top: 3px solid #777;
+}
+
+#titleDiv {
+  /* min-height: 42px; /* So that this and #quoteRow take their normal height even before a quote is loaded */
+  min-height: 50px;  /* was still jumping on 1st quote at 46-47 */
+}
+
+#bizName { /* <h1> for the company name */
+  font-family: Georgia, serif;
+  font-stretch: expanded;  /* no effect b/c we don't have expanded version of font */
+  font-weight: 300;
+  font-size: .9em;
+  margin: 0; /* not using reset, so everride h1 having huge top and bottom margins (in Chrome at least) */
+  padding-top: 10px;
+}
+
+#quoteRow {
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  min-height: 60px; /* So that this and #titleDiv take their normal height even before a quote is loaded */
+  padding: 0 3px;
+  font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
+}
+#quoteRow p { /* not using a reset so override big margin, add padding */
+  margin-bottom: 8px;
+  padding-top: 2px;
+}
+
+.halfRow {
+  display: inline-block;
+  width: 49%;
+}
+.leftDiv {
+  text-align: left;
+  padding-left: 3px;
+}
+.rightDiv {
+  text-align: right;
+  padding-right: 3px;
+}
+
+#curQuote {
+  color: #444;
+  font-size: 1.3em;
+}
+#curChange {
+  color: #090;
+  font-size: 1.05em;
+}
+
+.detailRow {
+  border-bottom: 1px solid #ddd;
+  width: 100%;
+  min-height: 30px; /* empty row on startup becomes a bit taller after data inserted */
+  padding: 0 3px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.detailRow p { /* not using a reset so eliminate gratuitious user agent padding, margin */
+  padding: 7px 0;
+  margin: 0;
+}
+
+.detailLegend {
+  font-size: .67em;
+  color: #999; /*fainter*/
+}
+.detailData {
+  font-weight: bold;
+  font-size: .85em;
+  color: #444; /*blacker*/
+}
+
+#dateRow { /* overriding .detailRow's padding as date shouldn't have padding-right */
+  padding: 2px 0;
+  min-height: 31px; /* empty row on startup becomes a bit taller after data inserted */
+  min-height: 33px;
+}
+
+#inputRow {
+  width: 100%;
+  padding-top: 3px;
+  min-height: 45px;
+  font-family: Arial, Helvetica, sans-serif;
+}
+
+#symbolInput, #getQuoteButton { /*text input, and button*/
+  margin-top: 3px;
+  margin-bottom: 3px;
+  height: 2.3em;
+  width: 175px; /* only affecting button b/c we have a "size" set on the text input in the HTML */
+  border: 1px solid #ccc; /* needed to override 3d animated border that Chrome (at least) adds once border radius is specified */
+  font-size: .85em;
+  color: #555;
+}
+#symbolInput:hover, #getQuoteButton:hover {
+  border: 1px solid green;
+}
+
+#symbolInput {
+  margin-left: 2%;
+  margin-right: 1%;
+  padding-left: 5px;
+  border-radius: 4px 0 0 4px; /* left corners only */
+}
+
+#getQuoteButton {
+  margin-left: 1%;
+  margin-right: 2%;
+  border-radius: 0 4px 4px 0; /* right corners only */
+  font-family: 'Century Gothic', CenturyGothic, AppleGothic, sans-serif;
+  background: linear-gradient(white, #dcdcdc);
+}
+#getQuoteButton:active { /* show when it's pressed */
+  background: #ccc;
+}
+
