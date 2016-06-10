@@ -1,15 +1,17 @@
-'use strict';
+'use strict'; // The functional form is apparently preferable.  The way it's done here,
+              // it has a global effect which could break 3rd party code.
 
 /* "modules" in order of appearance in this file
  *  - AJAX-related stuff
  *  - formatting utlities
+ *  - event handling stuff (currently only turn press of enter in input box to click/press of button)
  */
 
 // ************** Set up for and do AJAX **************
 
 // TODO: what is the valid symbol format? AFAIK for US markets it can be 5 or fewer letters.
 // Should we filter out symbols with special characters or other junk,
-// or just let the API return an error?  Except that it doesn't seem to  return something
+// or just let the API return an error?  Except that it doesn't seem to return something
 // that our 'error' property can catch. So we must diagnose errors in the success property.
 
 function quoteAjax(symbolId) {
@@ -37,7 +39,7 @@ function quoteAjax(symbolId) {
             }
             $('h1').html(formatName(data.Name));
             $('#curQuote').html(data.LastPrice.toFixed(2));
-            $('#curChange').html(data.Change.toFixed(2) + ' ( ' + data.ChangePercent.toFixed(2) + '%)');
+            $('#curChange').html(data.Change.toFixed(2) + ' ( ' + data.ChangePercent.toFixed(2) + '% )');
             $('#curRange').html(data.Low.toFixed(2) + ' - ' + data.High.toFixed(2));
             $('#curOpen').html(data.Open.toFixed(2));
             $('#curVolume').html(formatNumber(data.Volume));
@@ -110,18 +112,19 @@ function formatName(name)
 function formatDateTime(quoteDateTime) {
     // Timestamp from API seems to be GMT, which the JS Date object handles
     var dayName = ['Sunday', 'Monday', 'Tuesday', 
-                     'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                  'Wednesday', 'Thursday', 'Friday', 'Saturday'];
     
-    // adjust to local time
+    // - adjust to local time
     var localQuoteDateTime = new Date(quoteDateTime);
     // - extract the time portion (12 hr format) in the form HH:MM:SS [A|P]M
     var localQuoteTime = localQuoteDateTime.toLocaleTimeString();
-    // - Do we need to add the day? N.b. using day from the quote locale rather than local day
+    // - Do we need to add the day? N.B. using day from the quote location rather than our own local day
     var localNow = new Date();
     var currentDay = localNow.getDay(), // could eliminate these temp vars if desired
         quoteDay = localQuoteDateTime.getDay();
-    var dayString = currentDay === quoteDay ? ""
-                                            : dayName[quoteDay] + " ";
+    var dayString = currentDay === quoteDay
+                ?  ""
+                : dayName[quoteDay] + " ";
 
     return "As of " + dayString + localQuoteTime;
 }
@@ -148,7 +151,7 @@ function formatNumber(x) {
 
     if (x < billion) {
         var str = (x / million).toFixed(1);
-        // hack to handle, e.g., 999M where toFixed(1) gives 1000.0M
+        // hack to handle, e.g., 999,000,000 where toFixed(1) gives 1000.0M
         // and you really want 1.0B.  Fall thru for those cases.
         if (Number(str) < 1000) {
             return str + 'M';
@@ -157,5 +160,18 @@ function formatNumber(x) {
 
     return (x / billion).toFixed(1) + 'B';
 }
+
+// ************** Event-related code goes here ****************
+
+/* ---- enterInTextBox  --------------------------
+ * Fire the AJAX routine (via simulating a click/press of the button)
+ * if the user presses Enter in the text box.
+ */
+
+$('#symbolInput').keyup(function(event) {
+    if(event.keyCode == 13) { // 13 is the magic number for the Enter key
+        $("#getQuoteButton").click();
+    }
+});
 
 // eof
