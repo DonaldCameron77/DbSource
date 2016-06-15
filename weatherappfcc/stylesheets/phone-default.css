@@ -1,0 +1,87 @@
+/*-----Prevents iPhone from resizing in landscape mode -----*/
+html {-webkit-text-size-adjust: none; }
+
+/*----------- apply a natural box layout model to all elements --------------*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/*-----BODY -----*/
+body {
+  text-align: center;
+	font-size: 16px; /*the default anyway*/
+	font-family: 'Open Sans', sans-serif;
+	font-weight:300;	/*also loaded 600 for bold*/
+  background-color: #404044;
+  color: #fff;
+}
+
+/*-----HEADER -----*/
+header {
+  padding-top: 1.5em;
+	padding-bottom: 1em;
+}
+
+header h1 {
+	font-size: 2em;
+}
+
+#temperatureString {
+  font-size: 1.6em;
+  padding: .5em 0 1em 0;
+}
+
+#weatherDescription {
+  font-size: 1.5em;
+  padding: 1em 0;
+}
+
+#dateString {
+  font-size: .9em;
+  padding-bottom: 1em;
+}
+/*----- FOOTER -----*/
+
+/* sticky footer stuff ... cf. ryanfait.com */
+/* requires margins of 0, but I think we got that covered with Meyer's reset.css */
+/* I changed Ryan's classes to id's ... should be ok */
+html, body {
+	height: 100%;
+}
+#wrapper {
+	min-height: 100%;
+	height: auto !important; /* This line and the next line are not necessary unless you need IE6 support */
+	height: 100%;
+	margin: 0 auto -125px; /* the bottom margin is the negative value of the footer's height */
+}
+#footer, #push {
+	height: 125px; /* .push must be the same height as .footer */
+}
+
+/* normal footer stuff */
+footer {
+  padding-top: 10px;
+  padding-bottom: 20px;
+}
+footer #instructions {
+  font-size: .85em;
+  padding-bottom: 1em;
+}
+footer p {
+  font-size: .7em;
+  padding-top: .25em;
+  padding-bottom: .25em;
+}
+
+/* -----CLICKABLES-----*/
+a { /* in footer */
+  color: #4b91e9;
+}
+a:hover {
+  color: #FFCD00;
+}
+
+#units:hover {
+  color: #4b91e9;
+  cursor: pointer;
+}
+
+/* EOF */

@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+
+<html lang="en">
+  
+<head>
+  <title>Weather API Challenge</title>
+  <meta name="description" content="Free Code Camp Weather API Challenge" />
+  <meta charset="utf-8">
+  <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
+
+  <!-- TELL PHONES NOT TO LIE ABOUT THEIR WIDTH -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- *************** LOAD OPEN-SANS font from GOOGLE FONTS ****************** -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>
+  
+  <!-- *************** STYLE SHEETS ****************** -->
+  <link href="stylesheets/reset.css" rel="stylesheet">
+  <!-- phone-default -->
+  <link href="stylesheets/phone-default.css" rel="stylesheet">
+  <!-- enhance-tablet -->
+  <link href="stylesheets/tablet.css" rel="stylesheet">
+  <!-- enhance-desktop -->
+  <link href="stylesheets/desktop.css" rel="stylesheet">
+  
+  <!--[if lt IE 9]>
+    <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+    <script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+  <![endif]-->
+  <!--Note all JS is below including jQuery-->
+
+<!--HTML5 sticky footer goodies: credit Ryan Fait: ryanfait.com/html5-sticky-footer-->
+
+</head>
+
+<body>
+  <div id="wrapper"><!--sticky footer-->
+    <header>
+      <h1>Local Weather for
+          <span id="location"></span> <!-- Do we need the ID? Could be h1 span selector -->
+      </h1>
+    </header>
+    <section>
+      <h2 id="temperatureString"><span id="temperature"></span><span id="units"></span></h2>
+    </section>
+    <section>
+      <div id="weatherIcon"></div>
+      <div id="weatherDescription"></div>
+    </section>
+    <section>
+      <p id="dateString"></p>
+    </section>
+    <div id="push"></div><!--sticky footer-->
+  </div><!-- wrapper --><!--sticky footer-->
+  
+  <footer id="sticky-footer">
+    <h3 id="instructions">click 'C' or 'F' to switch between Fahrenheit and Celsius</h3>
+    <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+          Donald Cameron - all rights reserved
+    </p>
+    <p>Weather icons credit: <a href="http://naldzgraphics.net/">Naldz Graphics</a></p>
+    <p>Question mark icon credit: <a href="http://icons.mysitemyway.com">mysitemyway.com</a></p>
+    <p>A big thanks to <a href="http://www.freecodecamp.com/map">Free Code Camp!</a></p>
+  </footer><!--sticky-footer-->
+    
+  <!--JQUERY-->
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+  <!-- Site-specific JS -->
+  <script src="js/app.js"></script>
+ 
+</body>
+</html>
+  

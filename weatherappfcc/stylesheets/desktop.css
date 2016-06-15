@@ -1,0 +1,8 @@
+@media only screen and (min-width: 1140px) {
+
+  header, section, footer {
+    max-width: 1140px;
+    margin: 0 auto;
+  }
+
+} /* end of media query */
