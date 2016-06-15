@@ -1,5 +1,7 @@
 #!/bin/bash
 
+#N.B. for a new directory/application, I think you have to make the directories first!
+
 function stageIfNewer {
   if [[ $1 -nt $2 ]]; then
     echo $1 is newer than $2
@@ -34,3 +36,47 @@ stageIfNewer $PREFIX/Source/quoteapp/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.d
 DIR=fonts
 FILENAME=bitwise.ttf
 stageIfNewer $PREFIX/Source/quoteapp/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/quoteapp/$DIR/$FILENAME
+
+# weather app.  Has stylesheets, js, and weatherIcons directories.
+stageIfNewer $PREFIX/Source/weatherappfcc/index.html $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/index.html
+DIR=stylesheets
+FILENAME=reset.css
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=stylesheets
+FILENAME=phone-default.css
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=stylesheets
+FILENAME=tablet.css
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=stylesheets
+FILENAME=desktop.css
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=js
+FILENAME=app.js
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=weatherIcons
+FILENAME=fog.png
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=weatherIcons
+FILENAME=overcast.png
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=weatherIcons
+FILENAME=partly_cloudy.png
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=weatherIcons
+FILENAME=questionmark.png
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=weatherIcons
+FILENAME=rain.png
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=weatherIcons
+FILENAME=snow.png
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=weatherIcons
+FILENAME=sunny.png
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+DIR=weatherIcons
+FILENAME=thunderstorm.png
+stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
+
+# eof
