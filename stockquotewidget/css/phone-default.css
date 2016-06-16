@@ -1,16 +1,45 @@
+/*-----Prevents iPhone from resizing in landscape mode -----*/
+html {-webkit-text-size-adjust: none; }
+
 /*----------- apply a natural box layout model to all elements --------------*/
 * { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
 
 /*--------- stop Chrome from putting blue outline around selected clicked items --------*/
-button:focus { outline: 0; }
+button:focus, input:focus { outline: 0; }
 
-body {
-  /*background: #ddd;*/
+/*----- HTML, BODY -----*/
+html, body {
+  height: 100%; /* to force gradient to fill the viewport */
 }
+body {
+	color: #444; /* default to off-black */
+}
+
+/*----- OUTER CONTAINER -----*/
+/* How best to handle width?  For mobile make outer container width 20px more than what it encloses */
+#outerContainer {
+  width: 395px; /* n.b.: header, quote module are 375 px wide */
+  margin: 0 auto;
+}
+
+/*----- HEADER -----*/
+header { 
+	width: 375px;
+  padding: 17px 0 10px;
+  margin: 0 auto;
+}
+
+header h2 { /* this app violates every dictum about minimizing the number of fonts used */
+  text-align: center;
+  font-size: 1.2em;
+	font-family: "Times New Roman", Times, serif;
+}
+
+/*----- PRINCIPAL CONTENT -----*/
 
 #quote-module {
   border:1px dotted #888;
-  margin: 5px 0 0 5px;
+  margin: 5px auto;
   background: #EEE;
   min-height: 200px;
   width: 375px;
@@ -22,6 +51,7 @@ body {
 #innerContainer {
   margin: 0 5px;
   border-top: 3px solid #777;
+  border-bottom: 3px solid #777;
 }
 
 #titleDiv {
@@ -36,13 +66,14 @@ body {
   font-size: .9em;
   margin: 0; /* not using reset, so everride h1 having huge top and bottom margins (in Chrome at least) */
   padding-top: 10px;
+  padding-left: 1px;
 }
 
 #quoteRow {
   border-bottom: 1px solid #ddd;
   width: 100%;
   min-height: 60px; /* So that this and #titleDiv take their normal height even before a quote is loaded */
-  padding: 0 3px;
+  /*padding: 0 3px;*/
   font-family: "Palatino Linotype", "Book Antiqua", Palatino, serif;
 }
 #quoteRow p { /* not using a reset so override big margin, add padding */
@@ -68,7 +99,7 @@ body {
   font-size: 1.3em;
 }
 #curChange {
-  color: #090;
+  color: #090; /* we update color in the AJAX code */
   font-size: 1.05em;
 }
 
@@ -138,3 +169,28 @@ body {
   background: #ccc;
 }
 
+/*#about {
+  width: 360px;
+  margin: 10px auto;
+  font-family: "Times New Roman", Times, serif;
+  text-align: justify;
+  line-height: 115%;
+}
+#about p { padding: 5px 0; }*/
+
+/*----- FOOTER -----*/
+footer {
+  width: 375px;
+  padding: 10px 0;
+  margin: 0 auto;
+  font-family: "Trebuchet MS", Helvetica, sans-serif;
+  font-size: .8em;
+  text-align: center;
+  line-height: 1.25em;
+}
+footer a {
+  color: green;
+}
+/* cf. 'footer a' hover state in desktop css */
+
+/* ----- OTHER STUFF ----*/

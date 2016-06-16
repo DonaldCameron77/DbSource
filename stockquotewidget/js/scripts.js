@@ -37,9 +37,18 @@ function quoteAjax(symbolId) {
                 console.log("Invalid symbol entered - message was: ", data.Message);
                 return false;
             }
-            $('h1').html(formatName(data.Name));
+            $('#bizName').html(formatName(data.Name));
+            // TODO: render quote in red if change is negative, else in the green used currently
             $('#curQuote').html(data.LastPrice.toFixed(2));
-            $('#curChange').html(data.Change.toFixed(2) + ' ( ' + data.ChangePercent.toFixed(2) + '% )');
+            
+            var change = data.Change.toFixed(2),
+                inkColor = change >= 0 ? '#090' : '#a00';  // use red ink if appropriate ...
+            if (change > 0) {
+                change = '+' + change; // add unary plus
+            }
+            $('#curChange').html(change + ' ( ' + data.ChangePercent.toFixed(2) + '% )');
+            $('#curChange').css('color', inkColor);
+            
             $('#curRange').html(data.Low.toFixed(2) + ' - ' + data.High.toFixed(2));
             $('#curOpen').html(data.Open.toFixed(2));
             $('#curVolume').html(formatNumber(data.Volume));

@@ -8,87 +8,137 @@
   <meta name="description" content="Stock quotes on request" />
   <meta charset="utf-8">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- TELLS PHONES NOT TO LIE ABOUT THEIR WIDTH -->
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+  
+  <!-- *************** LOAD GOOGLE FONT ****************** -->
+  <!--<link href='http://fonts.googleapis.com/css?family=Open+Sans:300,600' rel='stylesheet' type='text/css'>-->
+  
+  <!-- *************** STYLE SHEETS ****************** -->
+  <link href="css/reset.css" rel="stylesheet">
+  <link href="css/phone-default.css" rel="stylesheet">
+  <link href="css/tablet.css" rel="stylesheet">
+  <link href="css/desktop.css" rel="stylesheet">
 
-  <link href="css/styles.css" rel="stylesheet" type="text/css" >
+
+<!--[if lt IE 9]>
+	<script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
+	<script src="http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js"></script>
+<![endif]-->
    
 </head>
 
 <body>
   
-  <div id="quote-module">
+  <div id="outerContainer">
     
-    <div id="innerContainer">
-      <div id="titleDiv">
-        <h1 id="bizName">Get Current Stock Quote</h1> <!--JS simulates <br> if ending is CO CORP INC LLC GMBH etc-->
-      </div>
-      
-      <div id="quoteRow">
-        <div class="halfRow leftDiv">
-          <p id="curQuote"></p>
-        </div>
-        <div class="halfRow rightDiv">
-          <p id="curChange"></p>
-        </div>
-      </div><!--#quoteRow-->
-      
-      <div class="detailRow">
-        <div class="detailLegend halfRow leftDiv">
-          <p>Range</p>
-        </div>
-        <div class="detailData halfRow rightDiv">
-          <p id="curRange"></p>
-        </div>
-      </div><!--.detailRow-->
-      
-      <div class="detailRow">
-        <div class="detailLegend halfRow leftDiv">
-          <p>Open</p>
-        </div>
-        <div class="detailData halfRow rightDiv">
-          <p id="curOpen"></p>
-        </div>
-      </div><!--.detailRow-->
-      
-      <div class="detailRow">
-        <div class="detailLegend halfRow leftDiv">
-          <p>Volume</p>
-        </div>
-        <div class="detailData halfRow rightDiv">
-          <p id="curVolume"></p>
-        </div>
-      </div><!--.detailRow-->
-      
-      <div class="detailRow">
-        <div class="detailLegend halfRow leftDiv">
-          <p>Market Cap</p>
-        </div>
-        <div class="detailData halfRow rightDiv">
-          <p id="curMarketCap"></p>
-        </div>
-      </div><!--.detailRow-->
-      
-      <div class="detailRow" id="dateRow">
-        <div class="detailLegend halfRow leftDiv">
-          <!--no content in this column-->
-        </div>
-        <div class="detailLegend halfRow rightDiv"><!--placeholder for time of day - repurposing detailLegend to get small faint text-->
-          <p id="curDateTime"></p>
-        </div>
-      </div><!--.detailRow/#dateRow-->
-      
-      <div id="inputRow">
-        <div id="symbolDiv" class="halfRow">
-          <input type="text" id="symbolInput" size=42 placeholder="Enter ticker symbol">
-        </div>
-        <div id="getQuoteDiv" class="halfRow">
-          <button id="getQuoteButton" type="button" onclick="quoteAjax('#symbolInput')">Get New Quote</button>
-        </div>
-      </div>
-          
-    </div> <!--#innerContainer-->
+    <header>
+      <h2>Stock Quote Widget</h2>
+    </header>
     
-  </div>  <!--#quote-module-->
+    <section id="quote-module">
+      
+      <div id="innerContainer">
+        <div id="titleDiv">
+          <h1 id="bizName">Get Current Stock Quote</h1> <!--JS simulates <br> if ending is CO CORP INC LLC GMBH etc-->
+        </div>
+        
+        <div id="quoteRow">
+          <div class="halfRow leftDiv">
+            <p id="curQuote"></p>
+          </div>
+          <div class="halfRow rightDiv">
+            <p id="curChange"></p>
+          </div>
+        </div><!--#quoteRow-->
+        
+        <div class="detailRow">
+          <div class="detailLegend halfRow leftDiv">
+            <p>Range</p>
+          </div>
+          <div class="detailData halfRow rightDiv">
+            <p id="curRange"></p>
+          </div>
+        </div><!--.detailRow-->
+        
+        <div class="detailRow">
+          <div class="detailLegend halfRow leftDiv">
+            <p>Open</p>
+          </div>
+          <div class="detailData halfRow rightDiv">
+            <p id="curOpen"></p>
+          </div>
+        </div><!--.detailRow-->
+        
+        <div class="detailRow">
+          <div class="detailLegend halfRow leftDiv">
+            <p>Volume</p>
+          </div>
+          <div class="detailData halfRow rightDiv">
+            <p id="curVolume"></p>
+          </div>
+        </div><!--.detailRow-->
+        
+        <div class="detailRow">
+          <div class="detailLegend halfRow leftDiv">
+            <p>Market Cap</p>
+          </div>
+          <div class="detailData halfRow rightDiv">
+            <p id="curMarketCap"></p>
+          </div>
+        </div><!--.detailRow-->
+        
+        <div class="detailRow" id="dateRow">
+          <div class="detailLegend halfRow leftDiv">
+            <!--no content in this column-->
+          </div>
+          <div class="detailLegend halfRow rightDiv"><!--placeholder for time of day - repurposing detailLegend to get small faint text-->
+            <p id="curDateTime"></p>
+          </div>
+        </div><!--.detailRow/#dateRow-->
+        
+        <div id="inputRow">
+          <div id="symbolDiv" class="halfRow">
+            <input type="text" id="symbolInput" size=42 placeholder="Enter ticker symbol">
+          </div>
+          <div id="getQuoteDiv" class="halfRow">
+            <button id="getQuoteButton" type="button" onclick="quoteAjax('#symbolInput')">Get New Quote</button>
+          </div>
+        </div>
+            
+      </div> <!--#innerContainer-->
+      
+        <!--<section id="about">
+        <p>
+          This little widget was constructed at the behest of a potential
+          employer. I was given a jpg, probably a screenshot, of what you see
+          above (with the data for MSFT - Microsoft - filled in.). Along with it
+          came a link to a stock quote API, a snippet of HTML, and another of
+          JavaScript, the latter including an AJAX call (from jQuery). I copied
+          the exact layout, and inferred what I could of the basic operation.
+        </p>
+        <p>
+          There are a few personal niceties: type in a stock symbol and press
+          "enter," and it's as though you had pressed the Get New Quote button
+          - just like a real application! Formatting of large numbers and handling
+          the date were the remaining items of interest. Also, try the widget on
+          a weekend and you'll see a difference in the date presentation.
+        </p>
+      </section>-->
+    
+      <footer>
+        <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+              Donald Cameron - all rights reserved.
+        </p>
+        <p>
+          Core design inspired by <a href="http://www.markit.com/Product/Markit-Digital">Markit On Demand</a>.
+        </p>
+      </footer>
+      
+    </section>  <!--#quote-module-->
+  
+  </div> <!--#outerContainer-->
   
   <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
 
