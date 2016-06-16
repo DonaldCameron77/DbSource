@@ -79,9 +79,6 @@ a:hover {
   color: #FFCD00;
 }
 
-#units:hover {
-  color: #4b91e9;
-  cursor: pointer;
-}
+/*hover state for units moved to desktop*/
 
 /* EOF */
