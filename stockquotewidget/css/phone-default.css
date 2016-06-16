@@ -18,13 +18,13 @@ body {
 /*----- OUTER CONTAINER -----*/
 /* How best to handle width?  For mobile make outer container width 20px more than what it encloses */
 #outerContainer {
-  width: 395px; /* n.b.: header, quote module are 375 px wide */
+  width: 375px; /* n.b.: header, quote module are 375 px wide - inner elements have 10px of margin (5 & 5) */
   margin: 0 auto;
 }
 
 /*----- HEADER -----*/
 header { 
-	width: 375px;
+	width: 365px;
   padding: 17px 0 10px;
   margin: 0 auto;
 }
@@ -42,7 +42,7 @@ header h2 { /* this app violates every dictum about minimizing the number of fon
   margin: 5px auto;
   background: #EEE;
   min-height: 200px;
-  width: 375px;
+  width: 365px;
   color: #747474;
   font-weight: 300;
   padding-top: 12px;
