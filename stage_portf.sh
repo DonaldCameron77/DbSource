@@ -79,4 +79,26 @@ DIR=weatherIcons
 FILENAME=thunderstorm.png
 stageIfNewer $PREFIX/Source/weatherappfcc/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/weatherappfcc/$DIR/$FILENAME
 
+# stock quote widget.  Has css, js, and images directories.
+
+stageIfNewer $PREFIX/Source/stockquotewidget/index.html $PREFIX/Source.Deploy/Root.deploy/stockquotewidget/index.html
+DIR=css
+FILENAME=reset.css
+stageIfNewer $PREFIX/Source/stockquotewidget/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/stockquotewidget/$DIR/$FILENAME
+DIR=css
+FILENAME=phone-default.css
+stageIfNewer $PREFIX/Source/stockquotewidget/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/stockquotewidget/$DIR/$FILENAME
+DIR=css
+FILENAME=tablet.css
+stageIfNewer $PREFIX/Source/stockquotewidget/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/stockquotewidget/$DIR/$FILENAME
+DIR=css
+FILENAME=desktop.css
+stageIfNewer $PREFIX/Source/stockquotewidget/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/stockquotewidget/$DIR/$FILENAME
+DIR=js
+FILENAME=scripts.js
+stageIfNewer $PREFIX/Source/stockquotewidget/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/stockquotewidget/$DIR/$FILENAME
+DIR=images
+FILENAME=currency.jpg
+stageIfNewer $PREFIX/Source/stockquotewidget/$DIR/$FILENAME $PREFIX/Source.Deploy/Root.deploy/stockquotewidget/$DIR/$FILENAME
+
 # eof
