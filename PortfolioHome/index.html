@@ -4,7 +4,7 @@
   
 <head>
   <title>Donald Cameron</title>
-  <meta name="description" content="FreeCodeCamp Zipline #1: Portfolio Page" />
+  <meta name="description" content="Portfolio Landing Page - Donald Cameron" />
   <meta charset="utf-8">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
@@ -17,237 +17,12 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap-theme.min.css"
       integrity="sha384-fLW2N01lMqjakBkx3l/M9EahuwpSfeNvV63J5ezn3uZzapT0u7EYsXMjQV+0En5r" crossorigin="anonymous">
 
-  <!-- Font Awesome if desired --> 
+  <!-- Font Awesome --> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   
-  <!--Then your own css--> 
-  <!--<link href="css/styles.css" rel="stylesheet" type="text/css" >-->
-  <style>
-    /************************** global settings **************************/
-    body {
-      font-family: "Helvetica Neue",Helvetica,Arial,sans-serif;
-      color: #404040; /* nice(?) off-black - TODO: do we want this on this type of site with so much color and so little raw text?*/
-      padding-top: 50px; /* needed to push content down below bootstrap top nav bar */
-      background-color: #d0d8e0; 
-    }
-    h1, h2, h3, h4 {
-      text-align: center;
-    }
-    .big-h {
-      color: white;
-      /*font-size: 1.2em;*/
-      text-shadow: 2px 2px #404040;
-    }
-    
-    #outer-container { /* overriding Bootstrap container-fluid */
-      padding-left: 0;
-      padding-right: 0;
-    }
-    .container-fluid .row {
-      margin-left: 0px;
-      margin-right: 0px;
-    }
-    /******************************** nav *********************************/
-    .navbar {
-      border-bottom: 1px solid #99aabb;
-      background-color: #d0d8e0;
-      background: linear-gradient(#cad5e0, #adb0be);
-    }
-    #nav-ul a, #toplink-brand {
-      font-size: 1.2em;
-      font-weight: 500;
-      color: #444;
-      transition: background .3s linear; /* soften the hover highlighting */
-    }
-    #toplink-brand {
-      font-size: 1.3em;
-    }
-    #nav-ul a:hover, #toplink-brand:hover {
-      background: white;
-      /*border-bottom: 1px solid white;*/
-    }
-    /******************************* header *******************************/
-    header {
-      padding-top: 100px;
-      background-color: gray; /* fallback to background image */
-      /*background: url(portfolio.images/backgrounds/sea-dawn-sunset-cloudy.jpg) no-repeat center center fixed;*/
-      background: url(https://dl.dropboxusercontent.com/u/37965874/sea-dawn-sunset-cloudy.jpg) no-repeat center center fixed;
-      background-size: cover;
-      height: 800px; 
-    }
-    #header:before {
-      display: block; 
-      content: " "; 
-      margin-top: -50px; 
-      height: 50px; 
-      visibility: hidden; 
-    }
-    #header-btn-row {
-      margin-top: 140px;
-      /* margin-bottom: 50px; /* does nothing? */
-    }
-    .header-btn {
-      color: #202020;
-      background-color: #d0d8e0; /* match nav bg */
-      border: 1px solid #202020;
-      box-shadow: 1px 1px 2px #404040;
-      margin: 20px 5px;
-    }
-    .header-btn a {
-      color: #202020; /* override bootstrap's blue default */
-    }
-    .header-btn:hover {
-      background-color: white;
-    }
-    hr#header-hr {
-      border: 1px outset rgba(255, 255, 255, 0.2);
-      box-shadow: 1px 1px 1px rgba(0,0,0,0.6);
-      width: 50%;
-      margin-top: 50px;
-    }
-    /*************************** about/contact section  ****************************/
-    #about {
-      padding-top: 60px;
-      background-color: gray; /* fallback to background image */
-      /* use "right" to select right side of image in mobile view - desktop view unaffected */ 
-      /*background: url(portfolio.images/backgrounds/computerEspresso.jpg) no-repeat center right fixed;*/
-      background: url(https://dl.dropboxusercontent.com/u/37965874/computerEspresso.jpg) no-repeat center right fixed;
-      background-size: cover;
-      height: 900px;
-      color: white;
-    }
-     #about:before { /* try to solve content placed under bootstrap fixed navbar after jump */
-                     /* github.com/twbs/bootstrap/issues/1768 @mnot */
-      display: block; 
-      content: " "; 
-      margin-top: -50px; 
-      height: 50px; 
-      visibility: hidden; 
-    }
-    #bio {
-      padding-left: 50px; /* center between right end of coffee cup and right edge
-                           *  will look better at mobile width - see also #contact */
-    }
-    #about h3 {
-      text-align: left;
-      padding-left: 125px;
-    }
-    #about h4 {
-      text-align: left;
-      padding-left: 50px;
-    }
-    #about p {
-      font-size: 1.2em;
-      margin-left: 50px;
-    }
-    #about li {
-      font-size: 1.2em;
-      margin-left: 40px;
-    }
-    #contact { /* slapped this id on a col-md div to position the email address */
-      color: white;
-      padding-top: 280px;
-      padding-left: 140px; /* center between right end of coffee cup and right edge.
-                           * Will look better at mobile width - see also #bio */
-    }
-    #contact p {
-      padding-left: 20px;
-    }
-    /*************************** portfolio section  ***************************/
-    #portfolio {
-      background-color: silver; /* fallback - should be gradient */
-      /*background: url(portfolio.images/backgrounds/sunAndClouds.jpg) no-repeat center center fixed;*/
-      background: url(https://dl.dropboxusercontent.com/u/37965874/sunAndClouds.jpg) no-repeat center center fixed;
-      background-size: cover;
-      height: 900px;
-      overflow-y: scroll; /* fix for bottom part of content layering over footer when viewport narrowed to mobile width */
-    }
-    #portfolio:before { /* try to solve content placed under bootstrap fixed navbar after jump */
-                        /* github.com/twbs/bootstrap/issues/1768 @mnot */
-      display: block; 
-      content: " "; 
-      margin-top: -50px; 
-      height: 50px; 
-      visibility: hidden; 
-    }
-    #portfolio h2 {
-      color: black;
-      margin: 0;
-      padding-top: 60px;
-      padding-bottom: 30px;
-    }
-    .port-thumb {
-      background-color: black;
-      color: white;
-      border: 2px solid white;
-      text-align: center;
-      font-size: 1.3em;
-    }
-    .port-thumb:hover {
-      box-shadow: 5px 5px 5px #202020;
-    }
-    .port-thumb-center {
-      /*margin: 20px 30px;*/
-      margin: 20px 60px;
-    }
-    .port-thumb-left {          /* try to space divs equally with respect to each other and to the viewport edges */
-      margin: 20px 40px 20px 80px;
-    }
-    .port-thumb-right {
-      margin: 20px 80px 20px 40px;
-    }
-    .port-thumb img {
-      margin: 20px auto 10px auto;
-    }
-    .pic-border {
-      border: 2px solid white;
-    }
-    .portfolio-deets {
-      color: white;
-      font-size: 1.2em;
-      padding-top: 30px;
-    }
-    .app-link:hover {
-      text-decoration: none; /* suppress underlining of links upon hover */
-    }
-    @media(max-width:767px) {
-      #portfolio {
-       /* see if repeat looks ok and fixes fallback body bg coming through */
-       /*background: url(portfolio.images/backgrounds/sunAndClouds.jpg) repeat center center fixed;*/
-       background: linear-gradient(#bdf, #636) fixed;
-       height: 1200px; /* good value for 5 portfolio buttons - increase this if more buttons are added */
-      }
-      .port-thumb-left, .port-thumb-center, .port-thumb-right {
-        margin-left: 100px;
-        margin-right: 100px;
-      }
-    }
-    /****************************** footer ********************************/
-    footer { /* mimics the nav bar more-or-less */
-      text-align: center;
-      height: 110px;
-      /*border-top: 1px solid #99aabb;*/
-      /*background-color: #d0d8e0;*/
-      background: linear-gradient(#cad5e0, #adb0be);
-      color: #202020;
-      /*line-height: 35px;*/
-      padding-top: 15px;
-    }
-    footer p {
-      color: #444;
-      font-size: 1.1em;
-      font-weight: 500;
-    }
-    footer a {
-      color: black;
-    }
-    @media(max-width:767px) {
-      footer {
-        height: 150px; /* account for text stacking into more lines as viewport narrows */
-      }
-    }
-    /************************** end of local css **************************/
-  </style>
+  <!-- Local css, site-specific --> 
+  <link href="portfolio.css/styles.css" rel="stylesheet" type="text/css">
+  
  
 </head>
   <!--  There are three full-width panels to this layout (four, if you count the top nav section).
@@ -289,7 +64,7 @@
       <h1 class="big-h">Donald Cameron</h1>
       <h2 class="big-h">Software Engineer</h2>
       <div class="row" id="header-btn-row">
-        <div class="col-md-3"></div>
+        <div class="col-md-3"></div><!--empty spacer-->
         <div class="col-md-6 text-center">
           <button class="btn header-btn">
               <a href="http://techliferedux.tumblr.com" target="_blank">
@@ -304,8 +79,7 @@
               <a href="http://www.freecodecamp.com/dcc1079" target="_blank">
                 <i class="fa fa-fire"></i> freeCodeCamp</a></button>
         </div>
-        <div class="col-md-3">
-        </div>
+        <div class="col-md-3"></div><!--empty spacer-->
       </div>
       <hr id="header-hr">
     </header>
@@ -323,7 +97,7 @@
           <h4>Key Skills</h4>
           <ul>
             <li>HTML5, CSS3, JavaScript, jQuery,
-                AJAX, Bootstrap3</li>
+                AJAX, Bootstrap3, SASS</li>
             <li>C#/.NET MVC, web services</li>
             <li>Git, Visual Studio, Un*x</li>
           </ul>
@@ -333,24 +107,21 @@
         <div class="col-md-8"></div>
         <div class="col-md-4" id="contact">
           <p>Contact Info</p>
-          <!--<img src="portfolio.images/miscellaneous/obfusEM.png" border="0" width="338" height="25" alt="Email generated by Img4Me" />-->
-          <img src="https://dl.dropboxusercontent.com/u/37965874/obfuscontact.png" border="0" width="251" height="50" alt="Email generated by Img4Me" />
+          <img src="portfolio.images/miscellaneous/obfuscontact.png" border="0" width="251" height="50" alt="Email generated by Img4Me" />
         </div>
     </section>
     
     <section id="portfolio">
+      
       <h2>Recent Work</h2>
       
       <div class="row">
         <div class="col-md-4 ">
-          <!-- when posting to codepen, replace the hrefs with their non-relative versions (i.e., http://donaldcameron77.info/... -->
-          <!-- when deploying to DonaldCameron77.info (or using the local deployment tree), remove the '../' prefix from hrefs) -->
+          <!--paths to images may need attention when moving to deployment tree (?)-->
           <a href="altguitar/index.html" class="app-link" target="_self">
             <div class="port-thumb port-thumb-left">
-              <!--<img class="img-responsive" src="portfolio.images/portfolioThumbs/"ova2neck2.jpg"
-                  alt="21st Century Guitar" width="250px">-->
-              <img class="img-responsive" src="https://dl.dropboxusercontent.com/u/37965874/ova2neck2.jpg"
-                   alt="21st Century Guitar" width="250px">
+              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/ova2neck2.jpg"
+                  alt="21st Century Guitar" width="245px">
               <p>21st Century Guitar</p>
             </div>
           </a>
@@ -358,10 +129,8 @@
         <div class="col-md-4 ">
           <a href="sportsmoodspa/sportsmood.html" class="app-link" target="_self">
             <div class="port-thumb port-thumb-center">
-              <!--<img class="img-responsive" src="portfolio.images/portfolioThumbs/sportsmoodthumb.png"
-                   alt="Sports Mood App" width="250px">-->
-              <img class="img-responsive" src="https://dl.dropboxusercontent.com/u/37965874/sportsmoodthumb.png"
-                   alt="Sports Mood App" width="250px">
+              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/sportsmoodthumb.png"
+                   alt="Sports Mood App" width="249px">
               <p>MLB Sports Mood</p>
             </div>
           </a>
@@ -369,46 +138,48 @@
         <div class="col-md-4">
           <a href="quoteapp/index.html" class="app-link" target="_self">
             <div class="port-thumb port-thumb-right">
-              <!--<img class="img-responsive" src="portfolio.images/portfolioThumbs/SnarkThumb.png"
-                   alt="Snark-O-Matic Quote Machine" width="250px">-->
-              <img class="img-responsive" src="https://dl.dropboxusercontent.com/u/37965874/SnarkThumb.png"
-                   alt="Snark-O-Matic Quote Machine" width="250px">
+              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/SnarkThumb.png"
+                   alt="Snark-O-Matic Quote Machine" width="238px">
               <p>Snark-O-Matic Quote Machine</p>
             </div>
           </a>
         </div>
-        
-      </div>
+      </div><!--row-->
       
       <div class="row">
         <div class="col-md-4">
-          <a href="UnderConstruction/index.html" class="app-link">
-            <div class="port-thumb port-thumb-left" style="min-height: 227px"> <!--match others in row-->
-              <!--<img class="img-responsive" src="portfolio.images/portfolioThumbs/sportsmoodthumb.NET.png"
-                   alt="Sports Mood .NET App" width="250px">-->
-              <img class="img-responsive" src="https://dl.dropboxusercontent.com/u/37965874/sportsmoodthumb.NET.png"
-                   alt="Sports Mood .NET App" width="250px">
-              <p style="margin: 15px 0 0">Sports Mood .NET</p> <!--match others in row-->
+          <a href="weatherappfcc/index.html" class="app-link">
+            <div class="port-thumb port-thumb-left"> <!--match others in row-->
+              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/weather-app.png"
+                   alt="Get The Local Weather" width="225px">
+              <p>Local Weather</p>
             </div>
           </a>
         </div>
-        <div class="col-md-4">
-          <a href="UnderConstruction/index.html" class="app-link">
+        <!--<div class="col-md-4">
+          <a href="underconstruction/index.html" class="app-link">
             <div class="port-thumb port-thumb-center">
-              <!--<img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/robertJohnson.jpg" alt="Crossroads Site" width="270px">-->
-               <img class="pic-border img-responsive" src="https://dl.dropboxusercontent.com/u/37965874/robertJohnson.jpg"
-                   alt="Crossroads Site" width="270px"> <!-- width 270 to match the pomodoro thumb -->
+              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/robertJohnson.jpg"
+                   alt="Crossroads Site" width="270px">
               <p>The Cross Road Blues</p>
             </div>
           </a>
+        </div>-->
+        <div class="col-md-4">
+          <a href="stockquotewidget/index.html" class="app-link">
+            <div class="port-thumb port-thumb-center">
+              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/stock-market-rise-fall.jpg"
+                   alt="Stock Quote" width="222px">
+              <p>Stock Quote Widget</p>
+            </div>
+          </a>
         </div>
         <div class="col-md-4">
-          <a href="UnderConstruction/index.html" class="app-link">
+          <a href="seniorfitness/index.html" class="app-link">
             <div class="port-thumb port-thumb-right">
-              <!--<img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/tomato-group.jpg" alt="Pomodoro (Tomato)" width="250px">-->
-              <img class="img-responsive" src="https://dl.dropboxusercontent.com/u/37965874/tomato-group.jpg"
-                   alt="Pomodoro (Tomato)" width="250px">
-              <p>Pomodoro Clock</p>
+              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/seniorfitness.jpg"
+                   alt="Senior Fitness Logo" width="215px">
+              <p>Senior Fitness</p>
             </div>
           </a>
         </div>
@@ -419,17 +190,17 @@
         <div class="col-md-4">
           <ul class="portfolio-deets">
             <li>Landing Page - Free Code Camp challenge. HTML5/CSS3/Bootstrap/JavaScript</li>
-            <li>21st C. Guitar - FCC challenge. HTML5/CSS3/Bootstrap. Mobile-friendly</li>
+            <li>21st C. Guitar - FCC challenge. HTML5/CSS3/Bootstrap.<br>Mobile-friendly</li>
             <li>Sports Mood SPA - single-page app, client-side only, HTML5/CSS3/JS/jQuery. Mobile-friendly</li>
+            <li>Snark-O-Matic random quote generator - FCC challenge. HTML5/CSS3/JS/jQuery. Mobile-friendly</li>
           </ul>
         </div>
         
         <div class="col-md-4">
            <ul class="portfolio-deets">
-            <li>Snark-O-Matic random quote generator - FCC challenge. HTML5/CSS3/JS/jQuery. Mobile-friendly</li>
-            <li>Sports Mood .NET - under construction. C#/.NET MVC/JSON/Web API/SQL Server</li>
-            <li>Crossroads Blues - under construction.  HTML5/CSS3/JavaScript/AJAX/PHP/MySQL</li>
-            <li>Pomodoro Clock - under construction</li>
+            <li>Local Weather - FCC challenge.  HTML5/CSS3/JS/jQuery/AJAX.  Mobile-friendly</li>
+            <li>Stock Quote Widget. HTML5/CSS3/JS/jQuery/AJAX.<br>Mobile-friendly</li>
+            <li>Senior Fitness site - freelance project mockup. HTML5/CSS3/SASS. Mobile-friendly</li>
            </ul>
         </div>
         <div class="col-md-2"><!--spacer--></div>
@@ -454,12 +225,24 @@
     // Per Kevin Nelson at https://github.com/twbs/bootstrap/issues/12852.
     // If there is a dropdown sub-menu (which we don't have here),
     // use @hardcoredevs's further tweak on that page.
+    // N.B. this may get fixed in current or next major release of Bootstrap so watch for that
     $(document).on('click','.navbar-collapse.in',function(e) {
         if( $(e.target).is('a') ) {
             $(this).collapse('hide');
         }
     });
   </script>
+  
+  <script>/*Google analytics*/
+    (function(i,s,o,g,r,a,m){i['GoogleAnalyticsObject']=r;i[r]=i[r]||function(){
+    (i[r].q=i[r].q||[]).push(arguments)},i[r].l=1*new Date();a=s.createElement(o),
+    m=s.getElementsByTagName(o)[0];a.async=1;a.src=g;m.parentNode.insertBefore(a,m)
+    })(window,document,'script','https://www.google-analytics.com/analytics.js','ga');
+  
+    ga('create', 'UA-78769547-1', 'auto');
+    ga('send', 'pageview');
+
+</script>
 
 
 </body>
