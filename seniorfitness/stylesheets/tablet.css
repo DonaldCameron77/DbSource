@@ -1,0 +1,115 @@
+/*
+ * N.B. there is an additional media query at the bottom for somewhat wider screens, to deal with complex header */
+
+@media only screen and (min-width: 641px) { /* had 770 for a while to deal with complex header */
+
+  /*----- HEADER -----*/
+
+  #headerContent { /* stuff to the right of the logo */
+    width: 74%;
+  }
+  
+  /*.hdr-toprow-half {
+    display: inline-block;
+    width: 49%;
+  }*/
+  #headerName, #headerPhone {
+    text-shadow: 1px 1px 2px #888;
+    position: relative;
+    top: 95%;
+    -webkit-transform: translateY(-100%);
+    -ms-transform: translateY(-100%);
+    transform: translateY(-100%);
+  }
+  
+ /* #headerName {
+    font-size: 2.1em;    /* Numerals look thicker in Nunito font so this is to balance name and phone # in header *//*
+  }
+  
+  #headerPhone {
+    font-size: 2em;
+    padding-bottom: .2em; /* correct perceived vertical alignment mismatch with #headerName.  Apparently the lower part of
+                            * the g in Richard's name is forcing the name upwards *//*
+  }*/
+
+ /* #hdr-bottomrow {
+    display: inline-block;
+    margin-top: .75em;
+    width: 100%;
+    position: relative;
+    top: 80%;
+    -webkit-transform: translateY(-80%);
+    -ms-transform: translateY(-80%);
+    transform: translateY(-80%);
+  }
+  #headerSlogan {
+    display: block; /* cancel phone display: none.  Note hdr-bottomrow container has inline-block *//*
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 300;
+    color: #58659C;
+  }*/
+  
+  /*----- NAVIGATION -----*/	
+  
+  
+  /*----- CONTENT -----*/
+  
+  
+  /*----- COLUMNS -----*/
+  .column-8, .column-6, .column-4, .column-3 {
+    float: left;
+  }
+  
+  .column-8 { width: 66.6666%; }
+  .column-6 { width: 50%; }
+  .column-4 { width: 33.3333%; }
+  .column-3 { width: 25%; }
+  .column-2 { width: 33.3333%; } /* column-2 will be 3-wide on tablet */
+
+} /*end of the media query */
+
+@media only screen and (min-width: 865px) {
+  
+  .hdr-toprow-half {
+    display: inline-block;
+    width: 49%;
+  }
+   #headerName {
+    font-size: 2.1em;    /* Numerals look thicker in Nunito font so this is to balance name and phone # in header */
+  }
+  
+  #headerPhone {
+    font-size: 2em;
+    padding-bottom: .2em; /* correct perceived vertical alignment mismatch with #headerName.  Apparently the lower part of
+                            * the g in Richard's name is forcing the name upwards */
+  }
+  
+  #hdr-bottomrow {
+    display: inline-block;
+    margin-top: .75em;
+    width: 100%;
+    position: relative;
+    top: 80%;
+    -webkit-transform: translateY(-80%);
+    -ms-transform: translateY(-80%);
+    transform: translateY(-80%);
+  }
+  
+  #headerSlogan {
+    display: block; /* cancel phone display: none.  Note hdr-bottomrow container has inline-block */
+    text-align: center;
+    font-size: 1.8em;
+    font-weight: 300;
+    color: #58659C;
+  }
+  
+  /*----- MAIN & COLUMNS -----*/
+
+  #main-title-01 {
+    display: none; /* swap main titles now that we have a slogan in the header */
+  } 
+  #main-title-02 {
+    display: block;
+  } 
+}

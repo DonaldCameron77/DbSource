@@ -1,0 +1,73 @@
+@media only screen and (min-width: 1140px) {
+	
+	/*----- INSIDE THE WRAPPERS-----*/
+	header, nav, main, /*, .row,*/ footer {
+		max-width: 1000px; /* compromise on limiting desktop width ... was 1140, whereas original befit40 is about 900 */
+		margin: 0 auto; /*centers everything on the page*/
+	}
+	
+	/*----- HEADER -----*/
+		header {
+/*		padding-top: 2em;
+			padding-bottom:1em;*/
+		}
+		
+	div#colorbar {
+		/* height: .5em; /* half a default text height unit */
+		/* Cheney uses the above, but it doesn't play nice with our header image, so don't display it on desktop */
+		display: none;
+	}
+	
+	/*----- NAVIGATION -----*/	
+	/* nav tech follows Cheney/Pluralsight section */
+	nav ul {
+		margin-left: 2%;
+		border-left:solid 1px rgba(255,255,255,0.3);
+	}
+	
+	nav ul li { /*main menu items float side by side*/
+		float: left;
+	}
+	
+	nav ul li a { 
+		display:block;
+		color: #FFF;
+		text-decoration: none;
+		border-right:solid 1px rgba(255,255,255,0.3);
+		font-size: .9em;
+		padding: .7em .9em;
+		
+		/*transition*/
+		transition: background 0.25s linear; /* speed up a bit - Cheney had 0.3s */
+	}
+	nav ul li a:hover {background-color: rgba(0,0,0,0.2)}
+	/* nav ul li.active > a {background-color: #dea38c;} /*using '>' to NOT highlight the submenu items*/
+	nav ul li.active > a {background-color: #712B39;} /*using '>' to NOT highlight the submenu items*/
+
+	 /*rules for the sub menu items*/
+	nav ul li ul {
+		z-index:99;
+		position: absolute;
+		margin: 0;
+		left: -999em; /* pushes the menu way off to the side */
+		width: 10em;
+		background-color: #394165;
+	}
+	nav ul li ul li { /* overides the float and line from the parent ul */	
+		border-bottom: 1px solid rgba(0,0,0,0.3);
+		float: none;
+		border-right: none;
+	}
+	
+	nav li:hover ul { /* this displays the menus as drop downs  */
+		left: auto;
+	}
+
+	/*----- CONTENT -----*/
+	
+		
+	/*----- COLUMNS -----*/	
+	
+	.column-2 { width: 16.6666%; } /* 6 to the row on desktop */
+
+} /*end of media query */

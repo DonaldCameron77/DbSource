@@ -1,0 +1,198 @@
+/*
+ * !! N.B.: there are tweaks for wider ranges (probably applicable only to phones in landscape)
+ * that were needed because laying out text in the complex header was tricky, and this was
+ * a way to avoid yet another file
+ */
+
+
+/*----- Prevents iPhone from resizing in landscape mode -----*/
+/*html {-webkit-text-size-adjust: none; }*/ /* leave on to allow user to rotate iPhone for larger text */
+
+/*----------- apply a natural box layout model to all elements --------------*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/*--------- stop Chrome from putting blue outline around clicked items --------*/
+button:focus { outline:0; }
+
+/* The strategy is to limit the width of header, nav, .row, and footer to 1140 on desktop,
+ * centering content in two flanking pillars with contrasting color.  The corresponding wrappers have
+ * no such constraint, but have margin: 0 auto to space out to the edges.  Is this the
+ * best way, or should we put everything inside a known world div which enforces the
+ * flanking color columns?  IDK ... see Crossroads for the latter method.
+ */
+
+/*----- BODY -----*/
+body {
+  background-color: #ffddc1; /* pale orange */
+  font-size: 16px; /* restating the default */
+  font-family: Nunito,"Trebuchet MS",Arial,sans-serif; /* Nunito reputed to be close to main site's Futura */
+  font-weight: 300; /* load and use 400 if this is too light.  Also have 700 for bold */
+  color: #494948;
+}
+
+
+/*----- COLOR BAR (extend mobile nav color across full width) -----*/
+#colorbar { /* Cheney - having trimmed the menu to 320px (for tablet aesthetics), must fill in color to the right */
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 44px;
+  background-color: #58659C; /* match Richard's slate blue in logo for base menu color */
+  width: 100%;
+}
+
+
+/*----- HEADER -----*/
+#headerWrapper {
+  /* nothing here since color and content limited to width of header, nav, .row, and footer */
+}
+
+#headerContent { /* stuff to the right of the logo */
+  display: inline-block;
+  width: 68%; /* shifted left a bit - looks better on phone */
+}
+
+header {
+  /*padding: .5em .7em .7em .7em; *//* lines logo up correctly */
+  background-color: white;  /* shows below image (and a pixel strip to right of it ugh) */
+  border-left: 1px solid #888;
+  border-right: 1px solid #888;
+}
+
+/* UNCOMMENT THE FOLLOWING IF USING "LIVE" HEADER INSTEAD OF IMAGE */
+
+#logoBlk {
+  display: inline-block;
+  width: 20%;
+  background-color: white; /* shows div below image so match logo background */
+  padding-bottom: .5em;
+  box-shadow: 5px 5px 5px #656;
+  margin: .5em .5em .7em .5em;
+}
+
+#headerName, #headerPhone{
+  color: #494949;
+  text-align: center;
+}
+#headerName {
+  font-size: 1.6em;
+  padding-bottom: .2em;
+}
+#headerPhone{
+  font-size: 1.45em;
+}
+
+#headerSlogan {
+  display: none;
+}
+
+header img {
+  width: 100%;
+}
+
+/*----- NAVIGATION -----*/	
+
+nav {
+  background-color: #58659C; /* match Richard's slate blue in logo for base menu color */
+}
+
+/*----- CONTENT -----*/
+
+#contentWrapper .row:after { /* cf. clearfix - u can Google it */
+  content: "";
+  display: table;
+  clear: both;
+}
+#contentWrapper h1 {
+	color:#58659C;
+	font-size: 2em;
+	padding-top: .75em;
+	padding-bottom: .5em;
+	text-shadow: 1px 1px 2px #999;
+	text-align: center;
+}
+
+main/*, .row*/ {
+	background-color: #fff;
+}
+
+#contentWrapper p {
+	padding-bottom: .5em;
+}
+/*----- ASIDE -----*/
+/* This is part of content, but has its own styling */
+aside {
+	background-color: #d28060; /* currently the bg for active links in the nav, but that may change to slate blue*/
+	color: #fff;
+	padding: .4em 1em .5em 1em;
+}
+
+aside h2, aside h3 { text-align: center; }
+
+/*need to pull all aside styling into here as it goes on every page!!!!*/
+
+img.center {
+	display: block;
+	margin: 0 auto;
+}
+
+/*----- MAIN & COLUMNS -----*/
+
+#main-title-02 { /* suppress "Fitness Information - Delivered" and use "Health and Fitness for Older Adults" until */
+  display: none; /* screen is wide enough that we can put the latter in the header */
+}
+
+.column-12, .column-8, .column-6, .column-4, .column-3, .column-2 {
+	padding: .5em 2%;
+}
+
+/* stacking 2-wide on PHONE for column-2.  The bigger columns will just stack (no float) */
+.column-2 { width: 50%; float: left; }
+.column-2 img { width: 100%; }
+
+.dontStack4 {  /* need to float the social icons in their col-4 even on phone */
+	float: left;
+	width: 33.3333%;
+}
+
+/*----- CONTENT BACKGROUND COLORS -----*/
+
+.color-1, .color-2 {
+	padding: .4em 1em .5em 1em;
+}
+.color-1 {
+	background-color: #F4DFD7; /* very light copper */
+}
+.color-2 {
+	/*background-color: #c1ddff;*/ /* pale blue */
+  background-color: #fff; /* just to get the same padding as the colored paragraphs */
+}
+
+/*----- FOOTER -----*/
+
+footer {
+	background-color: #58659C;
+	clear: both; /* just in case */
+	font-size: .8em;
+	color: #fff;
+	text-align: center;
+	padding: .6em;
+}
+footer a {color: #fff;}
+
+
+/*----- OTHER -----*/
+.clearfix:after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+@media only screen and (min-width: 500px) {
+  #headerName {
+    font-size: 1.8em; /* was 1.6 above */
+  }
+  #headerPhone{
+    font-size: 1.6em; /* was 1.45 above*/
+  }
+}
