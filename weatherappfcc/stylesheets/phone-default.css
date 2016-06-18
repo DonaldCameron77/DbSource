@@ -26,7 +26,7 @@ header h1 {
 
 #temperatureString {
   font-size: 1.6em;
-  padding: .5em 0 1em 0;
+  padding: .5em 0 1em .3em; /* nudge to right to center, as the temperature part is wider than the units part */
 }
 
 #weatherDescription {

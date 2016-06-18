@@ -86,7 +86,8 @@ $(document).ready(function() {
                   // where are we?
                   // console.log('in getJSON location callback func:', loc);
                   // stuff city, etc. into DOM
-                  $('#location').html(loc.city + ', ' + loc.regionName + ' (' + loc.countryCode + ')');
+                  // $('#location').html(loc.city + ', ' + loc.regionName + ' (' + loc.countryCode + ')');
+                  $('#location').html(loc.city + ', ' + loc.regionName);
                   // what's the weather like there?
                   var myWxApiKey = "8785123613d1f26ee68fcf17a08b6c33";
                   var localUnits = getDefaultTempUnits(loc.countryCode);
