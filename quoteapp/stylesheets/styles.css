@@ -351,12 +351,12 @@ a#twitter-share-button {
 footer {
 	background-color: #3B4044; /* same as header */
 	color: #b8bcc0; /* same as header h2 color */
-	clear: both;
 	font-size: .8em;
 	text-align: center;
-	padding: .7em;
+	padding-top: 1em;
+	max-height: 55px;
 }
 footer a {color: #fff;}
-footer p {padding-top: .2em;}
+footer p {padding-top: .5em;}
 
 /*----- End of Stylesheet -----*/
