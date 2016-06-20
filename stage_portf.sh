@@ -12,8 +12,9 @@ function stageIfNewer {
 
 PREFIX=/Users/dcc1079/Dropbox
 
-# Portfolio index copy. App consists of only one file.
+# Portfolio
 stageIfNewer $PREFIX/Source/PortfolioHome/index.html $PREFIX/Source.Deploy/Root.deploy/index.html
+stageIfNewer $PREFIX/Source/PortfolioHome/portfolio.css/styles.css $PREFIX/Source.Deploy/Root.deploy/portfolio.css/styles.css
 
 # Altguitar.  There is an external css file.
 stageIfNewer $PREFIX/Source/altguitar/index.html $PREFIX/Source.Deploy/Root.deploy/altguitar/index.html
