@@ -1,0 +1,138 @@
+@media(min-width: 1140px) { /* DESKTOP */
+  
+  /************ global *************/
+  /* repeated from phone-default b/c it didn't seem to carry over ??? */
+  #outer-container { /* overriding Bootstrap container-fluid */
+    padding-left: 0;
+    padding-right: 0;
+  }
+  .container-fluid .row {
+    margin-left: 0;
+    margin-right: 0;
+  }
+  /************ header *************/
+  header {
+    padding-top: 100px;
+    background-color: gray; /* fallback to background image - should have a gradient here! */
+    background: url(../portfolio.images/backgrounds/denver-mountains.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 820px;  /*800 not enuf for either bigger screen or denver skyline background image*/
+  }
+  #header-btn-row {
+    margin-top: 100px;
+  }
+  hr#header-hr {
+    margin-top: 50px;
+  }
+  
+  /************ about *************/
+  
+  /* handle need to jump to different place for mobile vs. desktop */
+  /* due to @#$%^& nav obscuring top of jumped-to content */
+  .mobile-about-link {
+    display: none !important;
+  }
+  #about-mobile {
+    display: none !important;
+  }
+  .desktop-about-link {
+    display: block !important;
+  }
+  #about-desktop {
+    display: block !important;
+  }
+  
+  #about-desktop {
+    display: block;  /* this is the desktop version */
+    padding-top: 60px;
+    background-color: gray; /* fallback to background image */
+    background: url(../portfolio.images/backgrounds/computerEspresso.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 850px;
+    color: white;
+  }
+  #about-desktop:before { /* try to solve content placed under bootstrap fixed navbar after jump */
+                     /* github.com/twbs/bootstrap/issues/1768 @mnot */
+    display: block; 
+    content: " "; 
+    margin-top: -50px; 
+    height: 50px; 
+    visibility: hidden; 
+  }
+  #about-desktop #bio {
+    padding-left: 50px; /* center between right end of coffee cup and right edge */
+    padding-top: 15px;
+  }
+  #about-desktop h3 {
+    text-align: left;
+    padding-left: 125px;
+    padding-bottom: 10px;
+    text-shadow: 2px 2px #404040;
+  }
+/*  #about-desktop h4 {
+    text-align: left;
+    padding-left: 50px;
+    padding-top: 5px;
+    text-shadow: 2px 2px #404040;
+  } */
+  #skills-h {   /* see #about-desktop #contact h4 */
+    font-size: 1.4em;
+    text-align: left;
+    padding-left: 50px;
+  }
+  #about-desktop p {
+    font-size: 1.2em;
+    margin-left: 50px;
+  }
+  #about-desktop li {
+    font-size: 1.2em;
+    margin-left: 40px;
+  }
+  #about-desktop #contact { /* slapped this id on a col-md div to position the email address */
+    color: white;
+    padding-top: 300px;
+    padding-left: 140px; /* center between right end of coffee cup and right edge */
+  }
+  #about-desktop #contact h4 {  /* see skills-h */
+    font-size: 1.3em;
+    text-align: left;
+    padding-left: 60px;
+  }
+  
+  /*************************** portfolio section  ***************************/
+  
+  #portfolio {
+    background-color: silver; /* fallback */
+    background: url(../portfolio.images/backgrounds/mountain_night.jpg) no-repeat center center fixed;
+    background-size: cover;
+    height: 700px;
+    /*overflow-y: scroll;*/ /* fix for bottom part of content layering over footer when viewport narrowed to mobile width */
+  }
+  #portfolio:before { /* try to solve content placed under bootstrap fixed navbar after jump */
+                      /* github.com/twbs/bootstrap/issues/1768 @mnot */
+    display: block; 
+    content: " "; 
+    margin-top: -50px; 
+    height: 50px; 
+    visibility: hidden; 
+  }
+  #portfolio h2 {
+    color: white;
+    margin: 0;
+    padding-top: 80px;
+    padding-bottom: 20px;
+  }
+  .portfolio-deets {
+    color: white;
+    font-size: 1.2em;
+  }
+  .app-link:hover {
+    color: lightgrey;
+  }
+  
+  
+  /*************************** miscellaneous ***************************/
+ 
+}
+
+/* eof */

@@ -8,6 +8,9 @@
   <meta charset="utf-8">
   <meta http-equiv="Content-type" content="text/html; charset=utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1">
+  
+  <!-- *************** LOAD THE GOOGLE FONT ****************** -->
+  <link href='http://fonts.googleapis.com/css?family=Open+Sans:400' rel='stylesheet' type='text/css'>
 
   <!-- Latest compiled and minified CSS -->
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css"
@@ -20,21 +23,24 @@
   <!-- Font Awesome --> 
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
   
-  <!-- Local css, site-specific --> 
-  <link href="portfolio.css/styles.css" rel="stylesheet" type="text/css">
+  <!-- Local css, site-specific - note no reset.css b/c we're using Bootstrap which includes normalize.css --> 
+  <link href="portfolio.css/phone-default.css" rel="stylesheet" type="text/css">
+  <link href="portfolio.css/tablet.css" rel="stylesheet" type="text/css">
+  <link href="portfolio.css/desktop.css" rel="stylesheet" type="text/css">
   
  
 </head>
   <!--  There are three full-width panels to this layout (four, if you count the top nav section).
-        Their classes come in order: topnav, header, about/contact, portfolio.  Each has its own
-        background which doesn't scroll, but which changes as you go from section to section .. really cool.
+        Their classes come in order: topnav, header, about/contact, portfolio.  At desktop width,
+        each has its own background which doesn't scroll, but rather changes as you go from section to section.
   -->
 <body>
  
   <!--<nav class="navbar navbar-default navbar-fixed-top id="topnav">-->
   <nav class="navbar navbar-default navbar-fixed-top" id="topnav">
-    <div class="container">
-      
+    
+    <div class="container"><!--bootstrap rqmt-->
+    
       <div class="navbar-header">
         <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
                 data-target="#dcc-fcc-portf-nav" aria-expanded="false">
@@ -43,178 +49,251 @@
           <span class="icon-bar"></span>
           <span class="icon-bar"></span>
         </button>
-        <a href="#about" class="navbar-brand" id="toplink-brand">Donald Cameron</a>
-      </div>
-        
+        <!--The other links (below) specific for mobile or desktop work, but this one does not.  Perhaps it's because
+        there are multiple classes on these.  I can't make them into IDs as I need an ID for the target.  For now,
+        just let it be a dead logo - there's a way to get back home without this/these.  A possible fix is to use
+        jQuery add/remove class instead of display, but IDK-->
+        <!--<a href="#about-target-mobile"  class="navbar-brand mobile-about-link" id="toplink-brand">Donald Cameron</a>
+            <a href="#about-target-desktop" class="navbar-brand desktop-about-link" id="toplink-brand">Donald Cameron</a>-->
+        <!--TODO: hack - revisit later.  It will be a dead (non-working) a/href for now-->
+        <a class="navbar-brand" id="toplink-brand">Donald Cameron</a>
+      </div><!--hamburger and brand-->
+      
       <div class="collapse navbar-collapse" id="dcc-fcc-portf-nav">
         <!--<ul id="navlist">-->
         <ul class="nav navbar-nav navbar-right" id="nav-ul">
           <li><a href="#header">Home</a></li>
-          <li><a href="#about">About</a></li>
+          
+          <li class="mobile-about-link"><a href="#about-target-mobile">About</a></li>
+          <li class="desktop-about-link"><a href="#about-target-desktop">About</a></li>
+          
           <li><a href="#portfolio">Portfolio</a></li>
-          <li><a href="#about">Contact</a></li>
+          
+          <li class="mobile-about-link"><a href="#about-target-mobile">Contact</a></li>
+          <li class="desktop-about-link"><a href="#about-target-desktop">Contact</a></li>
         </ul>
-      </div>
+      </div><!--container-->
       
     </div>
   </nav>     
     
   <div class="container-fluid" id="outer-container">
-    <header id="header">
-      <h1 class="big-h">Donald Cameron</h1>
-      <h2 class="big-h">Software Engineer</h2>
-      <div class="row" id="header-btn-row">
-        <div class="col-md-3"></div><!--empty spacer-->
-        <div class="col-md-6 text-center">
-          <button class="btn header-btn">
-              <a href="http://techliferedux.tumblr.com" target="_blank">
-                <i class="fa fa-tumblr-square"></i> Tumblr</a></button>
-          <button class="btn header-btn">
-              <a href="https://github.com/donaldcameron77" target="_blank">
-                <i class="fa fa-github"></i> GitHub</a></button>
-          <button class="btn header-btn">
-              <a href="https://www.linkedin.com/in/donald-cameron-70b34355"target="_blank">
-                <i class="fa fa-linkedin-square"></i> LinkedIn</a></button>
-          <button class="btn header-btn">  <!--No FCC-specific icon yet - open GitHub issue since June '15-->
-              <a href="http://www.freecodecamp.com/dcc1079" target="_blank">
-                <i class="fa fa-fire"></i> freeCodeCamp</a></button>
-        </div>
-        <div class="col-md-3"></div><!--empty spacer-->
-      </div>
-      <hr id="header-hr">
-    </header>
     
-    <section id="about">
-      <div class="row">
-        <div class="col-md-8"></div>
-        <div class="col-md-4" id="bio">
-          <h3>About Me</h3>
-          <p>In a former life I wrote compilers in C++.<br />
-             These days my passion is web development.
-             I learn and grow every day via Free Code Camp,
-             Regis University, and Pluralsight.
-          </p>
-          <h4>Key Skills</h4>
-          <ul>
-            <li>HTML5, CSS3, JavaScript, jQuery,
-                AJAX, Bootstrap3, SASS</li>
-            <li>C#/.NET MVC, web services</li>
-            <li>Git, Visual Studio, Un*x</li>
-          </ul>
-        </div>
-      </div>
-      <div class="row">
-        <div class="col-md-8"></div>
-        <div class="col-md-4" id="contact">
-          <p>Contact Info</p>
-          <img src="portfolio.images/miscellaneous/obfuscontact.png" border="0" width="251" height="50" alt="Email generated by Img4Me" />
-        </div>
-    </section>
-    
-    <section id="portfolio">
+    <main id="header"><!--had to move header id from <header> to this to prevent content being obscured under navbar after jump-->
       
-      <h2>Recent Work</h2>
+      <header><!--header is the first "content" section, with name and social buttons-->
+        <h1 class="big-h">Donald Cameron</h1>
+        <h2 class="big-h">Software Engineer</h2>
+        <div class="row" id="header-btn-row">
+          <div class="col-sm-3"></div><!--empty spacer-->
+          <div class="col-sm-6 text-center">
+            <button class="btn header-btn">
+                <a href="http://techliferedux.tumblr.com" target="_blank">
+                  <i class="fa fa-tumblr-square"></i> Tumblr</a>
+            </button>
+            <button class="btn header-btn">
+                <a href="https://github.com/donaldcameron77" target="_blank">
+                  <i class="fa fa-github"></i> GitHub</a>
+            </button>
+            <button class="btn header-btn">
+                <a href="https://www.linkedin.com/in/donald-cameron-70b34355"target="_blank">
+                  <i class="fa fa-linkedin-square"></i> LinkedIn</a>
+            </button>
+            <button class="btn header-btn">  <!--No FCC-specific icon yet - open GitHub issue since June '15-->
+                <a href="http://www.freecodecamp.com/dcc1079" target="_blank">
+                  <i class="fa fa-fire"></i> freeCodeCamp</a>
+            </button>
+          </div>
+          <div class="col-sm-3"></div><!--empty spacer-->
+        </div>
+        <hr id="about-target-mobile"><!--put mobile internal jump target here to account for navbar obscuring top of associated content-->
+      </header>
       
-      <div class="row">
-        <div class="col-md-4 ">
-          <!--paths to images may need attention when moving to deployment tree (?)-->
-          <a href="altguitar/index.html" class="app-link" target="_self">
-            <div class="port-thumb port-thumb-left">
-              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/ova2neck2.jpg"
-                  alt="21st Century Guitar" width="245px">
-              <p>21st Century Guitar</p>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4 ">
-          <a href="sportsmoodspa/sportsmood.html" class="app-link" target="_self">
-            <div class="port-thumb port-thumb-center">
-              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/sportsmoodthumb.png"
-                   alt="Sports Mood App" width="249px">
-              <p>MLB Sports Mood</p>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4">
-          <a href="quoteapp/index.html" class="app-link" target="_self">
-            <div class="port-thumb port-thumb-right">
-              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/SnarkThumb.png"
-                   alt="Snark-O-Matic Quote Machine" width="238px">
-              <p>Snark-O-Matic Quote Machine</p>
-            </div>
-          </a>
-        </div>
-      </div><!--row-->
+      <div id="about-target-desktop"></div><!--put desktop internal jump target here to account for navbar obscuring top of associated content-->
+
       
-      <div class="row">
-        <div class="col-md-4">
-          <a href="weatherappfcc/index.html" class="app-link">
-            <div class="port-thumb port-thumb-left"> <!--match others in row-->
-              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/weather-app.png"
-                   alt="Get The Local Weather" width="225px">
-              <p>Local Weather</p>
-            </div>
-          </a>
+      <section id="about-desktop"><!--DESKTOP flavor of about section, hidden or displayed via CSS-->
+        <div class="row">
+          <div class="col-sm-8"></div>
+          <div class="col-sm-4" id="bio">
+            <h3>About Me</h3>
+            <p>In a former life I wrote compilers in C++.<br />
+               These days my passion is web development and C#/.NET.
+               I learn and grow every day via Free Code Camp,
+               Regis University, and Pluralsight.
+            </p>
+            <h4 id="skills-h">Key Skills</h4>
+            <ul>
+              <li>HTML5, CSS3, JavaScript, jQuery,
+                  AJAX, Bootstrap, SASS</li>
+              <li>C#/.NET MVC, web services</li>
+              <li>Git, Visual Studio, Un*x</li>
+            </ul>
+          </div>
         </div>
-        <!--<div class="col-md-4">
-          <a href="underconstruction/index.html" class="app-link">
-            <div class="port-thumb port-thumb-center">
-              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/robertJohnson.jpg"
-                   alt="Crossroads Site" width="270px">
-              <p>The Cross Road Blues</p>
-            </div>
-          </a>
-        </div>-->
-        <div class="col-md-4">
-          <a href="stockquotewidget/index.html" class="app-link">
-            <div class="port-thumb port-thumb-center">
-              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/stock-market-rise-fall.jpg"
-                   alt="Stock Quote" width="222px">
-              <p>Stock Quote Widget</p>
-            </div>
-          </a>
-        </div>
-        <div class="col-md-4">
-          <a href="seniorfitness/index.html" class="app-link">
-            <div class="port-thumb port-thumb-right">
-              <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/seniorfitness.jpg"
-                   alt="Senior Fitness Logo" width="215px">
-              <p>Senior Fitness</p>
-            </div>
-          </a>
-        </div>
-      </div>
+        <div class="row">
+          <div class="col-sm-8"></div>
+          <div class="col-sm-4" id="contact">
+            <h4>Contact Info</h4>
+            <img src="portfolio.images/miscellaneous/obfuscontact.png" border="0" width="251" height="50" alt="Email generated by Img4Me" />
+          </div>
+        </div><!--row-->
+      </section>
+
+      <section id="about-mobile"><!--MOBILE flavor of about section, hidden or displayed via CSS-->
+        <div class="row">
+          <div class="col-sm-4"></div><!--spacer-->
+          <div class="col-sm-4" id="bio">
+            <h2>About Me</h2>
+            <p id="bio-p">In a former life I wrote compilers in C++.<br />
+               These days my passion is web development and C#/.NET.
+               I learn and grow every day via Free Code Camp,
+               Regis University, and Pluralsight.
+            </p>
+            <h3>Key Skills</h3>
+            <ul>
+              <li>HTML5, CSS3, JavaScript, jQuery,
+                  AJAX, Bootstrap, SASS</li>
+              <li>C#/.NET MVC, web services</li>
+              <li>Git, Visual Studio, Un*x</li>
+            </ul>
+            <h3 id="contact-h">Contact Me</h3>
+            <img id="contact-img" src="portfolio.images/miscellaneous/obfuscontact.png" border="0" width="251" height="50"
+                 alt="contact info" />
+          </div><!--bio-->
+          <div class="col-sm-4"></div><!--spacer-->
+        </div><!--row-->
+        <hr id="portfolio-target"><!--put portfolio internal jump target here to account for navbar obscuring top of associated content-->
+      </section>
       
-      <div class="row">
-        <div class="col-md-2"><!--spacer--></div>
-        <div class="col-md-4">
-          <ul class="portfolio-deets">
-            <li>Landing Page - Free Code Camp challenge. HTML5/CSS3/Bootstrap/JavaScript</li>
-            <li>21st C. Guitar - FCC challenge. HTML5/CSS3/Bootstrap.<br>Mobile-friendly</li>
-            <li>Sports Mood SPA - single-page app, client-side only, HTML5/CSS3/JS/jQuery. Mobile-friendly</li>
-            <li>Snark-O-Matic random quote generator - FCC challenge. HTML5/CSS3/JS/jQuery. Mobile-friendly</li>
-          </ul>
+      <section id="portfolio"><!--target of internal branch (from nav)-->
+        
+        <h2>Recent Work</h2>
+        
+        <!--<div class="row">
+          <div class="col-sm-4 ">
+            <a href="altguitar/index.html" class="app-link" target="_self">
+              <div class="port-thumb port-thumb-left">
+                <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/ova2neck2.jpg"
+                    alt="21st Century Guitar" width="245px">
+                <p>21st Century Guitar</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-4 ">
+            <a href="sportsmoodspa/sportsmood.html" class="app-link" target="_self">
+              <div class="port-thumb port-thumb-center">
+                <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/sportsmoodthumb.png"
+                     alt="Sports Mood App" width="249px">
+                <p>MLB Sports Mood</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <a href="quoteapp/index.html" class="app-link" target="_self">
+              <div class="port-thumb port-thumb-right">
+                <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/SnarkThumb.png"
+                     alt="Snark-O-Matic Quote Machine" width="238px">
+                <p>Snark-O-Matic Quote Machine</p>
+              </div>
+            </a>
+          </div>
         </div>
         
-        <div class="col-md-4">
-           <ul class="portfolio-deets">
-            <li>Local Weather - FCC challenge.  HTML5/CSS3/JS/jQuery/AJAX.  Mobile-friendly</li>
-            <li>Stock Quote Widget. HTML5/CSS3/JS/jQuery/AJAX.<br>Mobile-friendly</li>
-            <li>Senior Fitness site - freelance project mockup. HTML5/CSS3/SASS. Mobile-friendly</li>
-           </ul>
+        <div class="row">
+          <div class="col-sm-4">
+            <a href="weatherappfcc/index.html" class="app-link">
+              <div class="port-thumb port-thumb-left">
+                <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/weather-app.png"
+                     alt="Get The Local Weather" width="225px">
+                <p>Local Weather</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <a href="stockquotewidget/index.html" class="app-link">
+              <div class="port-thumb port-thumb-center">
+                <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/stock-market-rise-fall.jpg"
+                     alt="Stock Quote" width="222px">
+                <p>Stock Quote Widget</p>
+              </div>
+            </a>
+          </div>
+          <div class="col-sm-4">
+            <a href="seniorfitness/index.html" class="app-link">
+              <div class="port-thumb port-thumb-right">
+                <img class="pic-border img-responsive" src="portfolio.images/portfolioThumbs/seniorfitness.jpg"
+                     alt="Senior Fitness Logo" width="215px">
+                <p>Senior Fitness</p>
+              </div>
+            </a>
+          </div>
+        </div>--><!--row-->
+        
+        <!--<div class="row">
+          <div class="col-sm-2"></div>
+          <div class="col-sm-4">
+            <ul class="portfolio-deets">
+              <li>Landing Page - Free Code Camp challenge. HTML5/CSS3/Bootstrap/JavaScript</li>
+              <li>21st C. Guitar - FCC challenge. HTML5/CSS3/Bootstrap.<br>Mobile-friendly</li>
+              <li>Sports Mood SPA - single-page app, client-side only, HTML5/CSS3/JS/jQuery. Mobile-friendly</li>
+              <li>Snark-O-Matic random quote generator - FCC challenge. HTML5/CSS3/JS/jQuery. Mobile-friendly</li>
+            </ul>
+          </div>
+          
+          <div class="col-sm-4">
+             <ul class="portfolio-deets">
+              <li>Local Weather - FCC challenge.  HTML5/CSS3/JS/jQuery/AJAX.  Mobile-friendly</li>
+              <li>Stock Quote Widget. HTML5/CSS3/JS/jQuery/AJAX.<br>Mobile-friendly</li>
+              <li>Senior Fitness site - freelance project mockup. HTML5/CSS3/SASS. Mobile-friendly</li>
+             </ul>
+          </div>
+          <div class="col-sm-2"></div>
+        </div>-->
+        
+        <div class="row">
+          <div class="col-sm-3"></div>
+          <div class="col-sm-6">
+            <ul class="portfolio-deets">
+              <li>This (landing) page - Free Code Camp challenge. HTML5/CSS3/Bootstrap/JavaScript. Mobile-friendly
+              </li>
+              <li><a href="altguitar/index.html" class="app-link" target="_self">21st C. Guitar</a>
+                  - FCC challenge. HTML5/CSS3/Bootstrap.<br>Mobile-friendly
+              </li>
+              <li><a href="sportsmoodspa/sportsmood.html" class="app-link" target="_self">Sports Mood SPA</a>
+                  - single-page app, client-side only, HTML5/CSS3/JS/jQuery. Mobile-friendly
+              </li>
+              <li><a href="quoteapp/index.html" class="app-link" target="_self">Snark-O-Matic</a>
+                  random quote generator - FCC challenge. HTML5/CSS3/JS/jQuery. Mobile-friendly
+              </li>
+              <li><a href="weatherappfcc/index.html" class="app-link" target="_self">Local Weather</a>
+                  - FCC challenge.  HTML5/CSS3/JS/jQuery/AJAX.  Mobile-friendly
+              </li>
+              <li><a href="stockquotewidget/index.html" class="app-link" target="_self">Stock Quote Widget</a>
+                  - HTML5/CSS3/JS/jQuery/AJAX.<br>Mobile-friendly
+              </li>
+              <li><a href="seniorfitness/index.html" class="app-link" target="_self">Senior Fitness Info</a>
+                  - freelance project mockup. HTML5/CSS3/SASS. Mobile-friendly
+              </li>
+            </ul>
+          </div>
+          <div class="col-sm-3"></div>
         </div>
-        <div class="col-md-2"><!--spacer--></div>
-      </div>
-    </section>
+        
+      </section>
+      
+    </main>
     
     <footer>
-      <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script>
-         Donald Cameron - all rights reserved</p>
+      <div id="tint-footer">
+        <p>Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+           Donald Cameron - all rights reserved</p>
         <p>Site design inspired by <a href="http://codepen.io/ThiagoFerreir4/full/eNMxEp/">Thiago Ferreira</a></p>
         <p>A big thanks to <a href="http://www.freecodecamp.com/map">Free Code Camp</a></p>
+      </div>
     </footer>
       
-  </div><!-- class "container-fluid" - outermost Bootstrap container for responsive layout -->
+  </div><!-- id "outer-container" class "container-fluid" - outermost Bootstrap container for responsive layout -->
  
   <script src="https://code.jquery.com/jquery-2.1.4.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
