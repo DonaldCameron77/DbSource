@@ -1,0 +1,132 @@
+/*-----Prevents iPhone from resizing in landscape mode -----*/
+html {-webkit-text-size-adjust: none; }
+
+/*----------- apply a natural box layout model to all elements --------------*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/*--------- stop Chrome from putting blue outline around selected clicked items --------*/
+button:focus { outline: 0; }
+
+/*----- BODY -----*/
+html, body {
+  height: 100%; /* to force gradient or whatever to fill the viewport */
+}
+
+body {
+  background-color: #0ac;
+  background: url(../images/blue-digital.jpg) no-repeat center center fixed;
+}
+
+header {
+  padding-top: 20px;
+  padding-bottom: 10px;
+  color: #66F;
+  text-align: center;
+  text-shadow: -1px 0 4px #EEF, 0 -1px 4px #EEF, 1px 0 4px #EEF, 0 1px 4px #EEF;
+}
+
+#container { /* not using yet */
+  padding-top: 20px;
+}
+#device-case {
+  width: 320px;
+  height: 320px;
+  margin: 0 auto;
+  position: relative;
+  border-radius: 15px;
+  background-color: #aaa;
+  /*background-color: rgba(226,226,226,1);*/
+  /*background: linear-gradient(left, #c1c1c1, #636);*/
+  background: -moz-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+  background: -webkit-gradient(left top, right top, color-stop(0%, rgba(226,226,226,1)), color-stop(0%, rgba(219,219,219,1)), color-stop(62%, rgba(209,209,209,1)), color-stop(100%, rgba(254,254,254,1)));
+  background: -webkit-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+  background: -o-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+  background: -ms-linear-gradient(left, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+  background: linear-gradient(to right, rgba(226,226,226,1) 0%, rgba(219,219,219,1) 0%, rgba(209,209,209,1) 62%, rgba(254,254,254,1) 100%);
+  /*filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#e2e2e2', endColorstr='#fefefe', GradientType=1 );*/
+}
+
+#case-center {
+  border-radius: 50%;
+  /*background: rgba(209,209,209,1);*/ /* trying to match the case gradient, which we will probably have to rethink */
+  background-color: #20262c;
+  border: 2px solid black;
+  width: 140px; /* width + 2 * left must add to the 320 of device case */
+  height: 140px;
+  top: 90px;
+  left: 90px;
+  /*margin: auto auto;*/
+  position: absolute;
+  z-index: 99;
+}
+
+#control-panel { /* the smaller circle concentric with case-center */
+  border-radius: 50%;
+  background: rgba(209,209,209,1); /* trying to match the case gradient */
+  width: 110px;
+  height: 110px;
+  top: 105px;
+  left: 105px;
+  position: absolute;
+  z-index: 999;
+}
+
+.color-block {
+  height: 43%;
+  width: 43%;
+  border: 2px solid black;
+}
+#top-left {
+  margin: 4% 2% 2% 4%;
+  display: inline-block;
+  border-top-left-radius: 10px;
+}
+#top-right {
+  margin: 4% 4% 2% 2%;
+  display: inline-block;
+  border-top-right-radius: 10px;
+}
+#bottom-right {
+  margin: 2% 4% 4% 2%;
+  display: inline-block;
+  border-bottom-right-radius: 10px;
+}
+#bottom-left {
+  margin: 2% 2% 4% 4%;
+  display: inline-block;
+  border-bottom-left-radius: 10px;
+}
+
+@media (min-width: 641px) {
+  
+  header h1 {
+    font-size: 2.5em;
+  }
+  
+  #device-case {
+    width: 500px;
+    height: 500px;
+  }
+  #case-center {
+    width: 220px; /* width + 2 * left must add to the 500 of device case */
+    height: 220px;
+    top: 140px;
+    left: 140px;
+  }
+  
+  #control-panel {
+    width: 172px;
+    height: 172px;
+    top: 164px;
+    left: 164px;
+  }
+  
+  .color-block {
+    height: 43.5%;
+    width: 43.5%;
+  }
+  
+}
+
+/* eof */
+
