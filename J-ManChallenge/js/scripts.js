@@ -43,7 +43,7 @@ var sounds = {
 
 function resetBrightness() {
     // reset to default dimmer values
-    // alert('resetBrightness() called');
+    // alert('resetBrightness() called'); // debug
     //for (var i = 0; i < gameId.length; ++i) {
     //    $(gameId[i]).css('background-color', mapDim[gameId[i]]);
     //}
@@ -52,9 +52,9 @@ function resetBrightness() {
 
 function colorBlockClick(id) {
     console.log(this);
-    // alert("click function called with " + id);
+    // alert("click function called with " + id); // debug
     resetBrightness();
-    // alert('setting ' + id + ' background-color to ' + mapBright[id]);
+    // alert('setting ' + id + ' background-color to ' + mapBright[id]); // debug
     
     var sound = new Audio(sounds[id]);
     sound.play();
@@ -63,52 +63,23 @@ function colorBlockClick(id) {
     var delayMs = 200; // delay in milliseconds
     $(id).css('background-color', mapBright[id]);
     
-    // For my next trick: you can't animate color, but jQuery UI has an extension for that. ... Let's try it.
+    // Using delay directly won't work - it doesn't work on the css() command.  Nor,
+    // for reasons unknown, could I get setTimeout to work.
+    // But there's this, though it requires jQueryUI:
+    // You can't animate color, but jQuery UI has an extension for that. ... Let's try it.
     // We use delay for the timing, and set animation duration of 0 as per Felix King:
     //    http://stackoverflow.com/questions/4509222/jquery-delay-altering-css
     for (var i = 1; i <= 2; ++i) {
         $(id).delay(delayMs).animate({'background-color': mapDim[id]}, 0);
         $(id).delay(delayMs).animate({'background-color': mapBright[id]}, 0);
-    }
-    
-    //for (var i = 1; i <= 2; ++i) {
-    //    // alert("dimming " + id);
-    //    setTimeout(function() { $(id).delay(delayMs).css('background-color', mapDim[id]); });
-    //    // alert("brightening " + id);
-    //    setTimeout(function() { $(id).delay(delayMs).css('background-color', mapBright[id]); });
-    //}
-
-    //for (var i = 1; i <= 2; ++i) {
-    //    alert("dimming " + id);
-    //    setTimeout(function() { $(id).css('background-color', mapDim[id]); }, delayMs);
-    //    alert("brightening " + id);
-    //    setTimeout(function() { $(id).css('background-color', mapBright[id]); }, delayMs);
-    //}
-    
-    // @#$%^ it doesn't work
-    //for (var i = 1; i <= 2; ++i) {
-    //    // alert("dimming " + id);
-    //    $(id).delay(delayMs).css('background-color', mapDim[id]);
-    //    // alert("brightening " + id);
-    //    $(id).delay(delayMs).css('background-color', mapBright[id]);
-    //}
-    
-    // try this
-    // no don't bother - no workee
-    //$(id).css('text-decoration', 'blink');
-    //$(id).delay(2000).css('text-decoration', 'none');
-    
-    // delay won't work with css properties per http://stackoverflow.com/questions/4411644/jquery-change-css-after-a-certain-amount-of-time
-    // So try setTimeout("js statement", milliseconds);
-    
+    }    
 }
 
 $(document).ready(function() {
-    // alert('ready function called');
     resetBrightness();
-    /* sidestep loop closure problem with map ... though perhaps [].forEach is more semantic */
-    gameId.map(function(id) {
-        // alert('map function called with id = ' + id);
+    /* sidestep loop closure problem with map or forEach */
+    gameId.forEach(function(id) {
+        // alert('forEach/map function called with id = ' + id); // debug
         $(id).click(function() {colorBlockClick(id);});
     });
 });
