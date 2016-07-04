@@ -1,0 +1,297 @@
+/*-----Prevents iPhone from resizing in landscape mode -----*/
+/* html {-webkit-text-size-adjust: none; } */
+html {-webkit-text-size-adjust: 100%; } /* see J.Seric foundation article on why this rather than 'none' */
+
+/*----------- apply a natural box layout model to all elements --------------*/
+* { -moz-box-sizing: border-box; -webkit-box-sizing: border-box; box-sizing: border-box; }
+
+/*--------- stop Chrome from putting blue outline around selected clicked items --------*/
+:focus { outline: 0; }
+
+/*----- BODY -----*/
+html, body {
+    height: 100%; /* to force gradient or whatever to fill the viewport */
+}
+
+body {
+    background-color: #0ac;
+    /*background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/solid.png');*/
+    /*background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/retro_intro.png');*/
+    background-image: url('http://cdn.backgroundhost.com/backgrounds/subtlepatterns/paper_2.png');
+}
+
+/*----- MAIN::SECTION -----*/
+
+#device-case {
+    width: 350px;
+    height: 350px;
+    background-color: #222;
+    margin: 30px auto;
+    border-radius: 50%;
+    position: relative; /* to enable absolute positioning for children */
+}
+
+.color-block {
+    height: 44%;
+    width: 44%;
+/*    display: inline-block;*/
+    position: absolute;
+}
+
+#top-left {
+    border-top-left-radius: 100%;
+    background-color: #090; /* green */
+    top: 6%;
+    left: 6%
+}
+#top-right {
+    border-top-right-radius: 100%;
+    background-color: #bc2000;
+    top: 6%;
+    right: 6%;
+}
+#bottom-right {
+    border-bottom-right-radius: 100%;
+    background-color: #0002bc;
+    bottom: 6%;
+    right: 6%;
+}
+
+#bottom-left {
+    border-bottom-left-radius: 100%;
+    background-color: #bcbc20;
+    bottom: 6%;
+    left: 6%;
+}
+
+.rib {
+    background-color: #222;
+    position: absolute;
+}
+#vertical-rib {
+    width: 6%;
+    height: 98%;
+    top: 1%;
+    left: 47%;
+}
+#horizontal-rib {
+    width: 98%;
+    height: 6%;
+    top: 47%;
+    left: 1%;
+}
+
+#case-center {
+    background-color: #222;
+    border-radius: 50%;
+    width: 50%;
+    height: 50%;
+    position: absolute;
+    top: 25%;
+    left: 25%;
+}
+
+#control-panel {
+    background-color: #bbb;
+    
+    background-color: hsl(0,0%,90%);
+    /* radial brushed metal effects - credit Simuari (http://simurai.com/lab/2011/08/21/brushed-metal) */
+    background-image:
+        -webkit-radial-gradient( 50% 0%, 8% 50%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+        -webkit-radial-gradient( 50% 100%, 12% 50%, hsla(0,0%,100%,.6) 0%, hsla(0,0%,100%,0) 100%),
+        -webkit-radial-gradient( 0% 50%, 50% 7%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+        -webkit-radial-gradient( 100% 50%, 50% 5%, hsla(0,0%,100%,.5) 0%, hsla(0,0%,100%,0) 100%),
+        -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%, 0%,0) 0%,
+                    hsla(0,0%, 0%,0) 3%, hsla(0,0%, 0%,.1) 3.5%),
+        -webkit-repeating-radial-gradient(50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 6%, hsla(0,0%,100%,.1) 7.5%),
+        -webkit-repeating-radial-gradient( 50% 50%, 100% 100%, hsla(0,0%,100%,0) 0%, hsla(0,0%,100%,0) 1.2%, hsla(0,0%,100%,.2) 2.2%),
+        -webkit-radial-gradient( 50% 50%, 200% 50%, hsla(0,0%,90%,1) 5%, hsla(0,0%,85%,1) 30%, hsla(0,0%,60%,1) 100%); 
+    
+    border-radius: 50%;
+    width: 44%;
+    height: 44%;
+    position: absolute;
+    top: 28%;
+    left: 28%
+}
+
+#brand {
+    padding-left: 5px;
+    margin: 20% auto 0 auto;
+    text-align: center;
+    font-family: 'Ultra', serif;
+    font-size: 3em;
+    font-weight: bold;
+}
+#brand h1 sup {
+    font-size: .5em;
+    font-weight: normal;
+    position: relative;
+    top: -5px;
+    left: -7px;
+}
+
+/***** center row of control panel *****/
+
+#count-row {
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: .9em;
+    position: absolute;
+    width: 86%;
+    height: 35%;
+    top: 42%;
+    left: 8%;
+}
+#counter-div {
+    display: inline-block;
+    height: 100%;
+    width: 45%;
+}
+#count-display {
+    font-family: 'VT323';
+    font-weight: bold;
+    font-size: 2em;
+    color: #660a18;
+    text-align: center;
+    background-color: #460710;
+    width: 75%;
+    padding-top: 8px;
+    margin: 4% auto;
+    border: 3px solid #222;
+    border-radius: 10px; /* looks better in px for some reason */
+}
+#count-display p {
+    position: relative;
+    top: -5px;
+}
+#counter-div h3 {
+    padding-top: 3%;
+    text-align: center;
+}
+.dim-count { /* used by flashCount() */
+    color: #660a18;
+}
+
+.btn-div {
+    display: inline-block;
+    width: 25%;
+    height: 100%;
+    /* vertical-align: top;*/ /* see css-tricks on this topic */
+}
+/*.btn-frame {
+}*/
+.btn {
+    width: 35px;
+    height: 35px;
+    border: 5px solid #222;
+    border-radius: 50%;
+    box-shadow: 0px 2px 3px #222;
+    margin: 0 auto 20% auto;
+    position: relative;
+}
+.btn:active { /* animate button push */
+    top: -1px;
+    box-shadow: 0 1px 1px #292929;
+}
+#start-btn {
+    background-color: #e00; /* slightly muted red */
+}
+#strict-btn {
+    background-color: #ee0; /* slightly muted yellow */
+}
+#led-strict {
+    position: absolute;
+    top: -1%;
+    right: 4%;
+    width: 10px;
+    height: 10px;
+    background-color: #460710; /* active color: red */
+    border-radius: 50%;
+    border: 2px solid #222;
+}
+.btn-div h3 {
+    text-align: center;
+/*    font-size: 1.05em; STILL TOO HIGH!!!*/
+}
+
+/***** bottom row of control panel *****/
+
+#switch-row {
+    position: absolute;
+    width: 60%;
+    height: 11%;
+    bottom: 8%;
+    left: 29%;
+}
+.legend {
+    display: inline-block;
+    width: 16%;
+    position: relative;
+    bottom: 8px;
+    font-family: 'Open Sans Condensed', sans-serif;
+    font-size: 1em;
+}
+.legend h3 {
+    position: relative;
+    top: 5px;
+}
+#switch-slot {
+    display: inline-block;
+    width: 35%;
+    height: 100%;
+    background-color: #222;
+}
+#switch {
+    display: inline-block;
+    position: relative;
+    left: 4%; /* 51% for the "on" position */
+    background-color: #08d;
+    border-radius: 8%;
+    width: 45%;
+    height: 82%;
+    margin-top: 5%; 
+}
+
+/******************************************/
+/********** TABLET (AND DESKTOP) **********/
+/******************************************/
+
+@media only screen and (min-width: 641px) {
+
+    #device-case {
+        width: 550px;
+        height: 550px;
+        margin-top: 100px;
+    }
+
+}
+
+/************* mobile retrofit **************/
+/* Scaling for Mobile */
+
+/*
+@media screen and (max-width: 500px){
+
+  #device-case {
+    top: 40px;
+    
+    -moz-transform: scale(0.6);
+    -ms-transform: scale(0.6);
+    -o-transform: scale(0.6);
+    -webkit-transform: scale(0.6);
+    transform: scale(0.6);
+    
+    -o-transform-origin: 0 0;
+    -ms-transform-origin: 0 0;
+    -webkit-transform-origin: 0 0;
+    -moz-transform-origin: 0 0;
+    transform-origin: 0 0;
+    
+    left: 50%;
+    margin-left: -142px;
+  }
+}
+*/
+
+
+/* eof */

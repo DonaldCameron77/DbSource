@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+
+<html lang='en'>
+  
+<head>
+  <title>Simon</title>
+  <meta name='description' content='Simon Game' />
+<!--  <meta charset='utf-8'>-->
+  <meta http-equiv='Content-type' content='text/html; charset=utf-8' />
+  <meta name='viewport' content='width=device-width, initial-scale=1'>
+  
+  <!-- *************** LOAD FONTS from GOOGLE ****************** -->
+  <link href='https://fonts.googleapis.com/css?family=Ultra' rel='stylesheet' type='text/css'>
+    
+  <link href='https://fonts.googleapis.com/css?family=VT323' rel='stylesheet' type='text/css'>
+    
+  <!--  <link href="https://fonts.googleapis.com/css?family=Cousine" rel="stylesheet">-->
+    
+  <link href="https://fonts.googleapis.com/css?family=Open+Sans+Condensed:300" rel="stylesheet">
+  
+  <!-- *************** STYLE SHEETS ****************** -->
+  <!--jQuery UI - note the associated JS toward the end of <body>-->
+  <!--<link rel='stylesheet'
+      href='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/themes/smoothness/jquery-ui.css'>-->
+  
+  <link href='css/jsericnonreset.css' rel='stylesheet'>
+  <link href='css/styles.css' rel='stylesheet' type='text/css' >
+  
+  <!--Note all JS is below including jQuery-->
+   
+</head>
+
+<body>
+  
+  <main>
+    <section id='device-case'>
+        <div class='color-block' id='top-left'></div>
+        <div class='color-block' id='top-right'></div>
+        <div class='color-block' id='bottom-left'></div>
+        <div class='color-block' id='bottom-right'></div>
+        <div class='rib' id='vertical-rib'></div>
+        <div class='rib' id='horizontal-rib'></div>
+        <div id='case-center'></div>
+        <div id='control-panel'>
+            <div id='brand'>
+                <h1 id='logo'>Simon<sup>&reg;</sup></h1>
+            </div>
+            <div id='count-row'>
+                <div id="counter-div">
+                    <div id="count-display">
+                        <p>--</p>
+                    </div>
+                    <h3>COUNT</h3>
+                </div>
+                <div id="start" class="btn-div">
+                    <div class="btn-frame">
+                        <div class="btn" id="start-btn"></div>
+                    </div>
+                    <h3>START</h3>
+                </div>
+                <div id="strict" class="btn-div">
+                    <div class="btn-frame">
+                        <div id="led-strict"></div>
+                        <div class="btn" id="strict-btn"></div>
+                    </div>
+                    <h3>STRICT</h3>
+                </div>
+            </div> <!--count-row-->
+            <div id='switch-row'>
+                <div class='legend'>
+                    <h3>OFF</h3>
+                </div>
+                <div id='switch-slot'>
+                    <div id='switch'></div>
+                </div>
+                <div class='legend'>
+                    <h3>ON</h3>
+                </div>
+            </div> <!--switch-row-->
+        </div>
+    </section>
+  </main>
+
+  <footer><!-- standard dcc footer -->
+    <!--<p>Copyright &copy; <script>document.write(new Date().getFullYear());</script>
+       Donald Cameron - all rights reserved</p>
+    <p>A big thanks to <a href='http://www.freecodecamp.com/map'>Free Code Camp</a></p>-->
+  </footer>
+  
+  <!-- JQUERY-->
+  <script src='https://ajax.googleapis.com/ajax/libs/jquery/2.2.4/jquery.min.js'></script>
+  
+  <!-- JQUERY UI - Note the associated CSS link in <head>-->
+  <!--<script src='https://ajax.googleapis.com/ajax/libs/jqueryui/1.11.4/jquery-ui.min.js'></script>-->
+  
+  <!-- Site-specific JavaScript -->
+  <script src='js/scripts.js'></script>
+  
+  <!--[if lt IE 9]>
+    <script src='http://html5shim.googlecode.com/svn/trunk/html5.js'></script>
+    <script src='http://css3-mediaqueries-js.googlecode.com/svn/trunk/css3-mediaqueries.js'></script>
+  <![endif]-->
+ 
+</body>
+
+</html>
+  
