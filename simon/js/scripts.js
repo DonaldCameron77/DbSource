@@ -1,13 +1,11 @@
 /***************************************************************
  *
  *  JavaScript file for Free Code Camp Simon Challenge
- *    Author: Donald Cameron
- *    June-July
- 2016
+ *  Author: Donald Cameron
+ *  Creation Date: June-July 2016
  */
 
-// TODO:
-//   animate start and strict buttons
+// all local JS is within the following document ready function
 
 $(document).ready(function() {
     
@@ -96,9 +94,9 @@ $(document).ready(function() {
                 $('#switch').css('left', '50%');
                 brightenCount();
             },
-            start: function(restart) {
-                console.log("In view.start - restart = ", restart);
-                if (restart) {
+            start: function(isRestart) {
+                console.log("In view.start - isRestart = ", isRestart);
+                if (isRestart) {
                     $('#count-display p').html('--');
                 }
                 flashCount(2, '01'); // TODO: animate turning on (incl restart)
@@ -113,11 +111,17 @@ $(document).ready(function() {
                     darkenStrict();
                 }
             },
+            /*****************************************************************/
+            // From here down are the View properties/functions associated with
+            // game play.  This kinda sucks from an encapsulation perspective,
+            // b/c the View stuff for in-game is mixed with the device control
+            // functions above.  What's a better way that doesn't involve
+            // multiple View objects (or should there be ViewDeviceCtrl and ViewPlayGame?
             updateCount: function(newCount) { // TODO: test this
                 var prefix = newCount < 10 ? '0' : '';
                 newCount = prefix + newCount.toString();
                 $('#count-display p').html('newCount'); // quote this?  If not we could say
-//                $('#count-display p').html(prefix + newCount.toString());
+                //  $('#count-display p').html(prefix + newCount.toString());
             },
         }
     }
@@ -138,16 +142,40 @@ $(document).ready(function() {
         this.running = false;
         this.strict = false;
         this.count = undefined; // I think. Or should it be '--'?
+        // we don't bother putting the game sequence array in
+        // until the game actually starts
     }
 
     /* methods of GameState go here */
 
     var gameState = new GameState();
+    
+    function playGame() {
+        // This will restart the game upon user error (NOT the same as pressing
+        // the Start button). The only question is what does it do if the user wins?
+        // It puts up the win display ("**" and fast flashing and pulsating sound),
+        // and then returns (to the global exec. context, awaiting a click event).
+        
+        function playSequence() {
+            // blah
+        }
+        
+        function newSequence() {
+            // glqh
+        }
+        gameState.running = true;
+        gameState.count = 1;
+        gameState.sequence = [];
+        var /*const*/ maxRound = 20;
+        for (var i = 1; i <= count; ++i) {
+          //code
+        }
+    }
 
 /**********************  Controller **********************/
     
-    /* Like View, this is perpetual - doesn't get remade
-       at on/off (as there's no persistent data) */
+    /* Like View, this is perpetual - it doesn't need to
+     * be remade at on/off (as it has no persistent data) */
     
     /* for the on/off switch we have turnOn/turnOff, but
        for the start button we only have startUp, no
@@ -173,10 +201,9 @@ $(document).ready(function() {
                 // ok to call with game already started - it starts game over
                 assert(gameState.on, "in Controller.startUp but GameState is off!!");
                 console.log("In Controller.startUp()");
-                var restart = gameState.running;
-                gameState.running = true;
-                gameState.count = 1;
-                view.start(restart);
+                var isRestart = gameState.running;
+                view.start(isRestart);
+                playGame(); // does it care if it's a restart?
                 // do we ever return from this? don't think so.
                 // Game plays itself until there's another event.
             },
@@ -219,6 +246,24 @@ $(document).ready(function() {
         }
     });
     
-    // resetGame(); // pseudo-constructor for gameState,
-                    // but do we need to call it here?
+    $('#top-left').click(function() {
+        alert('#top-left was clicked');
+        console.log('#top-left was clicked');
+    });
+    
+    $('#top-right').click(function() {
+        alert('#top-left was clicked');
+        console.log('#top-left was clicked');
+    });
+    
+    $('#bottom-right').click(function() {
+        alert('#top-left was clicked');
+        console.log('#top-left was clicked');
+    });
+    
+    $('#bottom-left').click(function() {
+        alert('#top-left was clicked');
+        console.log('#top-left was clicked');
+    });
+    
 });
